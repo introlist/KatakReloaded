@@ -14,7 +14,7 @@ import java.util.List;
  * @author DEMON
  */
 public class AdminGrupoProd {
-    private AccesoDatosGrupoProds datosGrupoProds;
+    private final AccesoDatosGrupoProds datosGrupoProds;
     
     public AdminGrupoProd(){
         datosGrupoProds = new AccesoDatosGrupoProds();

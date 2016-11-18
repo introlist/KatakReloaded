@@ -14,7 +14,7 @@ import java.util.List;
  * @author Bernardo Espinoza
  */
 public class AdminClientes {
-    private AccesoDatosClientes datosClientes;
+    private  AccesoDatosClientes datosClientes;
     
     public AdminClientes(){
         datosClientes = new AccesoDatosClientes();

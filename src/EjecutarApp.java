@@ -1,5 +1,6 @@
 
 import Vista.MenuPrincipal;
+import Vista.vistaClientes;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,8 +18,11 @@ public class EjecutarApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MenuPrincipal menuPrincipal = new MenuPrincipal();
-        menuPrincipal.setVisible(true);
+//        vistaClientes vc = new vistaClientes();
+//        vc.setVisible(true);
+
+        MenuPrincipal mp = new MenuPrincipal();
+        mp.setVisible(true);
     }
     
 }
