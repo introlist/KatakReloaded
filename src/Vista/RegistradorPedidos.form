@@ -126,10 +126,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="LabelFecha" min="-2" max="-2" attributes="0"/>
                       <Component id="comboFecha" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="LabelHora" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TextoHora" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="TextoHora" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="LabelHora" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="12" max="32767" attributes="0"/>
                   <Component id="LabelCampos" min="-2" max="-2" attributes="0"/>
@@ -205,9 +203,9 @@
                       <Component id="ScrollGruposProd" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="LabelProducto" min="-2" pref="60" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="ComboProds" min="-2" pref="154" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="ComboProds" min="-2" pref="197" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="LabelCantidad" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="TextoCantidad" min="-2" pref="108" max="-2" attributes="0"/>
@@ -312,6 +310,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="TextoTotal">
           <Properties>
+            <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
