@@ -15,11 +15,11 @@ import org.hibernate.cfg.AnnotationConfiguration;
  * @author DEMON
  */
 public class GeneradorSesiones {
-    private static final SessionFactory FabricadorSesion;
+    private static final SessionFactory fabricadorSesion;
     
     static {
         try {
-            FabricadorSesion = new AnnotationConfiguration().configure().buildSessionFactory();
+            fabricadorSesion = new AnnotationConfiguration().configure().buildSessionFactory();
         } catch(HibernateException excepcionHibernate) {
             System.err.println(
                     "Ocurrió un error en la inicialización de la SesionFactory: " + 
@@ -29,10 +29,10 @@ public class GeneradorSesiones {
     }
     
     public static SessionFactory getFabricadorSesion() {
-        return FabricadorSesion;
+        return fabricadorSesion;
     }
     
     public static Session getSesionAbierta(){
-        return FabricadorSesion.openSession();
+        return fabricadorSesion.openSession();
     }
 }
