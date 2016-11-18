@@ -8,6 +8,8 @@ package Vista;
 import Vista.Paneles.PanelAgregarEditarPedido;
 import Vista.Paneles.PanelPrincipalPedido;
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 /**
@@ -40,6 +42,8 @@ public class vistaPedidos extends javax.swing.JFrame {
         
         add(panelBase);
         
+        AgregarActionListeners();
+        
         pack();
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +51,12 @@ public class vistaPedidos extends javax.swing.JFrame {
     }
     
     private void AgregarActionListeners(){
-        
+        panelPrincipal.getBotonAgregar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panelBase, "2");
+            }
+        });
     }
 
     /**

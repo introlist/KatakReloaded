@@ -5,6 +5,7 @@
  */
 package Vista.Paneles;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -13,113 +14,142 @@ import javax.swing.JPanel;
  * @author Bernardo Espinoza
  */
 public class PanelAgregarEditarCliente extends javax.swing.JPanel{
-    private javax.swing.JButton BotonRegresar;
     private javax.swing.JButton BotonGuardar;
-    private javax.swing.JLabel LabelNombre;
+    private javax.swing.JButton BotonRegresar;
+    private javax.swing.JTextField CampoDireccion;
+    private javax.swing.JTextField CampoEMail;
+    private javax.swing.JTextField CampoNombre;
+    private javax.swing.JTextField CampoTelefono;
     private javax.swing.JLabel LabelDireccion;
+    private javax.swing.JLabel LabelEMail;
+    private javax.swing.JLabel LabelNombre;
+    private javax.swing.JLabel LabelObligatorios;
     private javax.swing.JLabel LabelTelefono;
-    private javax.swing.JTextField NombreTextField;
-    private javax.swing.JTextField DireccionTextField;
-    private javax.swing.JTextField TelefonoTextField;
 
     public PanelAgregarEditarCliente() {
         LabelNombre = new javax.swing.JLabel();
+        CampoNombre = new javax.swing.JTextField();
         LabelDireccion = new javax.swing.JLabel();
+        CampoDireccion = new javax.swing.JTextField();
         LabelTelefono = new javax.swing.JLabel();
-        DireccionTextField = new javax.swing.JTextField();
-        TelefonoTextField = new javax.swing.JTextField();
-        NombreTextField = new javax.swing.JTextField();
+        CampoTelefono = new javax.swing.JTextField();
+        LabelEMail = new javax.swing.JLabel();
+        CampoEMail = new javax.swing.JTextField();
+        LabelObligatorios = new javax.swing.JLabel();
         BotonGuardar = new javax.swing.JButton();
         BotonRegresar = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Cliente"));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP));
 
-        LabelNombre.setText("Nombre");
+        LabelNombre.setText("Nombre*");
 
-        LabelDireccion.setText("Dirección");
+        LabelDireccion.setText("Dirección*");
 
-        LabelTelefono.setText("Telefono");
+        LabelTelefono.setText("Telefono *");
+
+        LabelEMail.setText("E-mail");
+
+        LabelObligatorios.setText("Obligatorios*");
 
         BotonGuardar.setText("Guardar");
-        
+
         BotonRegresar.setText("Regresar");
 
-        javax.swing.GroupLayout DatosClientePanelLayout = new javax.swing.GroupLayout(this);
-        setLayout(DatosClientePanelLayout);
-        DatosClientePanelLayout.setHorizontalGroup(DatosClientePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DatosClientePanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(this);
+        setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DatosClientePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DatosClientePanelLayout.createSequentialGroup()
-                        .addComponent(LabelDireccion)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LabelTelefono)
+                            .addComponent(LabelEMail)
+                            .addComponent(LabelDireccion)
+                            .addComponent(LabelNombre))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DireccionTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))
-                    .addGroup(DatosClientePanelLayout.createSequentialGroup()
-                        .addComponent(LabelTelefono)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TelefonoTextField))
-                    .addGroup(DatosClientePanelLayout.createSequentialGroup()
-                        .addComponent(LabelNombre)
-                        .addGap(9, 9, 9)
-                        .addComponent(NombreTextField))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosClientePanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BotonGuardar)
-                        .addGap(31, 31, 31)
-                        .addComponent(BotonRegresar)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CampoNombre)
+                            .addComponent(CampoDireccion)
+                            .addComponent(CampoTelefono)
+                            .addComponent(CampoEMail)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 201, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LabelObligatorios, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(BotonGuardar)
+                                .addGap(11, 11, 11)
+                                .addComponent(BotonRegresar)))))
                 .addContainerGap())
         );
-        DatosClientePanelLayout.setVerticalGroup(DatosClientePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DatosClientePanelLayout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DatosClientePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelNombre)
-                    .addComponent(NombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(DatosClientePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelDireccion)
-                    .addComponent(DireccionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(DatosClientePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelTelefono)
-                    .addComponent(TelefonoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(DatosClientePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LabelEMail)
+                    .addComponent(CampoEMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(LabelObligatorios)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonGuardar)
                     .addComponent(BotonRegresar))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 
-    public JButton getBotonRegresar() {
-        return BotonRegresar;
+    public void agregarBotonRegresarListener(ActionListener listener){
+        BotonRegresar.addActionListener(listener);
     }
-
-    public JButton getBotonGuardar() {
-        return BotonGuardar;
+    
+    public void agregarBotonGuardarListener(ActionListener listener){
+        BotonGuardar.addActionListener(listener);
     }
     
     public String obtenerCampoNombre(){
-        return NombreTextField.getText();
+        return CampoNombre.getText();
     }
     
     public String obtenerCampoDireccion(){
-        return DireccionTextField.getText();
+        return CampoDireccion.getText();
     }
     
     public String obtenerCampoTelefono(){
-        return TelefonoTextField.getText();
+        return CampoTelefono.getText();
     }
     
-    public void fijarCampoDireccion(String direccion){
-        DireccionTextField.setText(direccion);
+    public String obtenerCampoEMail(){
+        return CampoEMail.getText();
     }
     
-    public void fijarCampoNombre(String nombre){
-        NombreTextField.setText(nombre);
+    public void llenarCampoDireccion(String direccion){
+        CampoDireccion.setText(direccion);
     }
     
-    public void fijarCampoTelefono(String telefono){
-        TelefonoTextField.setText(telefono);
+    public void llenarCampoNombre(String nombre){
+        CampoNombre.setText(nombre);
+    }
+    
+    public void llenarCampoTelefono(String telefono){
+        CampoTelefono.setText(telefono);
+    }
+    
+    public void llenarCampoEMail(String mail){
+        CampoEMail.setText(mail);
     }
 }

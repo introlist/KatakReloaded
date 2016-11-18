@@ -25,8 +25,7 @@ public class AccesoDatosClientes extends AccesoDatos<Cliente>  {
             iniciarTransaccion();
             Query query = sesion.createSQLQuery(
                     SentenciaBusquedaNombre(NOMBRE_COLUMNA, inputNombre)
-            ).addEntity(getTipoClase()
-                    );
+            ).addEntity(getTipoClase());
             clienteExistente = query.list();
         } catch (HibernateException exception) {
             manejarExcepcionHibernate(exception);
