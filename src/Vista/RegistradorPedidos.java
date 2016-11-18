@@ -11,14 +11,9 @@ import javax.swing.DefaultComboBoxModel;
 import Vista.Tablas.ModeloTablaGrupoProd;
 import Negocio.Entidades.GrupoProds;
 import Negocio.Entidades.Producto;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import javax.swing.text.DateFormatter;
 
 /**
  *
@@ -400,34 +395,6 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         return selectedDateChooserCalendar.getTime();
     }
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonAgregar;
-    private javax.swing.JToggleButton BotonCancelar;
-    private javax.swing.JButton BotonEliminar;
-    private javax.swing.JToggleButton BotonRegistrar;
-    private javax.swing.JComboBox<String> ComboProds;
-    private javax.swing.JLabel LabelCampos;
-    private javax.swing.JLabel LabelCantidad;
-    private javax.swing.JLabel LabelComprador;
-    private javax.swing.JLabel LabelDireccion;
-    private javax.swing.JLabel LabelFecha;
-    private javax.swing.JLabel LabelHora;
-    private javax.swing.JLabel LabelProducto;
-    private javax.swing.JLabel LabelTelefono;
-    private javax.swing.JLabel LabelTotal;
-    private javax.swing.JPanel PanelComprador;
-    private javax.swing.JPanel PanelGruposProds;
-    private javax.swing.JScrollPane ScrollGruposProd;
-    private javax.swing.JTable TablaGruposProd;
-    private javax.swing.JTextField TextoCantidad;
-    private javax.swing.JTextField TextoComprador;
-    private javax.swing.JTextField TextoDireccion;
-    private javax.swing.JTextField TextoHora;
-    private javax.swing.JTextField TextoTelefono;
-    private javax.swing.JTextField TextoTotal;
-    private datechooser.beans.DateChooserCombo comboFecha;
-    // End of variables declaration//GEN-END:variables
-
     private void EnviarInputs() {
         pedidor.setDireccion(getDireccion());
         pedidor.setNombreComprador(getComprador());
@@ -484,6 +451,32 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }
-    
-    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonAgregar;
+    private javax.swing.JToggleButton BotonCancelar;
+    private javax.swing.JButton BotonEliminar;
+    private javax.swing.JToggleButton BotonRegistrar;
+    private javax.swing.JComboBox<String> ComboProds;
+    private javax.swing.JLabel LabelCampos;
+    private javax.swing.JLabel LabelCantidad;
+    private javax.swing.JLabel LabelComprador;
+    private javax.swing.JLabel LabelDireccion;
+    private javax.swing.JLabel LabelFecha;
+    private javax.swing.JLabel LabelHora;
+    private javax.swing.JLabel LabelProducto;
+    private javax.swing.JLabel LabelTelefono;
+    private javax.swing.JLabel LabelTotal;
+    private javax.swing.JPanel PanelComprador;
+    private javax.swing.JPanel PanelGruposProds;
+    private javax.swing.JScrollPane ScrollGruposProd;
+    private javax.swing.JTable TablaGruposProd;
+    private javax.swing.JTextField TextoCantidad;
+    private javax.swing.JTextField TextoComprador;
+    private javax.swing.JTextField TextoDireccion;
+    private javax.swing.JTextField TextoHora;
+    private javax.swing.JTextField TextoTelefono;
+    private javax.swing.JTextField TextoTotal;
+    private datechooser.beans.DateChooserCombo comboFecha;
+    // End of variables declaration//GEN-END:variables
+
 }
