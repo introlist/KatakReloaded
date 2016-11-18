@@ -6,14 +6,11 @@
 package DatosPersistentes;
 
 
-import Negocio.Entidades.Enums.TipoReporte;
 import Negocio.Entidades.Pedido;
-import Negocio.Entidades.GrupoProds;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
 

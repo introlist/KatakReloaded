@@ -44,26 +44,26 @@ public class RegistradorPedidos extends javax.swing.JFrame {
 
         PanelComprador = new javax.swing.JPanel();
         LabelComprador = new javax.swing.JLabel();
-        TextoComprador = new javax.swing.JTextField();
+        CampoComprador = new javax.swing.JTextField();
         LabelDireccion = new javax.swing.JLabel();
-        TextoDireccion = new javax.swing.JTextField();
+        CampoDireccion = new javax.swing.JTextField();
         LabelTelefono = new javax.swing.JLabel();
-        TextoTelefono = new javax.swing.JTextField();
+        CampoTelefono = new javax.swing.JTextField();
         LabelCampos = new javax.swing.JLabel();
         LabelFecha = new javax.swing.JLabel();
         comboFecha = new datechooser.beans.DateChooserCombo();
         LabelHora = new javax.swing.JLabel();
-        TextoHora = new javax.swing.JTextField();
+        CampoHora = new javax.swing.JTextField();
         PanelGruposProds = new javax.swing.JPanel();
         ScrollGruposProd = new javax.swing.JScrollPane();
         TablaGruposProd = new javax.swing.JTable();
         ComboProds = new javax.swing.JComboBox<>();
         LabelProducto = new javax.swing.JLabel();
         LabelCantidad = new javax.swing.JLabel();
-        TextoCantidad = new javax.swing.JTextField();
+        CampoCantidad = new javax.swing.JTextField();
         BotonAgregar = new javax.swing.JButton();
         BotonEliminar = new javax.swing.JButton();
-        TextoTotal = new javax.swing.JTextField();
+        CampoCostoTotal = new javax.swing.JTextField();
         LabelTotal = new javax.swing.JLabel();
         BotonRegistrar = new javax.swing.JToggleButton();
         BotonCancelar = new javax.swing.JToggleButton();
@@ -122,7 +122,6 @@ public class RegistradorPedidos extends javax.swing.JFrame {
                 (datechooser.view.BackRenderer)null,
                 false,
                 true)));
-    comboFecha.setFormat(2);
 
     LabelHora.setText("Hora *");
 
@@ -136,11 +135,11 @@ public class RegistradorPedidos extends javax.swing.JFrame {
                 .addGroup(PanelCompradorLayout.createSequentialGroup()
                     .addComponent(LabelComprador)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(TextoComprador))
+                    .addComponent(CampoComprador))
                 .addGroup(PanelCompradorLayout.createSequentialGroup()
                     .addComponent(LabelDireccion)
                     .addGap(14, 14, 14)
-                    .addComponent(TextoDireccion))
+                    .addComponent(CampoDireccion))
                 .addGroup(PanelCompradorLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(LabelCampos)
@@ -156,9 +155,9 @@ public class RegistradorPedidos extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(LabelHora)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(TextoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(0, 0, Short.MAX_VALUE))
-                        .addComponent(TextoTelefono)))))
+                        .addComponent(CampoTelefono)))))
     );
     PanelCompradorLayout.setVerticalGroup(
         PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,22 +165,21 @@ public class RegistradorPedidos extends javax.swing.JFrame {
             .addContainerGap()
             .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(LabelComprador)
-                .addComponent(TextoComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(CampoComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(LabelDireccion)
-                .addComponent(TextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(CampoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(LabelTelefono)
-                .addComponent(TextoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(CampoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(9, 9, 9)
             .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(LabelFecha)
                 .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelHora)
-                    .addComponent(TextoHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(CampoHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LabelHora))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
             .addComponent(LabelCampos)
             .addContainerGap())
@@ -198,7 +196,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
 
     LabelCantidad.setText("Cantidad:");
 
-    TextoCantidad.setToolTipText("Ingrese la cantidad de productos");
+    CampoCantidad.setToolTipText("Ingrese la cantidad de productos");
 
     BotonAgregar.setText("Agregar");
     BotonAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -214,10 +212,11 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         }
     });
 
-    TextoTotal.setEnabled(false);
-    TextoTotal.addActionListener(new java.awt.event.ActionListener() {
+    CampoCostoTotal.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+    CampoCostoTotal.setEnabled(false);
+    CampoCostoTotal.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            TextoTotalActionPerformed(evt);
+            CampoCostoTotalActionPerformed(evt);
         }
     });
 
@@ -233,12 +232,12 @@ public class RegistradorPedidos extends javax.swing.JFrame {
                 .addComponent(ScrollGruposProd)
                 .addGroup(PanelGruposProdsLayout.createSequentialGroup()
                     .addComponent(LabelProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(ComboProds, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(ComboProds, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(LabelCantidad)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(TextoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CampoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(BotonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -246,7 +245,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                     .addComponent(LabelTotal)
                     .addGap(18, 18, 18)
-                    .addComponent(TextoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CampoCostoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap())))
     );
     PanelGruposProdsLayout.setVerticalGroup(
@@ -259,12 +258,12 @@ public class RegistradorPedidos extends javax.swing.JFrame {
                 .addComponent(ComboProds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(LabelProducto)
                 .addComponent(LabelCantidad)
-                .addComponent(TextoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CampoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(BotonAgregar))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
             .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(BotonEliminar)
-                .addComponent(TextoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CampoCostoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(LabelTotal)))
     );
 
@@ -316,12 +315,12 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoTotalActionPerformed
+    private void CampoCostoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoCostoTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextoTotalActionPerformed
+    }//GEN-LAST:event_CampoCostoTotalActionPerformed
 
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
-        agregarNuevoGrupoProd(ComboProds.getSelectedItem().toString(),TextoCantidad.getText());
+        agregarNuevoGrupoProd(ComboProds.getSelectedItem().toString(),CampoCantidad.getText());
         actualizarListaGrupoProd();
         actualizarCostoTotal();
     }//GEN-LAST:event_BotonAgregarActionPerformed
@@ -375,19 +374,19 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }
     
     private String getHora() {
-        return TextoHora.getText();
+        return CampoHora.getText();
     }
     
     private String getDireccion(){
-        return TextoDireccion.getText();
+        return CampoDireccion.getText();
     }
     
     private String getTelefono(){
-        return TextoTelefono.getText();
+        return CampoTelefono.getText();
     }
     
     private String getComprador(){
-        return TextoComprador.getText();
+        return CampoComprador.getText();
     }
     
     private Date getFechaEntrega() {
@@ -430,7 +429,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         for(GrupoProds actual : gruposProdActuales){
             costoTotal += actual.getCostoGrupoProd();
         }
-        TextoTotal.setText(String.valueOf(costoTotal));
+        CampoCostoTotal.setText(String.valueOf(costoTotal));
     }
 
     public double getCostoTotal() {
@@ -457,6 +456,12 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private javax.swing.JToggleButton BotonCancelar;
     private javax.swing.JButton BotonEliminar;
     private javax.swing.JToggleButton BotonRegistrar;
+    private javax.swing.JTextField CampoCantidad;
+    private javax.swing.JTextField CampoComprador;
+    private javax.swing.JTextField CampoCostoTotal;
+    private javax.swing.JTextField CampoDireccion;
+    private javax.swing.JTextField CampoHora;
+    private javax.swing.JTextField CampoTelefono;
     private javax.swing.JComboBox<String> ComboProds;
     private javax.swing.JLabel LabelCampos;
     private javax.swing.JLabel LabelCantidad;
@@ -471,12 +476,6 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private javax.swing.JPanel PanelGruposProds;
     private javax.swing.JScrollPane ScrollGruposProd;
     private javax.swing.JTable TablaGruposProd;
-    private javax.swing.JTextField TextoCantidad;
-    private javax.swing.JTextField TextoComprador;
-    private javax.swing.JTextField TextoDireccion;
-    private javax.swing.JTextField TextoHora;
-    private javax.swing.JTextField TextoTelefono;
-    private javax.swing.JTextField TextoTotal;
     private datechooser.beans.DateChooserCombo comboFecha;
     // End of variables declaration//GEN-END:variables
 

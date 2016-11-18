@@ -56,20 +56,7 @@ public class ClasePruebas {
         ap.AgregarProd(Ej1);
         ap.AgregarProd(Ej2);
         
-        
-        GrupoProds gp1 = new GrupoProds(Ej1, 40);
-        GrupoProds gp2 = new GrupoProds(Ej2,60);
-        GrupoProds gp3 = new GrupoProds(Ej1,50);
-        List<GrupoProds> lgp = new ArrayList<>();
-        lgp.add(gp1);
-        lgp.add(gp2);
-        lgp.add(gp3);
-        
-        AdminGrupoProd agp = new AdminGrupoProd();
-        for(GrupoProds gp: lgp){
-            agp.AgregarGrupoProd(gp);
-        }
-        
+
 
 //        
 //        Pedido pedido = new Pedido(fechaActual, "Roberto Gil", "Calle 76", "9999979832", fechaActual, lgp, "2:11 am", 22.0);
