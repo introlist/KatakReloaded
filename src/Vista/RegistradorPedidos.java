@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import Negocio.Operaciones.Pedidor;
+import Negocio.Operaciones.FabricadorPedidos;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import Vista.Tablas.ModeloTablaGrupoProd;
@@ -20,7 +20,7 @@ import java.util.Date;
  * @author DEMON
  */
 public class RegistradorPedidos extends javax.swing.JFrame {
-    Pedidor pedidor = new Pedidor();
+    FabricadorPedidos pedidor = new FabricadorPedidos();
     List<String> nombresProdsDisp = pedidor.getNombresTodosProd();
     List<GrupoProds> gruposProdActuales = new ArrayList<>();
     double costoTotal;
@@ -337,8 +337,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonEliminarActionPerformed
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
-        this.setVisible(false);
-        this.dispose();
+        FinalizarRegistroPedido();
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
     private void agregarNuevoGrupoProd(String NombreProd, String InputCantidad) {
@@ -449,7 +448,9 @@ public class RegistradorPedidos extends javax.swing.JFrame {
 
     private void FinalizarRegistroPedido() {
         this.setVisible(false);
-        this.dispose();
+        dispose();
+        MenuPrincipal menuPrincipal=new MenuPrincipal();
+        menuPrincipal.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregar;

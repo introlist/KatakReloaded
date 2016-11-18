@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author DEMON
  */
-public class Pedidor {
+public class FabricadorPedidos {
     private final AdminPedidos adminPedidos;
     private final AdminProd adminProd;
     private final AdminGrupoProd adminGrupoProd;
@@ -37,7 +37,7 @@ public class Pedidor {
     
            
 
-    public Pedidor(){
+    public FabricadorPedidos(){
         adminPedidos = new AdminPedidos();
         adminGrupoProd = new AdminGrupoProd();
         adminProd = new AdminProd();
@@ -88,13 +88,9 @@ public class Pedidor {
     }
 
     private void guardarGruposProds(){
-        for(GrupoProds gp : gruposProdsInput){
-            GrupoProds nuevoGrupoProd = new GrupoProds(
-                    gp.getProd(), 
-                    gp.getCantidad()
-            );
-            adminGrupoProd.AgregarGrupoProd(nuevoGrupoProd);
-            gruposProdsPedido.add(nuevoGrupoProd);
+        for(GrupoProds inputGrupoProd : gruposProdsInput){
+            adminGrupoProd.AgregarGrupoProd(inputGrupoProd);
+            gruposProdsPedido.add(inputGrupoProd);
         }
     }
     
