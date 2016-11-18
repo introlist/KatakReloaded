@@ -44,7 +44,7 @@ public class vistaClientes extends javax.swing.JFrame {
         cardLayout.show(panelBase, "1");
         
         add(panelBase);
-//        ActualizarTabla();
+        panelPrincipal.ActualizarTabla(administrador.getListaClientes());
         pack();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         añadirActionListeners();
@@ -126,7 +126,7 @@ public class vistaClientes extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(panelBase,"1");
-//                ActualizarTabla();
+                panelPrincipal.ActualizarTabla(administrador.getListaClientes());
                 modoEdicion=false;
             }
         });
