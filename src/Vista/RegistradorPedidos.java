@@ -30,6 +30,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     public RegistradorPedidos() {
         initComponents();
         rellenarListaGrupoProd(gruposProdActuales);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
