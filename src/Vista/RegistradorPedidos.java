@@ -11,14 +11,9 @@ import javax.swing.DefaultComboBoxModel;
 import Vista.Tablas.ModeloTablaGrupoProd;
 import Negocio.Entidades.GrupoProds;
 import Negocio.Entidades.Producto;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import javax.swing.text.DateFormatter;
 
 /**
  *
@@ -28,6 +23,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     Pedidor pedidor = new Pedidor();
     List<String> nombresProdsDisp = pedidor.getNombresTodosProd();
     List<GrupoProds> gruposProdActuales = new ArrayList<>();
+    double costoTotal;
     /**
      * Creates new form registradorPedidos
      */
@@ -66,7 +62,6 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         TextoCantidad = new javax.swing.JTextField();
         BotonAgregar = new javax.swing.JButton();
         BotonEliminar = new javax.swing.JButton();
-        BotonModificar = new javax.swing.JButton();
         TextoTotal = new javax.swing.JTextField();
         LabelTotal = new javax.swing.JLabel();
         BotonRegistrar = new javax.swing.JToggleButton();
@@ -218,8 +213,6 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         }
     });
 
-    BotonModificar.setText("Modificar");
-
     TextoTotal.setEnabled(false);
     TextoTotal.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,16 +231,13 @@ public class RegistradorPedidos extends javax.swing.JFrame {
             .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(ScrollGruposProd)
                 .addGroup(PanelGruposProdsLayout.createSequentialGroup()
-                    .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(BotonModificar)
-                        .addGroup(PanelGruposProdsLayout.createSequentialGroup()
-                            .addComponent(LabelProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(ComboProds, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(LabelCantidad)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(TextoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(LabelProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(ComboProds, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(LabelCantidad)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(TextoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(BotonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -273,7 +263,6 @@ public class RegistradorPedidos extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
             .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(BotonEliminar)
-                .addComponent(BotonModificar)
                 .addComponent(TextoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(LabelTotal)))
     );
@@ -286,6 +275,11 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     });
 
     BotonCancelar.setText("Cancelar");
+    BotonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            BotonCancelarActionPerformed(evt);
+        }
+    });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -328,21 +322,24 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
         agregarNuevoGrupoProd(ComboProds.getSelectedItem().toString(),TextoCantidad.getText());
         actualizarListaGrupoProd();
+        actualizarCostoTotal();
     }//GEN-LAST:event_BotonAgregarActionPerformed
 
     private void BotonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarActionPerformed
-        ConstruirPedido();
-        pedidor.guardarPedido();
+        EnviarInputs();
+        FinalizarRegistroPedido();
     }//GEN-LAST:event_BotonRegistrarActionPerformed
 
     private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
-        if(seSeleccionoFila()){
-            gruposProdActuales.remove(TablaGruposProd.getSelectedRow());
-        }else{
-            //Crear clase de notificaciones
-            System.err.println("No se selecciono una fila");
-        }
+        gruposProdActuales.remove(getGrupoProdSeleccionado());
+        actualizarListaGrupoProd();
+        actualizarCostoTotal();
     }//GEN-LAST:event_BotonEliminarActionPerformed
+
+    private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_BotonCancelarActionPerformed
 
     private void agregarNuevoGrupoProd(String NombreProd, String InputCantidad) {
         gruposProdActuales.add(crearNuevoGrupoProd(NombreProd, InputCantidad));
@@ -398,11 +395,66 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         return selectedDateChooserCalendar.getTime();
     }
     
+    private void EnviarInputs() {
+        pedidor.setDireccion(getDireccion());
+        pedidor.setNombreComprador(getComprador());
+        pedidor.setGruposProdsSeleccionados(getGruposProdActuales());
+        pedidor.setTelefono(getTelefono());
+        pedidor.setHora(getHora());
+        pedidor.setCosto(getCostoTotal());
+        pedidor.setFechaEntrega(getFechaEntrega());
+        pedidor.guardarPedido();
+        
+    }
+
+    public List<GrupoProds> getGruposProdActuales() {
+        return gruposProdActuales;
+    }
+
+    public void setGruposProdActuales(List<GrupoProds> gruposProdActuales) {
+        this.gruposProdActuales = gruposProdActuales;
+    }
+
+    private boolean seSeleccionoFilaVacia() {
+        int INDICE_NINGUNA_FILA = -1;
+        
+        return (getFilaSeleccionada() == INDICE_NINGUNA_FILA);    }
+
+    private int getFilaSeleccionada() {
+        return TablaGruposProd.getSelectedRow();
+    }
+
+    private void actualizarCostoTotal() {
+        costoTotal = 0;
+        for(GrupoProds actual : gruposProdActuales){
+            costoTotal += actual.getCostoGrupoProd();
+        }
+        TextoTotal.setText(String.valueOf(costoTotal));
+    }
+
+    public double getCostoTotal() {
+        return costoTotal;
+    }
+
+    private GrupoProds getGrupoProdSeleccionado() {
+        if(!seSeleccionoFilaVacia()){
+            int filaSeleccionada = getFilaSeleccionada();
+            GrupoProds grupoSeleccionado = getModeloTablaGrupoProd().getFila(filaSeleccionada);
+            return grupoSeleccionado;
+        }else{
+            System.err.println("No se selecciono una fila");
+            return null;
+        }    
+    }
+
+    private void FinalizarRegistroPedido() {
+        this.setVisible(false);
+        this.dispose();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregar;
     private javax.swing.JToggleButton BotonCancelar;
     private javax.swing.JButton BotonEliminar;
-    private javax.swing.JButton BotonModificar;
     private javax.swing.JToggleButton BotonRegistrar;
     private javax.swing.JComboBox<String> ComboProds;
     private javax.swing.JLabel LabelCampos;
@@ -426,31 +478,5 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private javax.swing.JTextField TextoTotal;
     private datechooser.beans.DateChooserCombo comboFecha;
     // End of variables declaration//GEN-END:variables
-
-    private void ConstruirPedido() {
-        pedidor.setDireccion(getDireccion());
-        pedidor.setNombreComprador(getComprador());
-        pedidor.setGruposProdsSeleccionados(getGruposProdActuales());
-        pedidor.setTelefono(getTelefono());
-        pedidor.setHora(getHora());
-        
-    }
-
-    public List<GrupoProds> getGruposProdActuales() {
-        return gruposProdActuales;
-    }
-
-    public void setGruposProdActuales(List<GrupoProds> gruposProdActuales) {
-        this.gruposProdActuales = gruposProdActuales;
-    }
-
-    private boolean seSeleccionoFila() {
-        int INDICE_NINGUNA_FILA = -1;
-        
-        return (getFilaSeleccionada() == INDICE_NINGUNA_FILA);    }
-
-    private int getFilaSeleccionada() {
-        return TablaGruposProd.getSelectedRow();
-    }
 
 }

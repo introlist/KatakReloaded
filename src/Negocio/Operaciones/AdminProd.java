@@ -14,7 +14,7 @@ import java.util.List;
  * @author DEMON
  */
 public class AdminProd {
-    private static AccesoDatosProd accesoDatosProd;
+    private final AccesoDatosProd accesoDatosProd;
     
     public AdminProd(){
         accesoDatosProd = new AccesoDatosProd();

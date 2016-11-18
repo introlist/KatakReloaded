@@ -5,10 +5,12 @@ import DatosPersistentes.AccesoDatosProd;
 import DatosPersistentes.AccesoDatosVenta;
 import Negocio.Entidades.Cliente;
 import Negocio.Entidades.GrupoProds;
+import Negocio.Entidades.Pedido;
 import Negocio.Entidades.Producto;
 import Negocio.Entidades.Venta;
 import Negocio.Operaciones.AdminClientes;
 import Negocio.Operaciones.AdminGrupoProd;
+import Negocio.Operaciones.AdminPedidos;
 import Negocio.Operaciones.AdminProd;
 import Negocio.Operaciones.AdminVentas;
 import Vista.MenuPrincipal;
@@ -40,8 +42,9 @@ public class ClasePruebas {
         Cliente hGil = new Cliente("Hector Gil", "9999273285", "Calle 76 Las Americas");
         Cliente dGil = new Cliente("Daniel Gil", "test", "Test2");
        
-        Producto ch200g = new Producto("Charritos 200g",9);
-       
+        Producto Ej1 = new Producto("Ej 1",11);
+        Producto Ej2 = new Producto("Ej2", 6);
+            
         List<GrupoProds> prodsVendidos = new ArrayList<>();
 //        
 //        AdminClientes ac = new  AdminClientes();
@@ -50,8 +53,28 @@ public class ClasePruebas {
 
         
         AdminProd ap = new AdminProd();
-        ap.AgregarProd(ch200g);
+        ap.AgregarProd(Ej1);
+        ap.AgregarProd(Ej2);
         
+        
+        GrupoProds gp1 = new GrupoProds(Ej1, 40);
+        GrupoProds gp2 = new GrupoProds(Ej2,60);
+        GrupoProds gp3 = new GrupoProds(Ej1,50);
+        List<GrupoProds> lgp = new ArrayList<>();
+        lgp.add(gp1);
+        lgp.add(gp2);
+        lgp.add(gp3);
+        
+        AdminGrupoProd agp = new AdminGrupoProd();
+        for(GrupoProds gp: lgp){
+            agp.AgregarGrupoProd(gp);
+        }
+        
+
+//        
+//        Pedido pedido = new Pedido(fechaActual, "Roberto Gil", "Calle 76", "9999979832", fechaActual, lgp, "2:11 am", 22.0);
+//        AdminPedidos aped = new AdminPedidos();
+//        aped.agregarPedidoRegistro(pedido);
         
 //        List<Cliente> busqueda1 = ac.getListaClientesPorNombre("Roberto Gil");
 //        System.out.println("Busqueda1");

@@ -3,15 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Negocio/Entidades/Cliente.java</file>
             <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Negocio/Operaciones/Pedidor.java</file>
-            <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Vista/vistaClientes.java</file>
+            <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Negocio/Entidades/Producto.java</file>
             <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/EjecutarApp.java</file>
-            <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Negocio/Operaciones/AdminGrupoProd.java</file>
+            <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Negocio/Entidades/MateriaPrima.java</file>
             <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Vista/RegistradorPedidos.java</file>
-            <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Vista/Tablas/ModeloTablaProds.java</file>
+            <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Negocio/Operaciones/AdminGrupoProd.java</file>
+            <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/DatosPersistentes/AccesoDatos.java</file>
             <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/ClasePruebas.java</file>
-            <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Negocio/Entidades/GrupoProds.java</file>
             <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Negocio/Entidades/Pedido.java</file>
+            <file>file:/C:/Users/DEMON/Documents/NetBeansProjects/KatakReloaded/src/Negocio/Entidades/GrupoProds.java</file>
         </group>
     </open-files>
 </project-private>

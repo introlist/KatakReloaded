@@ -11,7 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 /********************************************************************** 
  
@@ -24,9 +26,9 @@ import javax.persistence.OneToOne;
 public class GrupoProds implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     private Producto prod;
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
