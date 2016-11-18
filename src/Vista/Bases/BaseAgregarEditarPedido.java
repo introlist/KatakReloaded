@@ -40,25 +40,27 @@ public class BaseAgregarEditarPedido extends javax.swing.JFrame {
         TablaProductos = new javax.swing.JTable();
         ComboProductos = new javax.swing.JComboBox<>();
         CampoCantidad = new javax.swing.JTextField();
-        LabelUnidades = new javax.swing.JLabel();
+        LabelCantidad = new javax.swing.JLabel();
         BotonAgregar = new javax.swing.JButton();
         BotonQuitar = new javax.swing.JButton();
         CampoTotal = new javax.swing.JTextField();
         LabelTotal = new javax.swing.JLabel();
         BotonRegistrar = new javax.swing.JButton();
         BotonRegresar = new javax.swing.JButton();
+        LabelHora = new javax.swing.JLabel();
+        CampoHora = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Pedido", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP));
 
-        LabelNombre.setText("Nombre");
+        LabelNombre.setText("Nombre*");
 
-        LabelDireccion.setText("Direccion");
+        LabelDireccion.setText("Direccion*");
 
         LabelTelefono.setText("Telefono");
 
-        LabelFecha.setText("Fecha");
+        LabelFecha.setText("Fecha*");
 
         TablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,7 +80,7 @@ public class BaseAgregarEditarPedido extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaProductos);
 
-        LabelUnidades.setText("Unidades");
+        LabelCantidad.setText("Cantidad:");
 
         BotonAgregar.setText("Agregar");
 
@@ -89,6 +91,8 @@ public class BaseAgregarEditarPedido extends javax.swing.JFrame {
         BotonRegistrar.setText("Registrar Pedido");
 
         BotonRegresar.setText("Regresar");
+
+        LabelHora.setText("Hora*");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,31 +112,33 @@ public class BaseAgregarEditarPedido extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(ComboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(LabelHora)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CampoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(CampoDireccion)
                             .addComponent(CampoNombre)
                             .addComponent(CampoTelefono, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(ComboProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CampoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LabelUnidades)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(BotonQuitar)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(BotonAgregar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(LabelTotal)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CampoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(BotonRegresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotonRegistrar)))
+                        .addComponent(BotonRegistrar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(ComboProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LabelCantidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CampoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(BotonAgregar)
+                                .addGap(60, 60, 60)
+                                .addComponent(LabelTotal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CampoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(BotonQuitar))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -153,20 +159,22 @@ public class BaseAgregarEditarPedido extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelFecha)
-                    .addComponent(ComboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ComboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelHora)
+                    .addComponent(CampoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ComboProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CampoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelUnidades)
+                    .addComponent(LabelCantidad)
                     .addComponent(BotonAgregar)
                     .addComponent(CampoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelTotal))
-                .addGap(13, 13, 13)
+                    .addComponent(LabelTotal)
+                    .addComponent(CampoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BotonQuitar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonRegistrar)
                     .addComponent(BotonRegresar))
@@ -235,17 +243,19 @@ public class BaseAgregarEditarPedido extends javax.swing.JFrame {
     private javax.swing.JButton BotonRegresar;
     private javax.swing.JTextField CampoCantidad;
     private javax.swing.JTextField CampoDireccion;
+    private javax.swing.JTextField CampoHora;
     private javax.swing.JTextField CampoNombre;
     private javax.swing.JTextField CampoTelefono;
     private javax.swing.JTextField CampoTotal;
     private datechooser.beans.DateChooserCombo ComboFecha;
     private javax.swing.JComboBox<String> ComboProductos;
+    private javax.swing.JLabel LabelCantidad;
     private javax.swing.JLabel LabelDireccion;
     private javax.swing.JLabel LabelFecha;
+    private javax.swing.JLabel LabelHora;
     private javax.swing.JLabel LabelNombre;
     private javax.swing.JLabel LabelTelefono;
     private javax.swing.JLabel LabelTotal;
-    private javax.swing.JLabel LabelUnidades;
     private javax.swing.JTable TablaProductos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

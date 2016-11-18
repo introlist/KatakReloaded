@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -68,6 +68,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="ComboFecha" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="LabelHora" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="CampoHora" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="CampoDireccion" max="32767" attributes="0"/>
@@ -75,31 +79,28 @@
                               <Component id="CampoTelefono" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="ComboProductos" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="CampoCantidad" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="LabelUnidades" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="BotonQuitar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="BotonAgregar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="LabelTotal" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="CampoTotal" min="-2" pref="50" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="BotonRegresar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="BotonRegistrar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="ComboProductos" min="-2" pref="100" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="LabelCantidad" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="CampoCantidad" min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="BotonAgregar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="LabelTotal" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="CampoTotal" min="-2" pref="50" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="BotonQuitar" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -128,21 +129,23 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="LabelFecha" min="-2" max="-2" attributes="0"/>
                       <Component id="ComboFecha" min="-2" max="-2" attributes="0"/>
+                      <Component id="LabelHora" min="-2" max="-2" attributes="0"/>
+                      <Component id="CampoHora" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="91" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="ComboProductos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="CampoCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="LabelUnidades" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="LabelCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BotonAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="CampoTotal" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="LabelTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CampoCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="BotonQuitar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="BotonRegistrar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BotonRegresar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -155,12 +158,12 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="LabelNombre">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre"/>
+            <Property name="text" type="java.lang.String" value="Nombre*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="LabelDireccion">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Direccion"/>
+            <Property name="text" type="java.lang.String" value="Direccion*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="LabelTelefono">
@@ -176,7 +179,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="LabelFecha">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Fecha"/>
+            <Property name="text" type="java.lang.String" value="Fecha*"/>
           </Properties>
         </Component>
         <Component class="datechooser.beans.DateChooserCombo" name="ComboFecha">
@@ -241,9 +244,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="CampoCantidad">
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelUnidades">
+        <Component class="javax.swing.JLabel" name="LabelCantidad">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Unidades"/>
+            <Property name="text" type="java.lang.String" value="Cantidad:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="BotonAgregar">
@@ -272,6 +275,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Regresar"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="LabelHora">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hora*"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="CampoHora">
         </Component>
       </SubComponents>
     </Container>

@@ -39,8 +39,8 @@ public class AdminClientes {
     }
     
     public List<String[]> getListaClientes(){
-        List<String[]> lista=null;
-        String[] datos=new String[4];
+        List<String[]> lista=new ArrayList<>();
+        String[] datos =new String[4];
             for(Cliente cliente: datosClientes.getListaTodos()){
                 datos[0]=cliente.getNombre();
                 datos[1]=cliente.getDireccion();
