@@ -5,12 +5,13 @@
  */
 package Vista;
 
-import Negocio.Operaciones.FabricadorPedidos;
+import Negocio.Operaciones.VendedorMenudeo;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import Vista.Tablas.ModeloTablaGrupoProd;
-import Negocio.Entidades.GrupoProds;
+import Negocio.Entidades.ProdsVendidos;
 import Negocio.Entidades.Producto;
+import Negocio.Operaciones.AdminProd;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,16 +21,16 @@ import java.util.Date;
  * @author DEMON
  */
 public class RegistradorPedidos extends javax.swing.JFrame {
-    FabricadorPedidos pedidor = new FabricadorPedidos();
-    List<String> nombresProdsDisp = pedidor.getNombresTodosProd();
-    List<GrupoProds> gruposProdActuales = new ArrayList<>();
-    double costoTotal;
+    VendedorMenudeo vendedorMenudeo = new VendedorMenudeo();
+    AdminProd adminProd = new AdminProd();
+    List<String> nombresProdsDisp = adminProd.getNombresTodosProd();
+    List<ProdsVendidos> prodsVendidosActuales = new ArrayList<>();
     /**
      * Creates new form registradorPedidos
      */
     public RegistradorPedidos() {
         initComponents();
-        rellenarListaGrupoProd(gruposProdActuales);
+        rellenarListaGrupoProd(prodsVendidosActuales);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -331,7 +332,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonRegistrarActionPerformed
 
     private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
-        gruposProdActuales.remove(getGrupoProdSeleccionado());
+        prodsVendidosActuales.remove(getGrupoProdSeleccionado());
         actualizarListaGrupoProd();
         actualizarCostoTotal();
     }//GEN-LAST:event_BotonEliminarActionPerformed
@@ -341,19 +342,19 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
     private void agregarNuevoGrupoProd(String NombreProd, String InputCantidad) {
-        gruposProdActuales.add(crearNuevoGrupoProd(NombreProd, InputCantidad));
+        prodsVendidosActuales.add(crearNuevoGrupoProd(NombreProd, InputCantidad));
     }
     
-    private GrupoProds crearNuevoGrupoProd(String NombreProd, String InputCantidad){
-        Producto prod = pedidor.getProdPorNombre(NombreProd);
+    private ProdsVendidos crearNuevoGrupoProd(String NombreProd, String InputCantidad){
+        Producto prod = adminProd.getProdPorNombre(NombreProd);
         int cantidad = Integer.parseInt(InputCantidad);
-        GrupoProds nuevoGrupoProd = new GrupoProds(prod, cantidad);
+        ProdsVendidos nuevoGrupoProd = new ProdsVendidos(prod, cantidad);
         return nuevoGrupoProd;
     }
 
     private void actualizarListaGrupoProd() {
         vaciarListaGrupoProd();
-        rellenarListaGrupoProd(gruposProdActuales);
+        rellenarListaGrupoProd(prodsVendidosActuales);
     }
 
     private void vaciarListaGrupoProd() {
@@ -364,7 +365,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         }    
     }
 
-    private void rellenarListaGrupoProd(List<GrupoProds> gruposProdActuales) {
+    private void rellenarListaGrupoProd(List<ProdsVendidos> gruposProdActuales) {
         getModeloTablaGrupoProd().agregarVariasFilas(gruposProdActuales);
     }
 
@@ -395,23 +396,22 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }
     
     private void EnviarInputs() {
-        pedidor.setDireccion(getDireccion());
-        pedidor.setNombreComprador(getComprador());
-        pedidor.setGruposProdsSeleccionados(getGruposProdActuales());
-        pedidor.setTelefono(getTelefono());
-        pedidor.setHora(getHora());
-        pedidor.setCosto(getCostoTotal());
-        pedidor.setFechaEntrega(getFechaEntrega());
-        pedidor.guardarPedido();
+        vendedorMenudeo.registrarPedido(getComprador(), 
+                getDireccion(), 
+                getTelefono(), 
+                getFechaEntrega(), 
+                prodsVendidosActuales, 
+                getHora()
+        );
         
     }
 
-    public List<GrupoProds> getGruposProdActuales() {
-        return gruposProdActuales;
+    public List<ProdsVendidos> getGruposProdActuales() {
+        return prodsVendidosActuales;
     }
 
-    public void setGruposProdActuales(List<GrupoProds> gruposProdActuales) {
-        this.gruposProdActuales = gruposProdActuales;
+    public void setGruposProdActuales(List<ProdsVendidos> prodsVendidosActuales) {
+        this.prodsVendidosActuales = prodsVendidosActuales;
     }
 
     private boolean seSeleccionoFilaVacia() {
@@ -422,23 +422,19 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private int getFilaSeleccionada() {
         return TablaGruposProd.getSelectedRow();
     }
-
-    private void actualizarCostoTotal() {
-        costoTotal = 0;
-        for(GrupoProds actual : gruposProdActuales){
-            costoTotal += actual.getCostoGrupoProd();
-        }
-        CampoCostoTotal.setText(String.valueOf(costoTotal));
+    
+    private void actualizarCostoTotal(){
+        double costoTotalActual 
+                = vendedorMenudeo.calcularCostoTotal(this.prodsVendidosActuales); 
+        CampoCostoTotal.setText(String.valueOf(costoTotalActual));
     }
 
-    public double getCostoTotal() {
-        return costoTotal;
-    }
 
-    private GrupoProds getGrupoProdSeleccionado() {
+
+    private ProdsVendidos getGrupoProdSeleccionado() {
         if(!seSeleccionoFilaVacia()){
             int filaSeleccionada = getFilaSeleccionada();
-            GrupoProds grupoSeleccionado = getModeloTablaGrupoProd().getFila(filaSeleccionada);
+            ProdsVendidos grupoSeleccionado = getModeloTablaGrupoProd().getFila(filaSeleccionada);
             return grupoSeleccionado;
         }else{
             System.err.println("No se selecciono una fila");

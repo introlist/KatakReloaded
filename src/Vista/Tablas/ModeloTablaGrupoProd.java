@@ -5,14 +5,14 @@
  */
 package Vista.Tablas;
 
-import Negocio.Entidades.GrupoProds;
+import Negocio.Entidades.ProdsVendidos;
 import java.util.Arrays;
 
 /**
  *
  * @author DEMON
  */
-public class ModeloTablaGrupoProd extends ModeloTabla<GrupoProds>{
+public class ModeloTablaGrupoProd extends ModeloTabla<ProdsVendidos>{
     private static final int INDICE_NOMBRE_PROD = 0;
     private static final int INDICE_CANTIDAD_GRUPO = 1;
     private static final int INDICE_COSTO_GRUPO = 2;
@@ -25,13 +25,13 @@ public class ModeloTablaGrupoProd extends ModeloTabla<GrupoProds>{
     
     public ModeloTablaGrupoProd() {
         super(Arrays.asList(TITULOS_COLUMNAS));
-        setClaseFila(GrupoProds.class);
+        setClaseFila(ProdsVendidos.class);
         setModeloEditable(false);
     }
     
     @Override
     public Object getValueAt(int indiceFila, int indiceColumna) {
-        GrupoProds grupoProd = getFila(indiceFila);
+        ProdsVendidos grupoProd = getFila(indiceFila);
         
         switch(indiceColumna) {
             case INDICE_NOMBRE_PROD:

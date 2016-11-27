@@ -4,19 +4,19 @@
  * and open the template in the editor.
  */
 package DatosPersistentes;
-import Negocio.Entidades.GrupoProds;
+import Negocio.Entidades.ProdsVendidos;
 import java.util.List;
 /**
  *
  * @author DEMON
  */
-public class AccesoDatosGrupoProds extends AccesoDatos<GrupoProds> {
+public class AccesoDatosGrupoProds extends AccesoDatos<ProdsVendidos> {
     
     
     
     @Override
     protected Class getTipoClase() {
-        return GrupoProds.class;
+        return ProdsVendidos.class;
     }
     
 }

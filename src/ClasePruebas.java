@@ -4,7 +4,7 @@ import DatosPersistentes.AccesoDatosGrupoProds;
 import DatosPersistentes.AccesoDatosProd;
 import DatosPersistentes.AccesoDatosVenta;
 import Negocio.Entidades.Cliente;
-import Negocio.Entidades.GrupoProds;
+import Negocio.Entidades.ProdsVendidos;
 import Negocio.Entidades.Pedido;
 import Negocio.Entidades.Producto;
 import Negocio.Entidades.Venta;
@@ -45,7 +45,7 @@ public class ClasePruebas {
         Producto Ej1 = new Producto("Ej 1",11);
         Producto Ej2 = new Producto("Ej2", 6);
             
-        List<GrupoProds> prodsVendidos = new ArrayList<>();
+        List<ProdsVendidos> prodsVendidos = new ArrayList<>();
 //        
 //        AdminClientes ac = new  AdminClientes();
 //        ac.agregarCliente(dGil);

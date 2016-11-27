@@ -47,7 +47,7 @@ public class Pedido implements Serializable{
     @Column(name = "hora", nullable = false)
     private String hora;
     @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<GrupoProds> productosVendidos;
+    private List<ProdsVendidos> productosVendidos;
     @Column (name = "costo", nullable = false)
     private double costoTotal;
     
@@ -60,7 +60,7 @@ public class Pedido implements Serializable{
             String nombreComprador, 
             String direccion, 
             Date fechaEntrega, 
-            List<GrupoProds> productosVendidos,
+            List<ProdsVendidos> productosVendidos,
             String hora,
             double costoTotal
     ) {
@@ -79,7 +79,7 @@ public class Pedido implements Serializable{
             String direccion, 
             String telefono, 
             Date fechaEntrega, 
-            List<GrupoProds> productosVendidos,
+            List<ProdsVendidos> productosVendidos,
             String hora,
             double costoTotal
     ) {
@@ -133,11 +133,11 @@ public class Pedido implements Serializable{
         this.telefono = telefono;
     }
 
-    public List<GrupoProds> getProductosVendidos() {
+    public List<ProdsVendidos> getProductosVendidos() {
         return productosVendidos;
     }
 
-    public void setProductosVendidos(List<GrupoProds> productosVendidos) {
+    public void setProductosVendidos(List<ProdsVendidos> productosVendidos) {
         this.productosVendidos = productosVendidos;
     }
     
