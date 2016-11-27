@@ -8,10 +8,10 @@ package Vista;
 import Negocio.Operaciones.VendedorMenudeo;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import Vista.Tablas.ModeloTablaGrupoProd;
-import Negocio.Entidades.ProdsVendidos;
+import Vista.Tablas.ModeloTablaProductosVendidos;
+import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Producto;
-import Negocio.Operaciones.AdminProd;
+import Negocio.Operaciones.AdminProductos;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,9 +22,9 @@ import java.util.Date;
  */
 public class RegistradorPedidos extends javax.swing.JFrame {
     VendedorMenudeo vendedorMenudeo = new VendedorMenudeo();
-    AdminProd adminProd = new AdminProd();
+    AdminProductos adminProd = new AdminProductos();
     List<String> nombresProdsDisp = adminProd.getNombresTodosProd();
-    List<ProdsVendidos> prodsVendidosActuales = new ArrayList<>();
+    List<ProductosVendidos> prodsVendidosActuales = new ArrayList<>();
     /**
      * Creates new form registradorPedidos
      */
@@ -188,7 +188,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
 
     PanelGruposProds.setBorder(javax.swing.BorderFactory.createTitledBorder("Productos Seleccionados"));
 
-    TablaGruposProd.setModel(new ModeloTablaGrupoProd());
+    TablaGruposProd.setModel(new ModeloTablaProductosVendidos());
     ScrollGruposProd.setViewportView(TablaGruposProd);
 
     ComboProds.setModel(new DefaultComboBoxModel(nombresProdsDisp.toArray()));
@@ -345,10 +345,10 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         prodsVendidosActuales.add(crearNuevoGrupoProd(NombreProd, InputCantidad));
     }
     
-    private ProdsVendidos crearNuevoGrupoProd(String NombreProd, String InputCantidad){
+    private ProductosVendidos crearNuevoGrupoProd(String NombreProd, String InputCantidad){
         Producto prod = adminProd.getProdPorNombre(NombreProd);
         int cantidad = Integer.parseInt(InputCantidad);
-        ProdsVendidos nuevoGrupoProd = new ProdsVendidos(prod, cantidad);
+        ProductosVendidos nuevoGrupoProd = new ProductosVendidos(prod, cantidad);
         return nuevoGrupoProd;
     }
 
@@ -358,19 +358,19 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }
 
     private void vaciarListaGrupoProd() {
-        ModeloTablaGrupoProd mtgp = getModeloTablaGrupoProd();
+        ModeloTablaProductosVendidos mtgp = getModeloTablaGrupoProd();
         int rowCount = mtgp.getRowCount();
         for (int i = rowCount - 1; 0 <= i; i--) {
             mtgp.removerFila(i);
         }    
     }
 
-    private void rellenarListaGrupoProd(List<ProdsVendidos> gruposProdActuales) {
+    private void rellenarListaGrupoProd(List<ProductosVendidos> gruposProdActuales) {
         getModeloTablaGrupoProd().agregarVariasFilas(gruposProdActuales);
     }
 
-    private ModeloTablaGrupoProd getModeloTablaGrupoProd() {
-        return (ModeloTablaGrupoProd) TablaGruposProd.getModel();
+    private ModeloTablaProductosVendidos getModeloTablaGrupoProd() {
+        return (ModeloTablaProductosVendidos) TablaGruposProd.getModel();
     }
     
     private String getHora() {
@@ -406,11 +406,11 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         
     }
 
-    public List<ProdsVendidos> getGruposProdActuales() {
+    public List<ProductosVendidos> getGruposProdActuales() {
         return prodsVendidosActuales;
     }
 
-    public void setGruposProdActuales(List<ProdsVendidos> prodsVendidosActuales) {
+    public void setGruposProdActuales(List<ProductosVendidos> prodsVendidosActuales) {
         this.prodsVendidosActuales = prodsVendidosActuales;
     }
 
@@ -431,10 +431,10 @@ public class RegistradorPedidos extends javax.swing.JFrame {
 
 
 
-    private ProdsVendidos getGrupoProdSeleccionado() {
+    private ProductosVendidos getGrupoProdSeleccionado() {
         if(!seSeleccionoFilaVacia()){
             int filaSeleccionada = getFilaSeleccionada();
-            ProdsVendidos grupoSeleccionado = getModeloTablaGrupoProd().getFila(filaSeleccionada);
+            ProductosVendidos grupoSeleccionado = getModeloTablaGrupoProd().getFila(filaSeleccionada);
             return grupoSeleccionado;
         }else{
             System.err.println("No se selecciono una fila");

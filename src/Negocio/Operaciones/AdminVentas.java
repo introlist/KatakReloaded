@@ -8,7 +8,7 @@ package Negocio.Operaciones;
 import DatosPersistentes.AccesoDatosClientes;
 import DatosPersistentes.AccesoDatosVenta;
 import Negocio.Entidades.Cliente;
-import Negocio.Entidades.ProdsVendidos;
+import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Producto;
 import Negocio.Entidades.Venta;
 import java.time.Instant;

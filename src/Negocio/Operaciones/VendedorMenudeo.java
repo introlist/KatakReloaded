@@ -5,7 +5,7 @@
  */
 package Negocio.Operaciones;
 
-import Negocio.Entidades.ProdsVendidos;
+import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Pedido;
 import Negocio.Entidades.Producto;
 import java.text.DateFormat;
@@ -20,11 +20,11 @@ import java.util.List;
  * @author DEMON
  */
 public class VendedorMenudeo {        
-    AdminGrupoProd adminProdVendidos;
+    AdminProductosVendidos adminProdVendidos;
     AdminPedidos adminPedidos;
 
     public VendedorMenudeo(){
-        adminProdVendidos = new AdminGrupoProd();
+        adminProdVendidos = new AdminProductosVendidos();
         adminPedidos = new AdminPedidos();
     }
 
@@ -33,7 +33,7 @@ public class VendedorMenudeo {
         String direccion, 
         String telefono, 
         Date fechaEntrega, 
-        List <ProdsVendidos> prodsVendidosPedido,
+        List <ProductosVendidos> prodsVendidosPedido,
         String hora
         ) {
             Pedido nuevoPedido;
@@ -57,11 +57,11 @@ public class VendedorMenudeo {
             String direccion, 
             String telefono, 
             Date fechaEntrega, 
-            List <ProdsVendidos> inputProdsVendidos,
+            List <ProductosVendidos> inputProdsVendidos,
             String hora
             ) {
 
-        List<ProdsVendidos> prodsVendidosRegistrados =
+        List<ProductosVendidos> prodsVendidosRegistrados =
                 registrarProdsVendidos(inputProdsVendidos);
         
         Pedido nuevoPedido = construirPedido(
@@ -81,20 +81,20 @@ public class VendedorMenudeo {
         return fechaActual;
     }
 
-    private List<ProdsVendidos> registrarProdsVendidos(List<ProdsVendidos> gruposProdsInput){
-        List<ProdsVendidos> prodsVendidosRegistrados;
+    private List<ProductosVendidos> registrarProdsVendidos(List<ProductosVendidos> gruposProdsInput){
+        List<ProductosVendidos> prodsVendidosRegistrados;
         prodsVendidosRegistrados = new ArrayList<>();
         
-        for(ProdsVendidos inputGrupoProd : gruposProdsInput){
+        for(ProductosVendidos inputGrupoProd : gruposProdsInput){
             adminProdVendidos.AgregarGrupoProd(inputGrupoProd);
             prodsVendidosRegistrados.add(inputGrupoProd);
         }
         return prodsVendidosRegistrados;
     }
     
-    public double calcularCostoTotal(List<ProdsVendidos> prodsSeleccionados) {
+    public double calcularCostoTotal(List<ProductosVendidos> prodsSeleccionados) {
         double costoTotal = 0;
-        for(ProdsVendidos actual : prodsSeleccionados){
+        for(ProductosVendidos actual : prodsSeleccionados){
             costoTotal += actual.getCostoGrupoProd();
         }
         return costoTotal;

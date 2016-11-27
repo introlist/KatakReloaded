@@ -17,13 +17,13 @@ import javax.persistence.SequenceGenerator;
 
 /********************************************************************** 
  
-    CLASE: {@link ProdsVendidos}
+    CLASE: {@link ProductosVendidos}
     
     AUTOR: Roberto Gil Flores
 
  **********************************************************************/
 @Entity 
-public class ProdsVendidos implements Serializable{
+public class ProductosVendidos implements Serializable{
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -35,11 +35,11 @@ public class ProdsVendidos implements Serializable{
     @Column(name = "costo", nullable = false)
     private double costoGrupo;
     
-    public ProdsVendidos(){
+    public ProductosVendidos(){
         
     }
     
-    public ProdsVendidos(
+    public ProductosVendidos(
             Producto prod,
             int cantidad
     )  {

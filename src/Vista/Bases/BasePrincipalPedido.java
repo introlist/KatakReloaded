@@ -63,7 +63,7 @@ public class BasePrincipalPedido extends javax.swing.JFrame {
 
         BotonCancelar.setText("Cancelar");
 
-        BotonRegresarMenu.setText("Regressar al Menu Principal");
+        BotonRegresarMenu.setText("Regresar al Menu Principal");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

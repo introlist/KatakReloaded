@@ -6,37 +6,37 @@
 package Negocio.Operaciones;
 
 import DatosPersistentes.AccesoDatosGrupoProds;
-import Negocio.Entidades.ProdsVendidos;
+import Negocio.Entidades.ProductosVendidos;
 import java.util.List;
 
 /**
  *
  * @author DEMON
  */
-public class AdminGrupoProd {
+public class AdminProductosVendidos {
     private final AccesoDatosGrupoProds datosGrupoProds;
     
-    public AdminGrupoProd(){
+    public AdminProductosVendidos(){
         datosGrupoProds = new AccesoDatosGrupoProds();
     }
     
-public void AgregarGrupoProd(ProdsVendidos grupoProds){
+public void AgregarGrupoProd(ProductosVendidos grupoProds){
         datosGrupoProds.insertar(grupoProds);
     }
     
-    public void EditarGrupoProd(ProdsVendidos grupoProds){
+    public void EditarGrupoProd(ProductosVendidos grupoProds){
         datosGrupoProds.sobrescribir(grupoProds);
     }
     
-    public void BorrarGrupoProd(ProdsVendidos grupoProds){
+    public void BorrarGrupoProd(ProductosVendidos grupoProds){
         datosGrupoProds.borrar(grupoProds);
     }
     
-    public ProdsVendidos getGrupoProdPorID(int id) {
+    public ProductosVendidos getGrupoProdPorID(int id) {
         return datosGrupoProds.getPorID(id);
     }
     
-    public List<ProdsVendidos> getListaGrupoProds() {
+    public List<ProductosVendidos> getListaGrupoProds() {
         return datosGrupoProds.getListaTodos();
     }
 }

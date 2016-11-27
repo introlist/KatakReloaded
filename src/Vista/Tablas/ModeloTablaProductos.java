@@ -12,7 +12,7 @@ import java.util.Arrays;
  *
  * @author DEMON
  */
-public class ModeloTablaProds extends ModeloTabla<Producto>{
+public class ModeloTablaProductos extends ModeloTabla<Producto>{
     private static final int INDICE_ID = 0;
     private static final int INDICE_NOMBRE = 1;
     private static final int INDICE_PRECIO = 2;
@@ -23,7 +23,7 @@ public class ModeloTablaProds extends ModeloTabla<Producto>{
         "Precio"
     };
     
-    public ModeloTablaProds() {
+    public ModeloTablaProductos() {
         super(Arrays.asList(TITULOS_COLUMNAS));
         setClaseFila(Producto.class);
         setModeloEditable(false);

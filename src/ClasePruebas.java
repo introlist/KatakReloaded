@@ -4,14 +4,14 @@ import DatosPersistentes.AccesoDatosGrupoProds;
 import DatosPersistentes.AccesoDatosProd;
 import DatosPersistentes.AccesoDatosVenta;
 import Negocio.Entidades.Cliente;
-import Negocio.Entidades.ProdsVendidos;
+import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Pedido;
 import Negocio.Entidades.Producto;
 import Negocio.Entidades.Venta;
 import Negocio.Operaciones.AdminClientes;
-import Negocio.Operaciones.AdminGrupoProd;
+import Negocio.Operaciones.AdminProductosVendidos;
 import Negocio.Operaciones.AdminPedidos;
-import Negocio.Operaciones.AdminProd;
+import Negocio.Operaciones.AdminProductos;
 import Negocio.Operaciones.AdminVentas;
 import Vista.MenuPrincipal;
 import java.time.Instant;
@@ -45,14 +45,14 @@ public class ClasePruebas {
         Producto Ej1 = new Producto("Ej 1",11);
         Producto Ej2 = new Producto("Ej2", 6);
             
-        List<ProdsVendidos> prodsVendidos = new ArrayList<>();
+        List<ProductosVendidos> prodsVendidos = new ArrayList<>();
 //        
 //        AdminClientes ac = new  AdminClientes();
 //        ac.agregarCliente(dGil);
 //        ac.agregarCliente(hGil);
 
         
-        AdminProd ap = new AdminProd();
+        AdminProductos ap = new AdminProductos();
         ap.AgregarProd(Ej1);
         ap.AgregarProd(Ej2);
         

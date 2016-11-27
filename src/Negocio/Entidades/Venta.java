@@ -35,7 +35,7 @@ public class Venta implements Serializable{
     @OneToOne(optional = false)
     private Cliente cliente;
     @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<ProdsVendidos> prodsVendidos;
+    private List<ProductosVendidos> prodsVendidos;
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column (name = "fecha_creacion", nullable = false)
     private Date fechaCreacion;
@@ -48,7 +48,7 @@ public class Venta implements Serializable{
 
     public Venta(
             Cliente cliente, 
-            List<ProdsVendidos> prodsVendidos, 
+            List<ProductosVendidos> prodsVendidos, 
             Date fechaCreacion
     ) {
         this.cliente = cliente;
@@ -73,11 +73,11 @@ public class Venta implements Serializable{
         this.cliente = cliente;
     }
 
-    public List<ProdsVendidos> getProdsVendidos() {
+    public List<ProductosVendidos> getProdsVendidos() {
         return prodsVendidos;
     }
 
-    public void setProdsVendidos(List<ProdsVendidos> prodsVendidos) {
+    public void setProdsVendidos(List<ProductosVendidos> prodsVendidos) {
         this.prodsVendidos = prodsVendidos;
     }
 
@@ -98,7 +98,7 @@ public class Venta implements Serializable{
         this.costoTotal = costoTotal;
     }
 
-    public String getNombreProdVendido(ProdsVendidos prodVendido){
+    public String getNombreProdVendido(ProductosVendidos prodVendido){
         return prodVendido.getNombreProd();
     }
     
@@ -107,7 +107,7 @@ public class Venta implements Serializable{
     }
     
     public void calcularCostoTotal(){
-        for(ProdsVendidos grupoActual: prodsVendidos ){
+        for(ProductosVendidos grupoActual: prodsVendidos ){
             costoTotal =+ grupoActual.getCostoGrupoProd();
         }
         

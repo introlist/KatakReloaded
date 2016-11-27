@@ -13,10 +13,10 @@ import java.util.List;
  *
  * @author DEMON
  */
-public class AdminProd {
+public class AdminProductos {
     private final AccesoDatosProd accesoDatosProd;
     
-    public AdminProd(){
+    public AdminProductos(){
         accesoDatosProd = new AccesoDatosProd();
     }
     
