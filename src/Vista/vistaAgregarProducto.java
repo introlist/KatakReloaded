@@ -6,7 +6,6 @@
 package Vista;
 
 
-import DatosPersistentes.ConectaBD;
 import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Producto;
 import Negocio.Operaciones.AdminProductos;
@@ -23,8 +22,6 @@ import javax.swing.JOptionPane;
  */
 public class vistaAgregarProducto extends javax.swing.JFrame {
     
-    List<ProductosVendidos> gruposProdActuales = new ArrayList<>();
-
     /**
      * Creates new form FrmProductos
      */

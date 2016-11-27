@@ -19,42 +19,44 @@ public class MateriaPrima implements Serializable {
     
     private long id;
     private String nombre;
-    private UnidadMedida unidMed;
+    private UnidadMedida unidadMedida;
     
-    public MateriaPrima(){
-        
-    }
     
-    public MateriaPrima(
-            String nombre, 
-            UnidadMedida unidMed
-    )  {
+    //Constructor
+    
+    public MateriaPrima(String nombre, UnidadMedida unidadMedida) {
         this.nombre = nombre;
-        this.unidMed = unidMed;
-    }
-    
-    public long getId() {
-        return id;
+        this.unidadMedida = unidadMedida;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    //Getters
+    public long getId() {
+        return id;
     }
 
     public String getNombre() {
         return nombre;
     }
 
+    public UnidadMedida getUnidadMedida() {
+        return unidadMedida;
+    }
+    
+    //Setters
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public UnidadMedida getUnidMed() {
-        return unidMed;
+    public void setUnidadMedida(UnidadMedida unidadMedida) {
+        this.unidadMedida = unidadMedida;
     }
-
-    public void setUnidMed(UnidadMedida unidMed) {
-        this.unidMed = unidMed;
-    }
+    
+    
+    
 
 }

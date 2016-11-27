@@ -9,7 +9,6 @@ import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Producto;
 import Negocio.Entidades.Venta;
 import Negocio.Entidades.Cliente;
-import Negocio.Operaciones.AdminClientes;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class VendedorMayoreo {
     private final AdminProductosVendidos adminProductosVendidos;
     public List<ProductosVendidos> ProductosVendidosInput;
     public List<ProductosVendidos> ProductosVendidosVenta;
-    public List<Producto> prodsDisponibles;
+    public List<Producto> productosDisponibles;
     private Venta nuevaVenta = new Venta();
     private double costo;
     private Cliente nuevoCliente;
@@ -38,7 +37,7 @@ public class VendedorMayoreo {
         ProductosVendidosInput = new ArrayList<>();
         ProductosVendidosVenta = new ArrayList<>();
         nuevaVenta = new Venta();
-        prodsDisponibles = adminProductos.getListaProd();
+        productosDisponibles = adminProductos.getListaProd();
         
     }
       
@@ -65,14 +64,14 @@ public class VendedorMayoreo {
     }
         
         private void guardarGruposProds(){
-        for(ProductosVendidos gp : ProductosVendidosInput){
-            ProductosVendidos nuevoGrupoProd = new ProductosVendidos(
-                    gp.getProd(), 
-                    gp.getCantidad()
+        for(ProductosVendidos productosVendidos : ProductosVendidosInput){
+            ProductosVendidos nuevoProductoVendido = new ProductosVendidos(
+                    productosVendidos.getProd(), 
+                    productosVendidos.getCantidad()
             );
-            System.out.println(gp.getNombreProd()+"   -   "+gp.getCantidad());
-            adminProductosVendidos.AgregarGrupoProd(nuevoGrupoProd);
-            ProductosVendidosVenta.add(nuevoGrupoProd);
+            System.out.println(productosVendidos.getNombreProd()+"   -   "+productosVendidos.getCantidad());
+            adminProductosVendidos.AgregarProductosVendidos(nuevoProductoVendido);
+            ProductosVendidosVenta.add(nuevoProductoVendido);
         }
     }
         
@@ -81,15 +80,15 @@ public class VendedorMayoreo {
             return adminProductos.getNombresTodosProd();
         }
 
-        public List<ProductosVendidos> getGruposProdsSeleccionados() {
+        public List<ProductosVendidos> getProductosVendidosSeleccionados() {
             return ProductosVendidosInput;
         }
 
-        public void setGruposProdsSeleccionados(List<ProductosVendidos> gruposProdsSeleccionados) {
-            this.ProductosVendidosInput = gruposProdsSeleccionados;       
+        public void setProductosVendidosSeleccionados(List<ProductosVendidos> productosVendidosSeleccionados) {
+            this.ProductosVendidosInput = productosVendidosSeleccionados;       
         }
 
-        public Producto getProdPorNombre(String nombreProd){
+        public Producto getProductosPorNombre(String nombreProd){
             return adminProductos.getProdPorNombre(nombreProd);
         }
 

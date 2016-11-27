@@ -29,7 +29,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     
     VendedorMayoreo vendedorMayoreo = new VendedorMayoreo();
     List<String> nombresProdsDisp = vendedorMayoreo.getNombresTodosProd();
-    List<ProductosVendidos> gruposProdActuales = new ArrayList<>();
+    List<ProductosVendidos> gruposProductosActuales = new ArrayList<>();
     double costoTotal;
 
     /**
@@ -37,7 +37,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
      */
     public vistaRegistrarVentas() {
         initComponents(); 
-        rellenarListaGrupoProd(gruposProdActuales);
+        rellenarListaProductosVendidos(gruposProductosActuales);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         desplegarNombresClientes();
     }
@@ -234,15 +234,15 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
 
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
         // TODO add your handling code here:
-        agregarNuevoGrupoProd(comboProductos.getSelectedItem().toString(),TextoCantidad.getText());
-        actualizarListaGrupoProd();
+        agregarNuevosProductosVendidos(comboProductos.getSelectedItem().toString(),TextoCantidad.getText());
+        actualizarListaProductosVendidos();
         actualizarCostoTotal();
     }//GEN-LAST:event_btAgregarActionPerformed
 
     private void btQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btQuitarActionPerformed
         // TODO add your handling code here:
-        gruposProdActuales.remove(getGrupoProdSeleccionado());
-        actualizarListaGrupoProd();
+        gruposProductosActuales.remove(getProductosVendidosSeleccionados());
+        actualizarListaProductosVendidos();
         actualizarCostoTotal();
     }//GEN-LAST:event_btQuitarActionPerformed
 
@@ -250,20 +250,20 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboProductosActionPerformed
 
-    private void agregarNuevoGrupoProd(String NombreProd, String InputCantidad) {
-        gruposProdActuales.add(crearNuevoGrupoProd(NombreProd, InputCantidad));
+    private void agregarNuevosProductosVendidos(String NombreProd, String InputCantidad) {
+        gruposProductosActuales.add(crearNuevosProductosVendidos(NombreProd, InputCantidad));
     }
     
-    private ProductosVendidos crearNuevoGrupoProd(String NombreProd, String InputCantidad){
-        Producto prod = vendedorMayoreo.getProdPorNombre(NombreProd);
+    private ProductosVendidos crearNuevosProductosVendidos(String NombreProductos, String InputCantidad){
+        Producto productos = vendedorMayoreo.getProductosPorNombre(NombreProductos);
         int cantidad = Integer.parseInt(InputCantidad);
-        ProductosVendidos nuevoGrupoProd = new ProductosVendidos(prod, cantidad);
-        return nuevoGrupoProd;
+        ProductosVendidos nuevosProductosVendidos = new ProductosVendidos(productos, cantidad);
+        return nuevosProductosVendidos;
     }
 
-    private void actualizarListaGrupoProd() {
+    private void actualizarListaProductosVendidos() {
         vaciarListaGrupoProd();
-        rellenarListaGrupoProd(gruposProdActuales);
+        rellenarListaProductosVendidos(gruposProductosActuales);
     }
 
     private void vaciarListaGrupoProd() {
@@ -274,7 +274,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         }    
     }
 
-    private void rellenarListaGrupoProd(List<ProductosVendidos> gruposProdActuales) {
+    private void rellenarListaProductosVendidos(List<ProductosVendidos> gruposProdActuales) {
         getModeloTablaProductosVendidos().agregarVariasFilas(gruposProdActuales);
     }
 
@@ -283,7 +283,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     }
     
     private void EnviarInputs() {
-        vendedorMayoreo.setGruposProdsSeleccionados(getGruposProdActuales());
+        vendedorMayoreo.setProductosVendidosSeleccionados(getGruposProdActuales());
         
         vendedorMayoreo.setCosto(getCostoTotal());
         
@@ -292,11 +292,11 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     }
 
     public List<ProductosVendidos> getGruposProdActuales() {
-        return gruposProdActuales;
+        return gruposProductosActuales;
     }
 
     public void setGruposProdActuales(List<ProductosVendidos> gruposProdActuales) {
-        this.gruposProdActuales = gruposProdActuales;
+        this.gruposProductosActuales = gruposProdActuales;
     }
 
     private boolean seSeleccionoFilaVacia() {
@@ -310,7 +310,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
 
     private void actualizarCostoTotal() {
         costoTotal = 0;
-        for(ProductosVendidos actual : gruposProdActuales){
+        for(ProductosVendidos actual : gruposProductosActuales){
             costoTotal += actual.getCostoGrupoProd();
         }
         TextoTotal.setText(String.valueOf(costoTotal));
@@ -320,7 +320,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         return costoTotal;
     }
 
-    private ProductosVendidos getGrupoProdSeleccionado() {
+    private ProductosVendidos getProductosVendidosSeleccionados() {
         if(!seSeleccionoFilaVacia()){
             int filaSeleccionada = getFilaSeleccionada();
             ProductosVendidos grupoSeleccionado = getModeloTablaProductosVendidos().getFila(filaSeleccionada);

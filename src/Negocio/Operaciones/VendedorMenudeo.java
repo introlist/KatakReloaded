@@ -20,11 +20,11 @@ import java.util.List;
  * @author DEMON
  */
 public class VendedorMenudeo {        
-    AdminProductosVendidos adminProdVendidos;
+    AdminProductosVendidos adminProductosVendidos;
     AdminPedidos adminPedidos;
 
     public VendedorMenudeo(){
-        adminProdVendidos = new AdminProductosVendidos();
+        adminProductosVendidos = new AdminProductosVendidos();
         adminPedidos = new AdminPedidos();
     }
 
@@ -33,7 +33,7 @@ public class VendedorMenudeo {
         String direccion, 
         String telefono, 
         Date fechaEntrega, 
-        List <ProductosVendidos> prodsVendidosPedido,
+        List <ProductosVendidos> productosVendidosMenudeo,
         String hora
         ) {
             Pedido nuevoPedido;
@@ -44,9 +44,9 @@ public class VendedorMenudeo {
             direccion,
             telefono,
             fechaEntrega,
-            prodsVendidosPedido,
+            productosVendidosMenudeo,
             hora,
-            calcularCostoTotal(prodsVendidosPedido)
+            calcularCostoTotal(productosVendidosMenudeo)
         );
             
         return nuevoPedido;
@@ -81,13 +81,13 @@ public class VendedorMenudeo {
         return fechaActual;
     }
 
-    private List<ProductosVendidos> registrarProdsVendidos(List<ProductosVendidos> gruposProdsInput){
+    private List<ProductosVendidos> registrarProdsVendidos(List<ProductosVendidos> productosVendidosInput){
         List<ProductosVendidos> prodsVendidosRegistrados;
         prodsVendidosRegistrados = new ArrayList<>();
         
-        for(ProductosVendidos inputGrupoProd : gruposProdsInput){
-            adminProdVendidos.AgregarGrupoProd(inputGrupoProd);
-            prodsVendidosRegistrados.add(inputGrupoProd);
+        for(ProductosVendidos inputProductosVendidos : productosVendidosInput){
+            adminProductosVendidos.AgregarProductosVendidos(inputProductosVendidos);
+            prodsVendidosRegistrados.add(inputProductosVendidos);
         }
         return prodsVendidosRegistrados;
     }

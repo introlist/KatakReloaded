@@ -5,7 +5,7 @@
  */
 package Negocio.Operaciones;
 
-import DatosPersistentes.AccesoDatosGrupoProds;
+import DatosPersistentes.AccesoDatosProductosVendidos;
 import Negocio.Entidades.ProductosVendidos;
 import java.util.List;
 
@@ -14,29 +14,29 @@ import java.util.List;
  * @author DEMON
  */
 public class AdminProductosVendidos {
-    private final AccesoDatosGrupoProds datosGrupoProds;
+    private final AccesoDatosProductosVendidos datosProductosVendidos;
     
     public AdminProductosVendidos(){
-        datosGrupoProds = new AccesoDatosGrupoProds();
+        datosProductosVendidos = new AccesoDatosProductosVendidos();
     }
     
-public void AgregarGrupoProd(ProductosVendidos grupoProds){
-        datosGrupoProds.insertar(grupoProds);
+    public void AgregarProductosVendidos(ProductosVendidos productosVendidos){
+        datosProductosVendidos.insertar(productosVendidos);
     }
     
-    public void EditarGrupoProd(ProductosVendidos grupoProds){
-        datosGrupoProds.sobrescribir(grupoProds);
+    public void EditarProductosVendidos(ProductosVendidos productosVendidos){
+        datosProductosVendidos.sobrescribir(productosVendidos);
     }
     
-    public void BorrarGrupoProd(ProductosVendidos grupoProds){
-        datosGrupoProds.borrar(grupoProds);
+    public void BorrarProductosVendidos(ProductosVendidos productosVendidos){
+        datosProductosVendidos.borrar(productosVendidos);
     }
     
-    public ProductosVendidos getGrupoProdPorID(int id) {
-        return datosGrupoProds.getPorID(id);
+    public ProductosVendidos getProductosVendidosPorID(int id) {
+        return datosProductosVendidos.getPorID(id);
     }
     
-    public List<ProductosVendidos> getListaGrupoProds() {
-        return datosGrupoProds.getListaTodos();
+    public List<ProductosVendidos> getListaProductosVendidos() {
+        return datosProductosVendidos.getListaTodos();
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author DEMON
  */
-public class AccesoDatosGrupoProds extends AccesoDatos<ProductosVendidos> {
+public class AccesoDatosProductosVendidos extends AccesoDatos<ProductosVendidos> {
     
     
     

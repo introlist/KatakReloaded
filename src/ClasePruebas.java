@@ -1,6 +1,6 @@
 
 import DatosPersistentes.AccesoDatosClientes;
-import DatosPersistentes.AccesoDatosGrupoProds;
+import DatosPersistentes.AccesoDatosProductosVendidos;
 import DatosPersistentes.AccesoDatosProd;
 import DatosPersistentes.AccesoDatosVenta;
 import Negocio.Entidades.Cliente;
