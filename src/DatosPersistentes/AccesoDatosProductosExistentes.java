@@ -19,14 +19,14 @@ public class AccesoDatosProductosExistentes extends AccesoDatos<ProductosExisten
     
     public List<ProductosExistentes> getPorNombre(String inputNombre) {
         String NOMBRE_COLUMNA = "nombre";
-        List<ProductosExistentes> productoExistente = null;
+        List<ProductosExistentes> productosExistentes = null;
         
         try {
             iniciarTransaccion();
-            String SentenciaBusqueda = "SELECT * FROM productos WHERE " + NOMBRE_COLUMNA + " REGEXP"
+            String SentenciaBusqueda = "SELECT * FROM productosExistentes WHERE " + NOMBRE_COLUMNA + " REGEXP"
                     + "'^" + inputNombre + "'";
             Query query = sesion.createSQLQuery(SentenciaBusqueda).addEntity(getTipoClase());
-            productoExistente = query.list();
+            productosExistentes = query.list();
         } catch (HibernateException excepcion) {
             manejarExcepcionHibernate(excepcion);
             throw excepcion;
@@ -34,7 +34,7 @@ public class AccesoDatosProductosExistentes extends AccesoDatos<ProductosExisten
             terminarTransaccion();
         }
         
-        return productoExistente;
+        return productosExistentes;
     }
     
     protected Class getTipoClase() {

@@ -133,19 +133,9 @@ public class vistaAgregarProducto extends javax.swing.JFrame {
         MANERA PODER AGREGAR NUEVOS PRODUCTOS A LA TABLA Productos
         */
         
-        //Declaramos todas las variables a utilizar
-        int idProducto;
         String nombreProducto;
         double precioProducto;
-        
-        
-        /*
-        Obtenemos el texto que se ingresó en el campo txtCodigo, para luego
-        este convertirlo en un numero para asginarlo como ID
-        */
-        //idProducto = Integer.parseInt(txtCodigo.getText());
-        
-        
+ 
         /*
         obtenemos el texto que se ingresó en el campo txtNombre, y lo asignamos
         como el nombre del producto

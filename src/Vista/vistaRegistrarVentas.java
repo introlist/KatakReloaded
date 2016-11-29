@@ -5,22 +5,17 @@
  */
 package Vista;
 
-import DatosPersistentes.ConectaBD;
 import Negocio.Entidades.Cliente;
 import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Producto;
+import Negocio.Operaciones.AdminClientes;
+import Negocio.Operaciones.AdminProductos;
 
 import Negocio.Operaciones.VendedorMayoreo;
-import Vista.Tablas.ModeloTablaClientes;
 import Vista.Tablas.ModeloTablaProductosVendidos;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,10 +24,11 @@ import javax.swing.JOptionPane;
  */
 public class vistaRegistrarVentas extends javax.swing.JFrame {
     
-    VendedorMayoreo vendedorMayoreo = new VendedorMayoreo();
-    List<String> nombresProdsDisp = vendedorMayoreo.getNombresTodosProd();
+    AdminProductos adminProductos = new AdminProductos();
+    List<String> nombresProdsDisp = adminProductos.getNombresTodosProd();
     List<ProductosVendidos> productosActuales = new ArrayList<>();
-    List<Cliente> clientesActuales = new ArrayList<>();
+    AdminClientes adminClientes = new AdminClientes();
+    List<String> nombresClientesDisp = adminClientes.getNombresTodosClientes();
     double costoTotal;
 
     /**
@@ -40,8 +36,6 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
      */
     public vistaRegistrarVentas() {
         initComponents(); 
-        rellenarListaProductosVendidos(productosActuales);
-        rellenarListaClientesActuales(clientesActuales);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
        // desplegarNombresClientes();
     }
@@ -126,7 +120,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
             }
         });
 
-        comboClientes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboClientes.setModel(new DefaultComboBoxModel(nombresClientesDisp.toArray()));
 
         javax.swing.GroupLayout PanelRegistrarVentasLayout = new javax.swing.GroupLayout(PanelRegistrarVentas);
         PanelRegistrarVentas.setLayout(PanelRegistrarVentasLayout);
@@ -259,11 +253,12 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     }
     
     private ProductosVendidos crearNuevosProductosVendidos(String NombreProductos, String InputCantidad){
-        Producto productos = vendedorMayoreo.getProductosPorNombre(NombreProductos);
+        Producto productos = adminProductos.getProdPorNombre(NombreProductos);
         int cantidad = Integer.parseInt(InputCantidad);
         ProductosVendidos nuevosProductosVendidos = new ProductosVendidos(productos, cantidad);
         return nuevosProductosVendidos;
     }
+    
 
     private void actualizarListaProductosVendidos() {
         vaciarListaGrupoProd();
@@ -282,10 +277,6 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         getModeloTablaProductosVendidos().agregarVariasFilas(productosActuales);
     }
     
-    private void rellenarListaClientesActuales(List<Cliente> clientesActuales) {
-        //getModeloTablaClientes().agregarVariasFilas(clientesActuales);
-    }
-    
 
 
     private ModeloTablaProductosVendidos getModeloTablaProductosVendidos() {
@@ -293,11 +284,16 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     }
     
     private void EnviarInputs() {
-        vendedorMayoreo.setProductosVendidosSeleccionados(getGruposProdActuales());
+       //String nombreCliente = objectToString(this.comboClientes.getSelectedItem()););
+
         
-        vendedorMayoreo.setCosto(getCostoTotal());
+        //vendedorMayoreo.setProductosVendidosSeleccionados(getGruposProdActuales());
         
-        vendedorMayoreo.guardarVenta();
+        //vendedorMayoreo.setCosto(getCostoTotal());
+        
+        //vendedorMayoreo.setNuevoCliente(null);
+        
+       // vendedorMayoreo.guardarVenta();
         
     }
 
@@ -340,36 +336,6 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
             return null;
         }    
     }
-    
-    /* No se utilizara, Cambiar por hibernate
-    
-    
-    public void desplegarNombresClientes(){
-        ConectaBD cnc = new ConectaBD();
-        Connection cnx = cnc.conectar();
-        
-        String capturaClientes = "";
-        String sql = "select * from clientes";
-        this.comboClientes.removeAllItems();
-        
-        
-        //Agrega los nombres de los productos al ComboBox        
-        try {
-            Statement instruccion = cnx.createStatement();
-            ResultSet conjuntoResultados = instruccion.executeQuery(sql);
-            
-            while(conjuntoResultados.next()){
-                capturaClientes = conjuntoResultados.getString("nombreCliente");
-                this.comboClientes.addItem(capturaClientes);
-            }
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-    }
-    
-    */
 
     private void FinalizarRegistroPedido() {
         this.setVisible(false);

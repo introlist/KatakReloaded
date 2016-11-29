@@ -2,7 +2,7 @@
 import DatosPersistentes.AccesoDatosClientes;
 import DatosPersistentes.AccesoDatosProductosVendidos;
 import DatosPersistentes.AccesoDatosProd;
-import DatosPersistentes.AccesoDatosVenta;
+import DatosPersistentes.AccesoDatosVentas;
 import Negocio.Entidades.Cliente;
 import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Pedido;

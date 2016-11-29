@@ -7,6 +7,7 @@ package Negocio.Operaciones;
 
 import DatosPersistentes.AccesoDatosClientes;
 import Negocio.Entidades.Cliente;
+import Negocio.Entidades.Producto;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +54,23 @@ public class AdminClientes {
     
     public List<Cliente> getListaClientesPorNombre(String nombre){
         return datosClientes.getPorNombre(nombre);
+    }
+    
+    
+    //Commit: Mario
+    //Se agregaron listas de los clientes del tipo string en vez del tipo array 
+    
+    public List<Cliente> getListasClientes() {
+        return datosClientes.getListaTodos();
+    }
+    
+    
+    public List<String> getNombresTodosClientes() {
+        List nombresClientes = new ArrayList();
+        for(Cliente cliente : getListasClientes()){
+            nombresClientes.add(cliente.getNombre());
+        }
+        return nombresClientes;
     }
     
     

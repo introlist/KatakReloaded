@@ -21,103 +21,76 @@ import java.util.List;
  */
 public class VendedorMayoreo {
     private final AdminVentas adminVentas;
-    private final AdminProductos adminProductos;
     private final AdminProductosVendidos adminProductosVendidos;
-    public List<ProductosVendidos> ProductosVendidosInput;
-    public List<ProductosVendidos> ProductosVendidosVenta;
-    public List<Producto> productosDisponibles;
-    private Venta nuevaVenta = new Venta();
-    private double costo;
-    private Cliente nuevoCliente;
+    private AdminClientes adminClientes;
+
     
-        public VendedorMayoreo(){
+    public VendedorMayoreo(){
         adminVentas = new AdminVentas();
         adminProductosVendidos = new AdminProductosVendidos();
-        adminProductos = new AdminProductos();
-        ProductosVendidosInput = new ArrayList<>();
-        ProductosVendidosVenta = new ArrayList<>();
-        nuevaVenta = new Venta();
-        productosDisponibles = adminProductos.getListaProd();
+        adminClientes = new AdminClientes();
         
     }
       
-        public void elaborarVenta() {
-            this.nuevaVenta = new Venta(
-                    nuevoCliente,
-                    ProductosVendidosVenta,
-                    getFechaActual()
-                    
-            );
+    private Venta realizarVenta(
+       
+        Cliente cliente, 
+        List <ProductosVendidos> productosVendidosMayoreo
+)
+        {
+            Venta nuevaVenta;
+
+            nuevaVenta = new Venta(
+                                   cliente,
+                                   productosVendidosMayoreo,
+                                   getFechaActual(),
+                                   calcularCostoTotal(productosVendidosMayoreo)
+        );
+            
+        return nuevaVenta;
+    }
+    
+    public void registrarVenta(Cliente cliente,
+                               List <ProductosVendidos> inputProdsVendidos
+            )
+    {
+
+        List<ProductosVendidos> prodsVendidosRegistrados =
+                registrarProdsVendidos(inputProdsVendidos);
+        
+        Venta nuevaVenta = realizarVenta(                      
+                                         cliente, 
+                                         prodsVendidosRegistrados 
+                );
+        
+        adminVentas.agregarVentaRegistro(nuevaVenta);
     }
         
-        public void guardarVenta(){
-        guardarGruposProds();
-        elaborarVenta();
-        adminVentas.AgregarVenta(nuevaVenta);
-    }
-        
-        private Date getFechaActual() {
+    private Date getFechaActual() {
         Date fechaActual = new Date();
         DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         formatoFecha.format(fechaActual);
         return fechaActual;
     }
-        
-        private void guardarGruposProds(){
-        for(ProductosVendidos productosVendidos : ProductosVendidosInput){
-            ProductosVendidos nuevoProductoVendido = new ProductosVendidos(
-                    productosVendidos.getProd(), 
-                    productosVendidos.getCantidad()
-            );
-            System.out.println(productosVendidos.getNombreProd()+"   -   "+productosVendidos.getCantidad());
-            adminProductosVendidos.AgregarProductosVendidos(nuevoProductoVendido);
-            ProductosVendidosVenta.add(nuevoProductoVendido);
+
+    public double calcularCostoTotal(List<ProductosVendidos> prodsSeleccionados) {
+        double costoTotal = 0;
+        for(ProductosVendidos actual : prodsSeleccionados){
+            costoTotal += actual.getCostoGrupoProd();
         }
+        return costoTotal;
     }
         
+    private List<ProductosVendidos> registrarProdsVendidos(List<ProductosVendidos> productosVendidosInput){
+        List<ProductosVendidos> prodsVendidosRegistrados;
+        prodsVendidosRegistrados = new ArrayList<>();
         
-        public List<String> getNombresTodosProd(){
-            return adminProductos.getNombresTodosProd();
+        for(ProductosVendidos inputProductosVendidos : productosVendidosInput){
+            adminProductosVendidos.AgregarProductosVendidos(inputProductosVendidos);
+            prodsVendidosRegistrados.add(inputProductosVendidos);
         }
-
-        public List<ProductosVendidos> getProductosVendidosSeleccionados() {
-            return ProductosVendidosInput;
-        }
-
-        public void setProductosVendidosSeleccionados(List<ProductosVendidos> productosVendidosSeleccionados) {
-            this.ProductosVendidosInput = productosVendidosSeleccionados;       
-        }
-
-        public Producto getProductosPorNombre(String nombreProd){
-            return adminProductos.getProdPorNombre(nombreProd);
-        }
-
-        public double getCosto() {
-            return costo;
-        }
-
-        public void setCosto(double costo) {
-            this.costo = costo;
-        }
-
-    public void setNuevaVenta(Venta nuevaVenta) {
-        this.nuevaVenta = nuevaVenta;
-    }
-
-    public void setNuevoCliente(Cliente nuevoCliente) {
-        this.nuevoCliente = nuevoCliente;
-    }
-
-    public Venta getNuevaVenta() {
-        return nuevaVenta;
-    }
-
-    public Cliente getNuevoCliente() {
-        return nuevoCliente;
+        return prodsVendidosRegistrados;
     }
         
-        
-    
-    
-    
+ 
 }

@@ -62,6 +62,11 @@ public class BasePrincipalCliente extends javax.swing.JFrame {
         BotonEditar.setText("Editar");
 
         BotonBorrar.setText("Borrar");
+        BotonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBorrarActionPerformed(evt);
+            }
+        });
 
         BotonRegresar.setText("Regresar al Menu Principal");
 
@@ -118,6 +123,10 @@ public class BasePrincipalCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBorrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonBorrarActionPerformed
 
     /**
      * @param args the command line arguments

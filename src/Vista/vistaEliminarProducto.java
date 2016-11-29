@@ -6,11 +6,13 @@
 package Vista;
 
 
-import DatosPersistentes.ConectaBD;
+
+import Negocio.Entidades.Producto;
+import Negocio.Operaciones.AdminProductos;
 import java.awt.Color;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +20,8 @@ import javax.swing.JOptionPane;
  * @author Mario
  */
 public class vistaEliminarProducto extends javax.swing.JFrame {
+        AdminProductos adminProductos = new AdminProductos();
+        List<String> nombresProdsDisp = adminProductos.getNombresTodosProd();
     
     
 
@@ -27,35 +31,9 @@ public class vistaEliminarProducto extends javax.swing.JFrame {
     public vistaEliminarProducto() {
         this.getContentPane().setBackground(Color.white);
         initComponents();
-        desplegarNombresProductos();
-        
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);       
+    }
 
-        
-    }
-    public void desplegarNombresProductos(){
-        ConectaBD cnc = new ConectaBD();
-        Connection cnx = cnc.conectar();
-        
-        String capturaProductos = "";
-        String sql = "select * from productos";
-        this.comboProductos.removeAllItems();
-        
-        
-        //Agrega los nombres de los productos al ComboBox        
-        try {
-            Statement instruccion = cnx.createStatement();
-            ResultSet conjuntoResultados = instruccion.executeQuery(sql);
-            
-            while(conjuntoResultados.next()){
-                capturaProductos = conjuntoResultados.getString("nombre");
-                this.comboProductos.addItem(capturaProductos);
-            }
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,7 +72,7 @@ public class vistaEliminarProducto extends javax.swing.JFrame {
 
         lbNombreProducto.setText("Nombre del Producto:");
 
-        comboProductos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboProductos.setModel(new DefaultComboBoxModel(nombresProdsDisp.toArray()));
         comboProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboProductosActionPerformed(evt);
@@ -143,24 +121,18 @@ public class vistaEliminarProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-        String nombre = objectToString(this.comboProductos.getSelectedItem());
+        String nombreProducto = objectToString(this.comboProductos.getSelectedItem());
+        int precioProducto=0;
         
-        ConectaBD cnc = new ConectaBD();
-        Connection cnx = cnc.conectar();
+                        try {
+        Producto producto = new Producto(nombreProducto, precioProducto);
+        AdminProductos adminProd = new AdminProductos();
+        adminProd.BorrarProd(producto);
+        JOptionPane.showMessageDialog(null, "Producto eliminado satisfactoriamente");
         
-        String borrarNombre = "DELETE FROM productos WHERE nombre = '"+nombre+"'";
-        
-        try {
-            //Se crea un statement para que se pueda comunicar la instrucción a la bd
-            Statement instruccion = cnx.createStatement();
-            
-            //Se ejecuta la instrucción y se actualiza la bd
-            instruccion.executeUpdate(borrarNombre); 
-            JOptionPane.showMessageDialog(null, "Producto eliminado satisfactoriamente");
-            //Se despliegan los nombres actualizados en el combobox
-            desplegarNombresProductos();
-        } catch (SQLException exc) {
-           JOptionPane.showMessageDialog(null, "ERROR");
+                } catch (Exception e) {
+           
+            JOptionPane.showMessageDialog(null, "ERROR");
         }
         
     }//GEN-LAST:event_btAceptarActionPerformed
@@ -172,17 +144,6 @@ public class vistaEliminarProducto extends javax.swing.JFrame {
 
     private void comboProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProductosActionPerformed
 
-        ConectaBD cnc = new ConectaBD();
-        Connection cnx = cnc.conectar();
-
-        try {
-            Statement instruccion2 = cnx.createStatement();
-            ResultSet rs1 = instruccion2.executeQuery("select * from productos where nombre = '"
-                + this.comboProductos.getSelectedItem()+ "'");
-            rs1.next();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
     }//GEN-LAST:event_comboProductosActionPerformed
 
     /**

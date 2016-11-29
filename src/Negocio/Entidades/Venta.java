@@ -18,13 +18,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-/********************************************************************** 
- 
-    CLASE: {@link Venta}
-    
-    @AUTOR: Roberto Gil Flores
 
- **********************************************************************/
+/**
+ *
+ * @author Mario
+ */
+
 @Entity 
 @Table (name = "ventas") 
 public class Venta implements Serializable{
@@ -46,71 +45,63 @@ public class Venta implements Serializable{
         
     };
 
-    public Venta(
-            Cliente cliente, 
-            List<ProductosVendidos> prodsVendidos, 
-            Date fechaCreacion
-    ) {
+    //Constructor
+
+    public Venta(Cliente cliente, 
+                 List<ProductosVendidos> prodsVendidos, 
+                 Date fechaCreacion, 
+                 double costoTotal) {
+        
         this.cliente = cliente;
         this.prodsVendidos = prodsVendidos;
         this.fechaCreacion = fechaCreacion;
-        this.costoTotal = getCostoTotal();
+        this.costoTotal = costoTotal;
     }
+
+    //Metodo get
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-   
     public Cliente getCliente() {
         return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public List<ProductosVendidos> getProdsVendidos() {
         return prodsVendidos;
     }
 
-    public void setProdsVendidos(List<ProductosVendidos> prodsVendidos) {
-        this.prodsVendidos = prodsVendidos;
-    }
-
     public Date getFechaCreacion() {
         return fechaCreacion;
+    }
+
+    public double getCostoTotal() {
+        return costoTotal;
+    }
+    
+    //Metodos set
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setProdsVendidos(List<ProductosVendidos> prodsVendidos) {
+        this.prodsVendidos = prodsVendidos;
     }
 
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public double getCostoTotal() {
-        calcularCostoTotal();
-        return costoTotal;
-    }
-
     public void setCostoTotal(double costoTotal) {
         this.costoTotal = costoTotal;
     }
-
-    public String getNombreProdVendido(ProductosVendidos prodVendido){
-        return prodVendido.getNombreProd();
-    }
     
-    public String getNombreCliente(){
-        return cliente.getNombre();
-    }
     
-    public void calcularCostoTotal(){
-        for(ProductosVendidos grupoActual: prodsVendidos ){
-            costoTotal =+ grupoActual.getCostoGrupoProd();
-        }
-        
-    }
 
 }

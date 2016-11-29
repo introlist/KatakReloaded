@@ -18,7 +18,7 @@ import org.hibernate.criterion.SimpleExpression;
  *
  * @author DEMON
  */
-public class AccesoDatosVenta extends AccesoDatos<Venta>{
+public class AccesoDatosVentas extends AccesoDatos<Venta>{
 
     
      public List<Venta> getPorFechaCreacion(Date fecha) {
