@@ -174,6 +174,4 @@ public class PanelAgregarEditarPedido extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }
-    
-    
 }

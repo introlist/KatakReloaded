@@ -18,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import org.hibernate.annotations.Type;
 /********************************************************************** 
  
     CLASE: {@link Pedido}
@@ -51,14 +50,28 @@ public class Pedido implements Serializable{
     private List<ProductosVendidos> productosVendidos;
     @Column (name = "costo", nullable = false)
     private double costoTotal;
-    @Column (name = "pedido_pendiente", nullable = false)
-    @Type(type = "true_false")
-    private boolean esPendiente;
     
     public Pedido(){
         
     }
 
+    public Pedido(
+            Date fechaCreacion, 
+            String nombreComprador, 
+            String direccion, 
+            Date fechaEntrega, 
+            List<ProductosVendidos> productosVendidos,
+            String hora,
+            double costoTotal
+    ) {
+        this.fechaCreacion = fechaCreacion;
+        this.nombreComprador = nombreComprador;
+        this.direccion = direccion;
+        this.fechaEntrega = fechaEntrega;
+        this.productosVendidos = productosVendidos;
+        this.hora = hora;
+        this.costoTotal = costoTotal;
+    }
 
     public Pedido(
             Date fechaCreacion, 
@@ -78,7 +91,6 @@ public class Pedido implements Serializable{
         this.productosVendidos = productosVendidos;
         this.hora = hora;
         this.costoTotal = costoTotal;
-        this.esPendiente = true;
     }
 
     public long getId() {
@@ -152,14 +164,5 @@ public class Pedido implements Serializable{
     public void setCostoTotal(double costoTotal) {
         this.costoTotal = costoTotal;
     }
-
-    public boolean esPendiente() {
-        return esPendiente;
-    }
-
-    public void setEsPendiente(boolean esPendiente) {
-        this.esPendiente = esPendiente;
-    }
    
-    
 }

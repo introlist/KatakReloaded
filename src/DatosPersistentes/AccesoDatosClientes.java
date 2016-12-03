@@ -18,12 +18,13 @@ public class AccesoDatosClientes extends AccesoDatos<Cliente>  {
 
 
     public List<Cliente> getPorNombre(String inputNombre) {
+        String NOMBRE_COLUMNA = "nombre";
         List<Cliente> clienteExistente = null;
         
         try {
             iniciarTransaccion();
             Query query = sesion.createSQLQuery(
-                    SentenciaBusquedaNombre(inputNombre)
+                    SentenciaBusquedaNombre(NOMBRE_COLUMNA, inputNombre)
             ).addEntity(getTipoClase());
             clienteExistente = query.list();
         } catch (HibernateException exception) {
@@ -35,8 +36,9 @@ public class AccesoDatosClientes extends AccesoDatos<Cliente>  {
         return clienteExistente;
     }
 
-    private String SentenciaBusquedaNombre(String inputNombre) {
-        String SentenciaBusqueda = "SELECT * FROM clientes WHERE nombre REGEXP"
+    private String SentenciaBusquedaNombre(String NOMBRE_COLUMNA, String inputNombre) {
+        String SentenciaBusqueda = "SELECT * FROM clientes WHERE " 
+                + NOMBRE_COLUMNA + " REGEXP"
                 + "'^" + inputNombre + "'";
         return SentenciaBusqueda;
     }
