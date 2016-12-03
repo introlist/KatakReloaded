@@ -13,6 +13,7 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
+import org.hibernate.Query;
 
 /**
  *
@@ -56,6 +57,36 @@ public class AccesoDatosPedido extends AccesoDatos<Pedido>{
         }
         
         return pedidosEncontrados;
+    }
+    
+    public List<Pedido> getPorPendiente(boolean pendiente) {
+        List<Pedido> clienteExistente = null;
+        char esPendiente;
+        if(pendiente){
+            esPendiente = 'T';
+        }else{
+            esPendiente = 'F';
+        }
+        
+        try {
+            iniciarTransaccion();
+            Query query = sesion.createSQLQuery(
+                    sentenciaBusquedaPendiente(esPendiente)
+            ).addEntity(getTipoClase());
+            clienteExistente = query.list();
+        } catch (HibernateException exception) {
+            manejarExcepcionHibernate(exception);
+            throw exception;
+        } finally{
+            terminarTransaccion();
+        }
+        return clienteExistente;
+    }
+
+    private String sentenciaBusquedaPendiente(char esPendiente) {
+        String SentenciaBusqueda = "SELECT * FROM pedidos WHERE pedido_pendiente REGEXP"
+                + "'^" + esPendiente + "'";
+        return SentenciaBusqueda;
     }
      
     @Override

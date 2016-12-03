@@ -48,3 +48,4 @@ Temporary Items
 /build/
 nbproject/project.properties
 *.properties
+/dist/

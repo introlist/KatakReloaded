@@ -7,7 +7,6 @@ package Negocio.Operaciones;
 
 import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Pedido;
-import Negocio.Entidades.Producto;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -74,6 +73,7 @@ public class VendedorMenudeo {
                 );
         adminPedidos.agregarPedidoRegistro(nuevoPedido);
     }
+    
     private Date getFechaActual() {
         Date fechaActual = new Date();
         DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
