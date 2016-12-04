@@ -74,7 +74,7 @@ public class ProductosVendidos implements Serializable{
         return prod.getNombre();
     }
 
-    public double getCostoGrupoProd() {
+    public double getCostoProductoVendido() {
         return costoGrupo;
     }
 

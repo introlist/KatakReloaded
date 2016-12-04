@@ -68,7 +68,7 @@
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="TextoTotal" pref="82" max="32767" attributes="0"/>
+                                  <Component id="TextoTotal" pref="90" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
@@ -80,10 +80,10 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="comboClientes" min="-2" pref="192" max="-2" attributes="0"/>
+                                  <Component id="lbTituloProductos" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="LabelFecha" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="comboFecha" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -95,10 +95,19 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ScrollGruposProd" max="32767" attributes="0"/>
+                          <Component id="ScrollProductosVendidos" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="ScrollClientes" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lbTituloClientes" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -107,16 +116,20 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Component id="lbTituloVentas" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="LabelFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboClientes" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="comboFecha" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <Component id="lbTituloClientes" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="ScrollClientes" min="-2" pref="104" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="ScrollGruposProd" pref="103" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="comboFecha" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="LabelFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbTituloProductos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="ScrollProductosVendidos" min="-2" pref="104" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -206,7 +219,7 @@
             <Property name="text" type="java.lang.String" value="Ventas"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="ScrollGruposProd">
+        <Container class="javax.swing.JScrollPane" name="ScrollProductosVendidos">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
@@ -214,6 +227,9 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new ModeloTablaProductosVendidos()" type="code"/>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0"/>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -225,7 +241,7 @@
         <Component class="javax.swing.JComboBox" name="comboProductos">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new DefaultComboBoxModel(nombresProdsDisp.toArray())" type="code"/>
+              <Connection code="new DefaultComboBoxModel(nombresProductosDisponibles.toArray())" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -235,11 +251,33 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="comboClientes">
+        <Container class="javax.swing.JScrollPane" name="ScrollClientes">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="TablaClientes">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new ModeloTablaClientes()" type="code"/>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0"/>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="lbTituloProductos">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new DefaultComboBoxModel(nombresClientesDisp.toArray())" type="code"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Productos"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbTituloClientes">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Clientes"/>
           </Properties>
         </Component>
       </SubComponents>

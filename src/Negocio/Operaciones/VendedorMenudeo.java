@@ -95,7 +95,7 @@ public class VendedorMenudeo {
     public double calcularCostoTotal(List<ProductosVendidos> prodsSeleccionados) {
         double costoTotal = 0;
         for(ProductosVendidos actual : prodsSeleccionados){
-            costoTotal += actual.getCostoGrupoProd();
+            costoTotal += actual.getCostoProductoVendido();
         }
         return costoTotal;
     }

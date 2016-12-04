@@ -141,6 +141,7 @@ public class vistaAgregarProducto extends javax.swing.JFrame {
         como el nombre del producto
         */
         nombreProducto = txtNombre.getText();
+        nombreProducto= nombreProducto.trim();
         
         
         /*
@@ -148,7 +149,7 @@ public class vistaAgregarProducto extends javax.swing.JFrame {
         en un numero que puede aceptar decimales y este se asigna al precio del producto
         */
         precioProducto = Double.parseDouble(txtPrecio.getText());
-        
+      
                 try {
         Producto nuevoProducto = new Producto(nombreProducto, precioProducto);
         AdminProductos adminProd = new AdminProductos();

@@ -12,6 +12,7 @@ import Negocio.Operaciones.AdminClientes;
 import Negocio.Operaciones.AdminProductos;
 
 import Negocio.Operaciones.VendedorMayoreo;
+import Vista.Tablas.ModeloTablaClientes;
 import Vista.Tablas.ModeloTablaProductosVendidos;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,18 +28,23 @@ import javax.swing.DefaultComboBoxModel;
 public class vistaRegistrarVentas extends javax.swing.JFrame {
     
     AdminProductos adminProductos = new AdminProductos();
-    List<String> nombresProdsDisp = adminProductos.getNombresTodosProductos();
+    List<String> nombresProductosDisponibles = adminProductos.getNombresProductosDisponibles();
     List<ProductosVendidos> productosActuales = new ArrayList<>();
     AdminClientes adminClientes = new AdminClientes();
-    List<String> nombresClientesDisp = adminClientes.getNombresTodosClientes();
+    List<Cliente> clientesActuales  = adminClientes.getListaClientes();;
     VendedorMayoreo vendedorMayoreo = new VendedorMayoreo();
+    Cliente clienteComprador = new Cliente();
     double costoTotal;
+    
+    
 
     /**
      * Creates new form vistaVentas
      */
     public vistaRegistrarVentas() {
         initComponents(); 
+        rellenarListaProductosVendidos(productosActuales);
+        rellenarListaClientes(clientesActuales);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
        // desplegarNombresClientes();
     }
@@ -64,10 +70,13 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         LabelFecha = new javax.swing.JLabel();
         comboFecha = new datechooser.beans.DateChooserCombo();
         lbTituloVentas = new javax.swing.JLabel();
-        ScrollGruposProd = new javax.swing.JScrollPane();
+        ScrollProductosVendidos = new javax.swing.JScrollPane();
         TablaProductosVendidos = new javax.swing.JTable();
         comboProductos = new javax.swing.JComboBox<String>();
-        comboClientes = new javax.swing.JComboBox();
+        ScrollClientes = new javax.swing.JScrollPane();
+        TablaClientes = new javax.swing.JTable();
+        lbTituloProductos = new javax.swing.JLabel();
+        lbTituloClientes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,16 +123,21 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         lbTituloVentas.setText("Ventas");
 
         TablaProductosVendidos.setModel(new ModeloTablaProductosVendidos());
-        ScrollGruposProd.setViewportView(TablaProductosVendidos);
+        ScrollProductosVendidos.setViewportView(TablaProductosVendidos);
 
-        comboProductos.setModel(new DefaultComboBoxModel(nombresProdsDisp.toArray()));
+        comboProductos.setModel(new DefaultComboBoxModel(nombresProductosDisponibles.toArray()));
         comboProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboProductosActionPerformed(evt);
             }
         });
 
-        comboClientes.setModel(new DefaultComboBoxModel(nombresClientesDisp.toArray()));
+        TablaClientes.setModel(new ModeloTablaClientes());
+        ScrollClientes.setViewportView(TablaClientes);
+
+        lbTituloProductos.setText("Productos");
+
+        lbTituloClientes.setText("Clientes");
 
         javax.swing.GroupLayout PanelRegistrarVentasLayout = new javax.swing.GroupLayout(PanelRegistrarVentas);
         PanelRegistrarVentas.setLayout(PanelRegistrarVentasLayout);
@@ -145,7 +159,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(TextoTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+                                .addComponent(TextoTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelRegistrarVentasLayout.createSequentialGroup()
                                 .addComponent(btCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -154,10 +168,10 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
                                 .addComponent(btQuitar)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
-                                .addComponent(comboClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbTituloProductos)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(LabelFecha)
-                                .addGap(24, 24, 24)
+                                .addGap(18, 18, 18)
                                 .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
                         .addGap(210, 210, 210)
@@ -165,22 +179,33 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(ScrollGruposProd)))
+                        .addComponent(ScrollProductosVendidos))
+                    .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ScrollClientes)))
                 .addContainerGap())
+            .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbTituloClientes)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelRegistrarVentasLayout.setVerticalGroup(
             PanelRegistrarVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addComponent(lbTituloVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(PanelRegistrarVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(lbTituloClientes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ScrollClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelRegistrarVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelRegistrarVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(LabelFecha)
-                        .addComponent(comboClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ScrollGruposProd, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                        .addComponent(lbTituloProductos)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ScrollProductosVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelRegistrarVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAgregar)
@@ -232,6 +257,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         registrarVenta();
         this.setVisible(false);
         this.dispose();
+        new MenuPrincipal().setVisible(true);
     }//GEN-LAST:event_btRegistrarActionPerformed
 
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
@@ -252,6 +278,8 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboProductosActionPerformed
 
+    //Metodos para Productos
+    
     private void agregarNuevosProductosVendidos(String NombreProd, String InputCantidad) {
         productosActuales.add(crearNuevosProductosVendidos(NombreProd, InputCantidad));
     }
@@ -265,15 +293,15 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     
 
     private void actualizarListaProductosVendidos() {
-        vaciarListaGrupoProd();
+        vaciarListaProductosVendidos();
         rellenarListaProductosVendidos(productosActuales);
     }
 
-    private void vaciarListaGrupoProd() {
-        ModeloTablaProductosVendidos mtgp = getModeloTablaProductosVendidos();
-        int rowCount = mtgp.getRowCount();
+    private void vaciarListaProductosVendidos() {
+        ModeloTablaProductosVendidos modeloTablaProducosVendidos = getModeloTablaProductosVendidos();
+        int rowCount = modeloTablaProducosVendidos.getRowCount();
         for (int i = rowCount - 1; 0 <= i; i--) {
-            mtgp.removerFila(i);
+            modeloTablaProducosVendidos.removerFila(i);
         }    
     }
 
@@ -281,85 +309,99 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         getModeloTablaProductosVendidos().agregarVariasFilas(productosActuales);
     }
     
-
-
     private ModeloTablaProductosVendidos getModeloTablaProductosVendidos() {
         return (ModeloTablaProductosVendidos) TablaProductosVendidos.getModel();
     }
+
+    private boolean seSeleccionoFilaVacia() {
+        int INDICE_NINGUNA_FILA = -1;
+        
+        return (getFilaSeleccionada() == INDICE_NINGUNA_FILA);    
+    }
+
+    private int getFilaSeleccionada() {
+        return TablaProductosVendidos.getSelectedRow();
+    }
+
+    private ProductosVendidos getProductosVendidosSeleccionados() {
+        if(!seSeleccionoFilaVacia()){
+            int filaSeleccionada = getFilaSeleccionada();
+            ProductosVendidos productoSeleccionado = 
+                    getModeloTablaProductosVendidos().getFila(filaSeleccionada);
+            return productoSeleccionado;
+        }else{
+            System.err.println("No se selecciono un Producto");
+            return null;
+        }    
+    }
+    
+    private void actualizarCostoTotal() {
+        costoTotal = 0;
+        for(ProductosVendidos actual : productosActuales){
+            costoTotal += actual.getCostoProductoVendido();
+        }
+        TextoTotal.setText(String.valueOf(costoTotal));
+    }
+    
+    public double getCostoTotal() {
+        return costoTotal;
+    } 
     
     private Date getFechaActual() {
         Calendar selectedDateChooserCalendar = comboFecha.getSelectedDate();
         
         return selectedDateChooserCalendar.getTime();
     }
-        
+            
     private void registrarVenta() {
-        Cliente cliente = new Cliente();
-        
-        vendedorMayoreo.registrarVenta(cliente,
+        vendedorMayoreo.registrarVenta(getClienteSeleccionado(),
                                        getFechaActual(),
                                        productosActuales
         );
-       //String nombreCliente = objectToString(this.comboClientes.getSelectedItem()););
-
-        
-        //vendedorMayoreo.setProductosVendidosSeleccionados(getGruposProdActuales());
-        
-        //vendedorMayoreo.setCosto(getCostoTotal());
-        
-        //vendedorMayoreo.setNuevoCliente(null);
-        
-       // vendedorMayoreo.guardarVenta();
         
     }
-
-    public List<ProductosVendidos> getGruposProdActuales() {
-        return productosActuales;
+    
+    //Metodos Cliente
+    
+    private void rellenarListaClientes(List<Cliente> ClientesActuales) {
+        getModeloTablaClientes().agregarVariasFilas(ClientesActuales);
     }
-
-    public void setGruposProdActuales(List<ProductosVendidos> gruposProdActuales) {
-        this.productosActuales = gruposProdActuales;
+    
+   
+    private ModeloTablaClientes getModeloTablaClientes() {
+        return (ModeloTablaClientes) TablaClientes.getModel();
     }
-
-    private boolean seSeleccionoFilaVacia() {
+    
+    private int getFilaSeleccionadaCliente() {
+        return TablaClientes.getSelectedRow();
+    }
+    
+    private boolean seSeleccionoFilaVaciaCliente() {
         int INDICE_NINGUNA_FILA = -1;
         
-        return (getFilaSeleccionada() == INDICE_NINGUNA_FILA);    }
-
-    private int getFilaSeleccionada() {
-        return TablaProductosVendidos.getSelectedRow();
+        return (getFilaSeleccionadaCliente() == INDICE_NINGUNA_FILA);    
     }
-
-    private void actualizarCostoTotal() {
-        costoTotal = 0;
-        for(ProductosVendidos actual : productosActuales){
-            costoTotal += actual.getCostoGrupoProd();
-        }
-        TextoTotal.setText(String.valueOf(costoTotal));
-    }
-
-    public double getCostoTotal() {
-        return costoTotal;
-    }
-
-    private ProductosVendidos getProductosVendidosSeleccionados() {
-        if(!seSeleccionoFilaVacia()){
-            int filaSeleccionada = getFilaSeleccionada();
-            ProductosVendidos grupoSeleccionado = getModeloTablaProductosVendidos().getFila(filaSeleccionada);
-            return grupoSeleccionado;
+    
+    private Cliente getClienteSeleccionado() {
+        if(!seSeleccionoFilaVaciaCliente()){
+            int filaClienteSeleccionada = getFilaSeleccionadaCliente();
+            Cliente clienteSeleccionado = 
+                    getModeloTablaClientes().getFila(filaClienteSeleccionada);
+            return clienteSeleccionado;
         }else{
-            System.err.println("No se selecciono una fila");
+            System.err.println("No se selecciono un Cliente");
             return null;
         }    
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelFecha;
     private javax.swing.JLabel LabelUnidades;
     private javax.swing.JPanel PanelRegistrarVentas;
-    private javax.swing.JScrollPane ScrollGruposProd;
+    private javax.swing.JScrollPane ScrollClientes;
+    private javax.swing.JScrollPane ScrollProductosVendidos;
+    private javax.swing.JTable TablaClientes;
     private javax.swing.JTable TablaProductosVendidos;
     private javax.swing.JTextField TextoCantidad;
     private javax.swing.JTextField TextoTotal;
@@ -367,10 +409,11 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btQuitar;
     private javax.swing.JButton btRegistrar;
-    private javax.swing.JComboBox comboClientes;
     private datechooser.beans.DateChooserCombo comboFecha;
     private javax.swing.JComboBox<String> comboProductos;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lbTituloClientes;
+    private javax.swing.JLabel lbTituloProductos;
     private javax.swing.JLabel lbTituloVentas;
     // End of variables declaration//GEN-END:variables
 }

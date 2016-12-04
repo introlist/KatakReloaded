@@ -16,10 +16,12 @@ public class ModeloTablaClientes extends ModeloTabla<Cliente> {
     public static final int INDICE_NOMBRE=0;
     public static final int INDICE_DIRECCION=1;
     public static final int INDICE_TELEFONO=2;
+    public static final int INDICE_EMAIL=3;
     private static final String[] TITULOS_COLUMNAS ={
         "Nombre",
         "Direccion",
-        "Telefono"
+        "Telefono",
+        "Email"
     };
 
     public ModeloTablaClientes() {
@@ -28,6 +30,8 @@ public class ModeloTablaClientes extends ModeloTabla<Cliente> {
         setModeloEditable(false);
     }
 
+    //Commit: Mario
+    //Se agrego la columna email
     @Override
     public Object getValueAt(int indiceFila, int indiceColumna) {
         Cliente cliente=getFila(indiceFila);
@@ -39,6 +43,8 @@ public class ModeloTablaClientes extends ModeloTabla<Cliente> {
                 return cliente.getDireccion();
             case INDICE_TELEFONO:
                 return cliente.getTelefono();
+            case INDICE_EMAIL:
+                return cliente.getEmail();
             default:
                 return null;
         }

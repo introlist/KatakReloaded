@@ -17,7 +17,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     }
 
     /**
@@ -157,6 +157,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         this.dispose();
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        System.exit(0);
     }//GEN-LAST:event_btMenuSalirActionPerformed
 
     private void btMenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuPedidosActionPerformed
