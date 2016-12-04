@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -352,14 +353,6 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         
         return selectedDateChooserCalendar.getTime();
     }
-            
-    private void registrarVenta() {
-        vendedorMayoreo.registrarVenta(getClienteSeleccionado(),
-                                       getFechaActual(),
-                                       productosActuales
-        );
-        
-    }
     
     //Metodos Cliente
     
@@ -390,8 +383,20 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
             return clienteSeleccionado;
         }else{
             System.err.println("No se selecciono un Cliente");
+            JOptionPane.showMessageDialog(null, "No se selecciono un Cliente");
             return null;
         }    
+    }
+    
+      
+    //Metodo para terminar el registro de la venta
+    private void registrarVenta() {
+        vendedorMayoreo.registrarVenta(getClienteSeleccionado(),
+                                       getFechaActual(),
+                                       productosActuales
+        );
+        JOptionPane.showMessageDialog(null, "Venta Registrada");
+        
     }
 
 
