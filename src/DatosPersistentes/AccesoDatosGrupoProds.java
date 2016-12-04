@@ -12,8 +12,6 @@ import java.util.List;
  */
 public class AccesoDatosGrupoProds extends AccesoDatos<ProductosVendidos> {
     
-    
-    
     @Override
     protected Class getTipoClase() {
         return ProductosVendidos.class;

@@ -44,4 +44,12 @@ public class AdminPedidos {
     public List<Pedido> getPedidosFechaEntrega(Date fechaEntrega){
         return datosPedido.getPorFechaCreacion(fechaEntrega);
     }
+    
+    public List<Pedido> getPedidosPendientes(){
+        return datosPedido.getPorPendiente(true);
+    }
+    
+    public List<Pedido> getPedidosCompletados(){
+        return datosPedido.getPorPendiente(false);
+    }
 }

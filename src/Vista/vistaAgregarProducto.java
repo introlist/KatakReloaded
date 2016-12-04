@@ -165,7 +165,7 @@ public class vistaAgregarProducto extends javax.swing.JFrame {
                 try {
         Producto nuevoProducto = new Producto(nombreProducto, precioProducto);
         AdminProductos adminProd = new AdminProductos();
-        adminProd.AgregarProd(nuevoProducto);
+        adminProd.AgregarProductos(nuevoProducto);
         JOptionPane.showMessageDialog(null, "Producto agregado satisfactoriamente");
             txtNombre.setText("");
             txtPrecio.setText("");

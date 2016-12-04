@@ -53,8 +53,8 @@ public class ClasePruebas {
 
         
         AdminProductos ap = new AdminProductos();
-        ap.AgregarProd(Ej1);
-        ap.AgregarProd(Ej2);
+        ap.AgregarProductos(Ej1);
+        ap.AgregarProductos(Ej2);
         
 
 
@@ -77,7 +77,7 @@ public class ClasePruebas {
 //        }
 //        
         
-//        List<Producto> test = ap.getListaProd();
+//        List<Producto> test = ap.getListaProductos();
 
     System.exit(0);
     }

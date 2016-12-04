@@ -23,7 +23,7 @@ import java.util.Date;
 public class RegistradorPedidos extends javax.swing.JFrame {
     VendedorMenudeo vendedorMenudeo = new VendedorMenudeo();
     AdminProductos adminProd = new AdminProductos();
-    List<String> nombresProdsDisp = adminProd.getNombresTodosProd();
+    List<String> nombresProdsDisp = adminProd.getNombresProductosDisponibles();
     List<ProductosVendidos> prodsVendidosActuales = new ArrayList<>();
     /**
      * Creates new form registradorPedidos
@@ -317,7 +317,6 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CampoCostoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoCostoTotalActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_CampoCostoTotalActionPerformed
 
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
@@ -341,15 +340,19 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         FinalizarRegistroPedido();
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
-    private void agregarNuevoGrupoProd(String NombreProd, String InputCantidad) {
-        prodsVendidosActuales.add(crearNuevoGrupoProd(NombreProd, InputCantidad));
+    private void agregarNuevoGrupoProd(String nombreProd, String inputCantidad) {
+        prodsVendidosActuales.add(crearNuevoGrupoProd(nombreProd, inputCantidad));
     }
     
-    private ProductosVendidos crearNuevoGrupoProd(String NombreProd, String InputCantidad){
-        Producto prod = adminProd.getProdPorNombre(NombreProd);
-        int cantidad = Integer.parseInt(InputCantidad);
-        ProductosVendidos nuevoGrupoProd = new ProductosVendidos(prod, cantidad);
-        return nuevoGrupoProd;
+    private ProductosVendidos crearNuevoGrupoProd(
+            String NombreProd, String inputCantidad
+    ){
+        Producto productoSeleccionado = adminProd.getProductosPorNombre(NombreProd);
+                ProductosVendidos nuevoGrupoProductos = new ProductosVendidos(
+                productoSeleccionado, 
+                Integer.parseInt(inputCantidad)
+        );
+        return nuevoGrupoProductos;
     }
 
     private void actualizarListaGrupoProd() {

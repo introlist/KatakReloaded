@@ -14,48 +14,66 @@ import java.util.List;
  * @author DEMON
  */
 public class AdminProductos {
-    private final AccesoDatosProd accesoDatosProd;
+    private final AccesoDatosProd accesoDatosProductos;
     
     public AdminProductos(){
-        accesoDatosProd = new AccesoDatosProd();
+        accesoDatosProductos = new AccesoDatosProd();
     }
     
-    public void AgregarProd(Producto prod){
-        accesoDatosProd.insertar(prod);
+    public void AgregarProductos(Producto producto){
+        accesoDatosProductos.insertar(producto);
     }
     
-    public void EditarProd(Producto prod){
-        accesoDatosProd.sobrescribir(prod);
+    public void EditarProductos(Producto producto){
+        accesoDatosProductos.sobrescribir(producto);
     }
     
-    public void BorrarProd(Producto prod){
-        accesoDatosProd.borrar(prod);
+    public void BorrarProductos(Producto producto){
+        accesoDatosProductos.borrar(producto);
     }
     
-    public List<Producto> getListaProdPorNombre(String nombreProd) {
-        return accesoDatosProd.getPorNombre(nombreProd);
+    public List<Producto> getListaProductosPorNombre(String nombreProducto) {
+        return accesoDatosProductos.getPorNombre(nombreProducto);
     }
     
-    public Producto getProdPorNombre(String nombreProd){
+    public List<Producto> getListaProductosDisponibles(){
+        return accesoDatosProductos.getPorDisponibilidad(true);
+    }
+    
+    public List<Producto> getListaProductosNoDisponibles(){
+        return accesoDatosProductos.getPorDisponibilidad(false);
+    }
+            
+            
+    public Producto getProductosPorNombre(String nombreProducto){
         List<Producto> resultados;
-        resultados = getListaProdPorNombre(nombreProd);
-        if(resultados.size()<2){
-            return resultados.get(0);
-        }else{
-            System.err.println("Producto no unico encontrado");
-            return null;
-        }
+        resultados = getListaProductosPorNombre(nombreProducto);
+        return resultados.get(0);
     }
     
-    public List<Producto> getListaProd() {
-        return accesoDatosProd.getListaTodos();
+    public List<Producto> getListaProductos() {
+        return accesoDatosProductos.getListaTodos();
     }
         
-    public List<String> getNombresTodosProd() {
-        List npd = new ArrayList();
-        for(Producto prod : getListaProd()){
-            npd.add(prod.getNombre());
+    public List<String> getListaNombresProductos(List<Producto> listaProductos) {
+        List listaNombresProductos = new ArrayList();
+        for(Producto producto : listaProductos){
+            listaNombresProductos.add(producto.getNombre());
         }
-        return npd;
+        return listaNombresProductos;
+    }
+    
+    public List<String> getNombresProductosDisponibles(){
+        return getListaNombresProductos(accesoDatosProductos.getPorDisponibilidad(true));
+    }
+    
+    public List<String> getNombresTodosProductos() {
+        return getListaNombresProductos(accesoDatosProductos.getListaTodos());
+    }
+
+    private boolean verificarNombreProductoNuevo(Producto producto) {
+        List<Producto> coincidencias;
+        coincidencias = getListaProductosPorNombre(producto.getNombre());
+        return coincidencias.size()>0;
     }
 }

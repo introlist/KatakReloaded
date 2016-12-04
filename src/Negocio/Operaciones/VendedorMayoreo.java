@@ -38,7 +38,7 @@ public class VendedorMayoreo {
         ProductosVendidosInput = new ArrayList<>();
         ProductosVendidosVenta = new ArrayList<>();
         nuevaVenta = new Venta();
-        prodsDisponibles = adminProductos.getListaProd();
+        prodsDisponibles = adminProductos.getListaProductos();
         
     }
       
@@ -78,7 +78,7 @@ public class VendedorMayoreo {
         
         
         public List<String> getNombresTodosProd(){
-            return adminProductos.getNombresTodosProd();
+            return adminProductos.getNombresTodosProductos();
         }
 
         public List<ProductosVendidos> getGruposProdsSeleccionados() {
@@ -90,7 +90,7 @@ public class VendedorMayoreo {
         }
 
         public Producto getProdPorNombre(String nombreProd){
-            return adminProductos.getProdPorNombre(nombreProd);
+            return adminProductos.getProductosPorNombre(nombreProd);
         }
 
         public double getCosto() {
