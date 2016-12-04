@@ -38,6 +38,36 @@ public class AccesoDatosProductos extends AccesoDatos<Producto>{
         return productoExistente;
     }
     
+     public List<Producto> getPorDisponibilidad(boolean esDisponible) {
+        List<Producto> clienteExistente = null;
+        char estadoDisponibilidad;
+        if(esDisponible){
+            estadoDisponibilidad = 'T';
+        }else{
+            estadoDisponibilidad = 'F';
+        }
+        
+        try {
+            iniciarTransaccion();
+            Query query = sesion.createSQLQuery(
+                    sentenciaBusquedaPendiente(estadoDisponibilidad)
+            ).addEntity(getTipoClase());
+            clienteExistente = query.list();
+        } catch (HibernateException exception) {
+            manejarExcepcionHibernate(exception);
+            throw exception;
+        } finally{
+            terminarTransaccion();
+        }
+        return clienteExistente;
+    }
+
+    private String sentenciaBusquedaPendiente(char esDisponible) {
+        String SentenciaBusqueda = "SELECT * FROM productos WHERE producto_disponible REGEXP"
+                + "'^" + esDisponible + "'";
+        return SentenciaBusqueda;
+    }
+    
     @Override
     protected Class getTipoClase() {
         return Producto.class;

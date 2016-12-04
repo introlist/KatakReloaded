@@ -27,7 +27,7 @@ import javax.swing.DefaultComboBoxModel;
 public class vistaRegistrarVentas extends javax.swing.JFrame {
     
     AdminProductos adminProductos = new AdminProductos();
-    List<String> nombresProdsDisp = adminProductos.getNombresTodosProd();
+    List<String> nombresProdsDisp = adminProductos.getNombresTodosProductos();
     List<ProductosVendidos> productosActuales = new ArrayList<>();
     AdminClientes adminClientes = new AdminClientes();
     List<String> nombresClientesDisp = adminClientes.getNombresTodosClientes();
@@ -257,7 +257,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     }
     
     private ProductosVendidos crearNuevosProductosVendidos(String NombreProductos, String InputCantidad){
-        Producto productos = adminProductos.getProdPorNombre(NombreProductos);
+        Producto productos = adminProductos.getProductosPorNombre(NombreProductos);
         int cantidad = Integer.parseInt(InputCantidad);
         ProductosVendidos nuevosProductosVendidos = new ProductosVendidos(productos, cantidad);
         return nuevosProductosVendidos;

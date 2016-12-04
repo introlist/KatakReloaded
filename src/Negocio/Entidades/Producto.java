@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.Type;
 /********************************************************************** 
  
     CLASE: {@link Producto}
@@ -30,6 +31,9 @@ public class Producto implements Serializable {
     private String nombre;
     @Column(name = "precio", nullable = false)
     private double precio;
+    @Column(name = "producto_disponible",nullable = false)
+    @Type(type = "true_false")
+    private boolean esDisponible;
 
     public Producto(){
         
@@ -41,6 +45,7 @@ public class Producto implements Serializable {
     ) {
         this.nombre = nombre;
         this.precio = precio;
+        this.esDisponible = true;
     }
 
     public long getId() {
@@ -66,6 +71,15 @@ public class Producto implements Serializable {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    public boolean esDisponible() {
+        return esDisponible;
+    }
+
+    public void setEsDisponible(boolean esDisponible) {
+        this.esDisponible = esDisponible;
+    }
+    
     
 
     
