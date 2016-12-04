@@ -7,6 +7,12 @@ package Negocio.Entidades;
 
 import Negocio.Entidades.Enums.UnidadMedida;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /********************************************************************** 
  
@@ -15,48 +21,54 @@ import java.io.Serializable;
     AUTOR: Roberto Gil Flores
 
  **********************************************************************/
+@Entity
+@Table(name="materia_prima")
 public class MateriaPrima implements Serializable {
     
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
+    
+    @Column(name="nombre", nullable=false)
     private String nombre;
+    
+    @Column(name="medida", nullable=false)
     private UnidadMedida unidadMedida;
     
-    
-    //Constructor
-    
-    public MateriaPrima(String nombre, UnidadMedida unidadMedida) {
-        this.nombre = nombre;
-        this.unidadMedida = unidadMedida;
+    public MateriaPrima(){
+        
     }
-
-    //Getters
+    
+    public MateriaPrima(
+            String nombre, 
+            UnidadMedida unidMed
+    )  {
+        this.nombre = nombre;
+        this.unidadMedida = unidMed;
+    }
+    
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public UnidadMedida getUnidadMedida() {
-        return unidadMedida;
-    }
-    
-    //Setters
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setUnidadMedida(UnidadMedida unidadMedida) {
-        this.unidadMedida = unidadMedida;
+    public UnidadMedida getUnidadMedida() {
+        return unidadMedida;
     }
-    
-    
-    
+
+    public void setUnidadMedida(UnidadMedida unidMed) {
+        this.unidadMedida = unidMed;
+    }
 
 }

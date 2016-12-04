@@ -113,15 +113,15 @@ public class PanelPrincipalCliente extends JPanel{
         return (obtenerFilaSeleccionada() !=NINGUNA_FILA_SELECCIONADA);
     }
     
-    public void ActualizarTabla(List<String[]> datos){
+    public void ActualizarTabla(List<Cliente> clientes){
         DefaultTableModel modelo=(DefaultTableModel)obtenerModeloTabla();
         modelo.setRowCount(0);
-        for(String[] valores:datos){
-            modelo.addRow(new Object[]{valores[0],
-                                       valores[1],
-                                       valores[2],
-                                       valores[3]});
-            
+        for(Cliente cliente:clientes){
+            modelo.addRow(new Object[]{cliente.getNombre(),
+                                       cliente.getDireccion(),
+                                       cliente.getTelefono(),
+                                       cliente.getEmail()}
+                         );
         }
     }
 

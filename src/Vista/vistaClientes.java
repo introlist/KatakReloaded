@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Negocio.Entidades.Cliente;
 import Negocio.Operaciones.AdminClientes;
 import Vista.Paneles.PanelAgregarEditarCliente;
 import Vista.Paneles.PanelPrincipalCliente;
@@ -84,12 +85,12 @@ public class vistaClientes extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(panelPrincipal.seSeleccionoFila()){
-                    String[] datos={panelPrincipal.obtenerValorEnFilaSeleccionada(0),
-                                    panelPrincipal.obtenerValorEnFilaSeleccionada(1),
-                                    panelPrincipal.obtenerValorEnFilaSeleccionada(2),
-                                    panelPrincipal.obtenerValorEnFilaSeleccionada(3)};
+                    Cliente nuevoCliente=new Cliente(panelPrincipal.obtenerValorEnFilaSeleccionada(0),
+                                                     panelPrincipal.obtenerValorEnFilaSeleccionada(1),
+                                                     panelPrincipal.obtenerValorEnFilaSeleccionada(2),
+                                                     panelPrincipal.obtenerValorEnFilaSeleccionada(3));
                     
-                    administrador.eliminarCliente(datos);
+                    administrador.eliminarCliente(nuevoCliente);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Selecciona un elemento");
@@ -109,15 +110,14 @@ public class vistaClientes extends javax.swing.JFrame {
         panelAgregarEditar.agregarBotonGuardarListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String[] datos={
-                        panelAgregarEditar.obtenerCampoNombre(), 
-                        panelAgregarEditar.obtenerCampoDireccion(), 
-                        panelAgregarEditar.obtenerCampoTelefono(),
-                        panelAgregarEditar.obtenerCampoEMail()};
+                Cliente nuevoCliente=new Cliente(panelAgregarEditar.obtenerCampoNombre(),
+                                                 panelAgregarEditar.obtenerCampoDireccion(),
+                                                 panelAgregarEditar.obtenerCampoTelefono(),
+                                                 panelAgregarEditar.obtenerCampoEMail());
                 if(modoEdicion){
-                    administrador.editarCliente(datos);
+                    administrador.editarCliente(nuevoCliente);
                 }else{
-                    administrador.agregarCliente(datos);
+                    administrador.agregarCliente(nuevoCliente);
                 }
             }
         });

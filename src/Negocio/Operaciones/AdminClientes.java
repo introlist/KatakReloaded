@@ -22,52 +22,34 @@ public class AdminClientes {
         datosClientes = new AccesoDatosClientes();
     }
     
-    public void agregarCliente(String[] datos){
-        Cliente cliente=new Cliente(datos[0],datos[1],datos[2],datos[3]);
+    public void agregarCliente(Cliente cliente){
         datosClientes.insertar(cliente);
     }
     
-    public void editarCliente(String[] datos){
-        Cliente cliente=new Cliente(datos[0],datos[1],datos[2],datos[3]);
-        cliente.setId(getListaClientesPorNombre(datos[0]).get(0).getId());
+    public void editarCliente(Cliente cliente){
+        cliente.setId(getListaClientesPorNombre(cliente.getNombre()).get(0).getId());
         datosClientes.sobrescribir(cliente);
     }
     
-    public void eliminarCliente(String[] datos){
-        Cliente cliente=new Cliente(datos[0],datos[1],datos[2],datos[3]);
-        cliente.setId(getListaClientesPorNombre(datos[0]).get(0).getId());
+    public void eliminarCliente(Cliente cliente){
+        cliente.setId(getListaClientesPorNombre(cliente.getNombre()).get(0).getId());
         datosClientes.borrar(cliente);
     }
     
-    public List<String[]> getListaClientes(){
-        List<String[]> lista=new ArrayList<>();
-        String[] datos =new String[4];
-            for(Cliente cliente: datosClientes.getListaTodos()){
-                datos[0]=cliente.getNombre();
-                datos[1]=cliente.getDireccion();
-                datos[2]=cliente.getTelefono();
-                datos[3]=cliente.getEmail();
-                lista.add(datos);
-            }
-        return lista;
+    public List<Cliente> getListaClientes(){
+        return datosClientes.getListaTodos();
     }
     
     public List<Cliente> getListaClientesPorNombre(String nombre){
         return datosClientes.getPorNombre(nombre);
     }
     
-    
     //Commit: Mario
     //Se agregaron listas de los clientes del tipo string en vez del tipo array 
-    
-    public List<Cliente> getListasClientes() {
-        return datosClientes.getListaTodos();
-    }
-    
-    
+       
     public List<String> getNombresTodosClientes() {
         List nombresClientes = new ArrayList();
-        for(Cliente cliente : getListasClientes()){
+        for(Cliente cliente : getListaClientes()){
             nombresClientes.add(cliente.getNombre());
         }
         return nombresClientes;
