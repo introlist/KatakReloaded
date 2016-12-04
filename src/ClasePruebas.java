@@ -1,7 +1,7 @@
 
 import DatosPersistentes.AccesoDatosClientes;
 import DatosPersistentes.AccesoDatosProductosVendidos;
-import DatosPersistentes.AccesoDatosProd;
+import DatosPersistentes.AccesoDatosProductos;
 import DatosPersistentes.AccesoDatosVentas;
 import Negocio.Entidades.Cliente;
 import Negocio.Entidades.ProductosVendidos;
@@ -39,8 +39,8 @@ public class ClasePruebas {
         Date fechaActual = new Date();
         DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         formatoFecha.format(fechaActual);
-        Cliente hGil = new Cliente("Hector Gil", "9999273285", "Calle 76 Las Americas");
-        Cliente dGil = new Cliente("Daniel Gil", "test", "Test2");
+//        Cliente hGil = new Cliente("Hector Gil", "9999273285", "Calle 76 Las Americas");
+//        Cliente dGil = new Cliente("Daniel Gil", "test", "Test2");
        
         Producto Ej1 = new Producto("Ej 1",11);
         Producto Ej2 = new Producto("Ej2", 6);

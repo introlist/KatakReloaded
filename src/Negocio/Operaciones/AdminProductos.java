@@ -5,7 +5,7 @@
  */
 package Negocio.Operaciones;
 
-import DatosPersistentes.AccesoDatosProd;
+import DatosPersistentes.AccesoDatosProductos;
 import Negocio.Entidades.Producto;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,10 @@ import java.util.List;
  * @author DEMON
  */
 public class AdminProductos {
-    private final AccesoDatosProd accesoDatosProd;
+    private final AccesoDatosProductos accesoDatosProd;
     
     public AdminProductos(){
-        accesoDatosProd = new AccesoDatosProd();
+        accesoDatosProd = new AccesoDatosProductos();
     }
     
     public void AgregarProd(Producto prod){

@@ -14,6 +14,8 @@ import Negocio.Operaciones.AdminProductos;
 import Negocio.Operaciones.VendedorMayoreo;
 import Vista.Tablas.ModeloTablaProductosVendidos;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
@@ -29,6 +31,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     List<ProductosVendidos> productosActuales = new ArrayList<>();
     AdminClientes adminClientes = new AdminClientes();
     List<String> nombresClientesDisp = adminClientes.getNombresTodosClientes();
+    VendedorMayoreo vendedorMayoreo = new VendedorMayoreo();
     double costoTotal;
 
     /**
@@ -226,8 +229,9 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
         // TODO add your handling code here:
-        EnviarInputs();
-        FinalizarRegistroPedido();
+        registrarVenta();
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btRegistrarActionPerformed
 
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
@@ -283,7 +287,19 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         return (ModeloTablaProductosVendidos) TablaProductosVendidos.getModel();
     }
     
-    private void EnviarInputs() {
+    private Date getFechaActual() {
+        Calendar selectedDateChooserCalendar = comboFecha.getSelectedDate();
+        
+        return selectedDateChooserCalendar.getTime();
+    }
+        
+    private void registrarVenta() {
+        Cliente cliente = new Cliente();
+        
+        vendedorMayoreo.registrarVenta(cliente,
+                                       getFechaActual(),
+                                       productosActuales
+        );
        //String nombreCliente = objectToString(this.comboClientes.getSelectedItem()););
 
         
@@ -337,10 +353,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         }    
     }
 
-    private void FinalizarRegistroPedido() {
-        this.setVisible(false);
-        this.dispose();
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelFecha;

@@ -88,17 +88,15 @@ public class vistaEliminarProducto extends javax.swing.JFrame {
                 .addComponent(lbTitulo)
                 .addContainerGap(127, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboProductos, 0, 284, Short.MAX_VALUE)))
+                    .addComponent(comboProductos, 0, 284, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
@@ -126,9 +124,10 @@ public class vistaEliminarProducto extends javax.swing.JFrame {
         
                         try {
         Producto producto = new Producto(nombreProducto, precioProducto);
-        AdminProductos adminProd = new AdminProductos();
-        adminProd.BorrarProd(producto);
+        adminProductos.BorrarProd(producto);
         JOptionPane.showMessageDialog(null, "Producto eliminado satisfactoriamente");
+        //Actualiza de nuevo el combo
+        nombresProdsDisp = adminProductos.getNombresTodosProd();
         
                 } catch (Exception e) {
            

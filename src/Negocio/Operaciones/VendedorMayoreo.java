@@ -6,7 +6,6 @@
 package Negocio.Operaciones;
 
 import Negocio.Entidades.ProductosVendidos;
-import Negocio.Entidades.Producto;
 import Negocio.Entidades.Venta;
 import Negocio.Entidades.Cliente;
 import java.text.DateFormat;
@@ -22,20 +21,21 @@ import java.util.List;
 public class VendedorMayoreo {
     private final AdminVentas adminVentas;
     private final AdminProductosVendidos adminProductosVendidos;
-    private AdminClientes adminClientes;
+
 
     
     public VendedorMayoreo(){
         adminVentas = new AdminVentas();
         adminProductosVendidos = new AdminProductosVendidos();
-        adminClientes = new AdminClientes();
         
     }
       
     private Venta realizarVenta(
        
         Cliente cliente, 
+        Date fechaVenta,
         List <ProductosVendidos> productosVendidosMayoreo
+        
 )
         {
             Venta nuevaVenta;
@@ -43,7 +43,7 @@ public class VendedorMayoreo {
             nuevaVenta = new Venta(
                                    cliente,
                                    productosVendidosMayoreo,
-                                   getFechaActual(),
+                                   fechaVenta,
                                    calcularCostoTotal(productosVendidosMayoreo)
         );
             
@@ -51,16 +51,17 @@ public class VendedorMayoreo {
     }
     
     public void registrarVenta(Cliente cliente,
-                               List <ProductosVendidos> inputProdsVendidos
+                               Date fechaVenta,
+                               List <ProductosVendidos> productosVendidos
             )
     {
 
-        List<ProductosVendidos> prodsVendidosRegistrados =
-                registrarProdsVendidos(inputProdsVendidos);
+        List<ProductosVendidos> productosVendidosRegistrados =
+                registrarProductosVendidos(productosVendidos);
         
-        Venta nuevaVenta = realizarVenta(                      
-                                         cliente, 
-                                         prodsVendidosRegistrados 
+        Venta nuevaVenta = realizarVenta(cliente,
+                                         fechaVenta,
+                                         productosVendidosRegistrados 
                 );
         
         adminVentas.agregarVentaRegistro(nuevaVenta);
@@ -81,7 +82,7 @@ public class VendedorMayoreo {
         return costoTotal;
     }
         
-    private List<ProductosVendidos> registrarProdsVendidos(List<ProductosVendidos> productosVendidosInput){
+    private List<ProductosVendidos> registrarProductosVendidos(List<ProductosVendidos> productosVendidosInput){
         List<ProductosVendidos> prodsVendidosRegistrados;
         prodsVendidosRegistrados = new ArrayList<>();
         

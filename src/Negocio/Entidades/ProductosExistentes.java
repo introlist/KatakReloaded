@@ -34,13 +34,11 @@ public class ProductosExistentes implements Serializable{
     
     //Constructor
 
-    public ProductosExistentes(int id, 
-                               Producto producto, 
-                               int existencia) {
-        this.id = id;
+    public ProductosExistentes(Producto producto, int existencia) {
         this.producto = producto;
         this.existencia = existencia;
     }
+
     
     //Getters
 
