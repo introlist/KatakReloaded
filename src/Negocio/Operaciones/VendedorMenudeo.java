@@ -7,7 +7,6 @@ package Negocio.Operaciones;
 
 import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Pedido;
-import Negocio.Entidades.Producto;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,11 +19,11 @@ import java.util.List;
  * @author DEMON
  */
 public class VendedorMenudeo {        
-    AdminProductosVendidos adminProductosVendidos;
+    AdminProductosVendidos adminProdVendidos;
     AdminPedidos adminPedidos;
 
     public VendedorMenudeo(){
-        adminProductosVendidos = new AdminProductosVendidos();
+        adminProdVendidos = new AdminProductosVendidos();
         adminPedidos = new AdminPedidos();
     }
 
@@ -33,7 +32,7 @@ public class VendedorMenudeo {
         String direccion, 
         String telefono, 
         Date fechaEntrega, 
-        List <ProductosVendidos> productosVendidosMenudeo,
+        List <ProductosVendidos> prodsVendidosPedido,
         String hora
         ) {
             Pedido nuevoPedido;
@@ -44,9 +43,9 @@ public class VendedorMenudeo {
             direccion,
             telefono,
             fechaEntrega,
-            productosVendidosMenudeo,
+            prodsVendidosPedido,
             hora,
-            calcularCostoTotal(productosVendidosMenudeo)
+            calcularCostoTotal(prodsVendidosPedido)
         );
             
         return nuevoPedido;
@@ -74,6 +73,7 @@ public class VendedorMenudeo {
                 );
         adminPedidos.agregarPedidoRegistro(nuevoPedido);
     }
+    
     private Date getFechaActual() {
         Date fechaActual = new Date();
         DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -81,13 +81,13 @@ public class VendedorMenudeo {
         return fechaActual;
     }
 
-    private List<ProductosVendidos> registrarProdsVendidos(List<ProductosVendidos> productosVendidosInput){
+    private List<ProductosVendidos> registrarProdsVendidos(List<ProductosVendidos> gruposProdsInput){
         List<ProductosVendidos> prodsVendidosRegistrados;
         prodsVendidosRegistrados = new ArrayList<>();
         
-        for(ProductosVendidos inputProductosVendidos : productosVendidosInput){
-            adminProductosVendidos.AgregarProductosVendidos(inputProductosVendidos);
-            prodsVendidosRegistrados.add(inputProductosVendidos);
+        for(ProductosVendidos inputGrupoProd : gruposProdsInput){
+            adminProdVendidos.AgregarProductosVendidos(inputGrupoProd);
+            prodsVendidosRegistrados.add(inputGrupoProd);
         }
         return prodsVendidosRegistrados;
     }

@@ -23,14 +23,14 @@ import java.util.Date;
 public class RegistradorPedidos extends javax.swing.JFrame {
     VendedorMenudeo vendedorMenudeo = new VendedorMenudeo();
     AdminProductos adminProd = new AdminProductos();
-    List<String> nombresProdsDisp = adminProd.getNombresTodosProd();
-    List<ProductosVendidos> productosActuales = new ArrayList<>();
+    List<String> nombresProdsDisp = adminProd.getNombresProductosDisponibles();
+    List<ProductosVendidos> prodsVendidosActuales = new ArrayList<>();
     /**
      * Creates new form registradorPedidos
      */
     public RegistradorPedidos() {
         initComponents();
-        rellenarListaGrupoProd(productosActuales);
+        rellenarListaGrupoProd(prodsVendidosActuales);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -57,7 +57,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         CampoHora = new javax.swing.JTextField();
         PanelGruposProds = new javax.swing.JPanel();
         ScrollGruposProd = new javax.swing.JScrollPane();
-        TablaProductosVendidos = new javax.swing.JTable();
+        TablaGruposProd = new javax.swing.JTable();
         ComboProds = new javax.swing.JComboBox<String>();
         LabelProducto = new javax.swing.JLabel();
         LabelCantidad = new javax.swing.JLabel();
@@ -146,15 +146,10 @@ public class RegistradorPedidos extends javax.swing.JFrame {
 
         PanelGruposProds.setBorder(javax.swing.BorderFactory.createTitledBorder("Productos Seleccionados"));
 
-        TablaProductosVendidos.setModel(new Vista.Tablas.ModeloTablaProductosVendidos());
-        ScrollGruposProd.setViewportView(TablaProductosVendidos);
+        TablaGruposProd.setModel(new Vista.Tablas.ModeloTablaProductosVendidos());
+        ScrollGruposProd.setViewportView(TablaGruposProd);
 
         ComboProds.setModel(new DefaultComboBoxModel(nombresProdsDisp.toArray()));
-        ComboProds.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboProdsActionPerformed(evt);
-            }
-        });
 
         LabelProducto.setText("Producto:");
 
@@ -280,7 +275,6 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CampoCostoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoCostoTotalActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_CampoCostoTotalActionPerformed
 
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
@@ -295,7 +289,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonRegistrarActionPerformed
 
     private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
-        productosActuales.remove(getGrupoProdSeleccionado());
+        prodsVendidosActuales.remove(getGrupoProdSeleccionado());
         actualizarListaGrupoProd();
         actualizarCostoTotal();
     }//GEN-LAST:event_BotonEliminarActionPerformed
@@ -304,40 +298,40 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         FinalizarRegistroPedido();
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
-    private void ComboProdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboProdsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComboProdsActionPerformed
-
-    private void agregarNuevoGrupoProd(String NombreProd, String InputCantidad) {
-        productosActuales.add(crearNuevoGrupoProd(NombreProd, InputCantidad));
+    private void agregarNuevoGrupoProd(String nombreProd, String inputCantidad) {
+        prodsVendidosActuales.add(crearNuevoGrupoProd(nombreProd, inputCantidad));
     }
     
-    private ProductosVendidos crearNuevoGrupoProd(String NombreProd, String InputCantidad){
-        Producto prod = adminProd.getProdPorNombre(NombreProd);
-        int cantidad = Integer.parseInt(InputCantidad);
-        ProductosVendidos nuevoGrupoProd = new ProductosVendidos(prod, cantidad);
-        return nuevoGrupoProd;
+    private ProductosVendidos crearNuevoGrupoProd(
+            String NombreProd, String inputCantidad
+    ){
+        Producto productoSeleccionado = adminProd.getProductosPorNombre(NombreProd);
+                ProductosVendidos nuevoGrupoProductos = new ProductosVendidos(
+                productoSeleccionado, 
+                Integer.parseInt(inputCantidad)
+        );
+        return nuevoGrupoProductos;
     }
 
     private void actualizarListaGrupoProd() {
         vaciarListaGrupoProd();
-        rellenarListaGrupoProd(productosActuales);
+        rellenarListaGrupoProd(prodsVendidosActuales);
     }
 
     private void vaciarListaGrupoProd() {
-        ModeloTablaProductosVendidos mtgp = getModeloTablaProductosVendidos();
+        ModeloTablaProductosVendidos mtgp = getModeloTablaGrupoProd();
         int rowCount = mtgp.getRowCount();
         for (int i = rowCount - 1; 0 <= i; i--) {
             mtgp.removerFila(i);
         }    
     }
 
-    private void rellenarListaGrupoProd(List<ProductosVendidos> productosActuales) {
-        getModeloTablaProductosVendidos().agregarVariasFilas(productosActuales);
+    private void rellenarListaGrupoProd(List<ProductosVendidos> gruposProdActuales) {
+        getModeloTablaGrupoProd().agregarVariasFilas(gruposProdActuales);
     }
 
-    private ModeloTablaProductosVendidos getModeloTablaProductosVendidos() {
-        return (ModeloTablaProductosVendidos) TablaProductosVendidos.getModel();
+    private ModeloTablaProductosVendidos getModeloTablaGrupoProd() {
+        return (ModeloTablaProductosVendidos) TablaGruposProd.getModel();
     }
     
     private String getHora() {
@@ -367,18 +361,18 @@ public class RegistradorPedidos extends javax.swing.JFrame {
                 getDireccion(), 
                 getTelefono(), 
                 getFechaEntrega(), 
-                productosActuales, 
+                prodsVendidosActuales, 
                 getHora()
         );
         
     }
 
     public List<ProductosVendidos> getGruposProdActuales() {
-        return productosActuales;
+        return prodsVendidosActuales;
     }
 
     public void setGruposProdActuales(List<ProductosVendidos> prodsVendidosActuales) {
-        this.productosActuales = prodsVendidosActuales;
+        this.prodsVendidosActuales = prodsVendidosActuales;
     }
 
     private boolean seSeleccionoFilaVacia() {
@@ -387,12 +381,12 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         return (getFilaSeleccionada() == INDICE_NINGUNA_FILA);    }
 
     private int getFilaSeleccionada() {
-        return TablaProductosVendidos.getSelectedRow();
+        return TablaGruposProd.getSelectedRow();
     }
     
     private void actualizarCostoTotal(){
         double costoTotalActual 
-                = vendedorMenudeo.calcularCostoTotal(this.productosActuales); 
+                = vendedorMenudeo.calcularCostoTotal(this.prodsVendidosActuales); 
         CampoCostoTotal.setText(String.valueOf(costoTotalActual));
     }
 
@@ -401,7 +395,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private ProductosVendidos getGrupoProdSeleccionado() {
         if(!seSeleccionoFilaVacia()){
             int filaSeleccionada = getFilaSeleccionada();
-            ProductosVendidos grupoSeleccionado = getModeloTablaProductosVendidos().getFila(filaSeleccionada);
+            ProductosVendidos grupoSeleccionado = getModeloTablaGrupoProd().getFila(filaSeleccionada);
             return grupoSeleccionado;
         }else{
             System.err.println("No se selecciono una fila");
@@ -439,7 +433,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private javax.swing.JPanel PanelComprador;
     private javax.swing.JPanel PanelGruposProds;
     private javax.swing.JScrollPane ScrollGruposProd;
-    private javax.swing.JTable TablaProductosVendidos;
+    private javax.swing.JTable TablaGruposProd;
     private datechooser.beans.DateChooserCombo comboFecha;
     // End of variables declaration//GEN-END:variables
 

@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class vistaEliminarProducto extends javax.swing.JFrame {
         AdminProductos adminProductos = new AdminProductos();
-        List<String> nombresProdsDisp = adminProductos.getNombresTodosProd();
+        List<String> nombresProdsDisp = adminProductos.getNombresTodosProductos();
     
     
 
@@ -124,10 +124,10 @@ public class vistaEliminarProducto extends javax.swing.JFrame {
         
                         try {
         Producto producto = new Producto(nombreProducto, precioProducto);
-        adminProductos.BorrarProd(producto);
+        adminProductos.BorrarProductos(producto);
         JOptionPane.showMessageDialog(null, "Producto eliminado satisfactoriamente");
         //Actualiza de nuevo el combo
-        nombresProdsDisp = adminProductos.getNombresTodosProd();
+        nombresProdsDisp = adminProductos.getNombresTodosProductos();
         
                 } catch (Exception e) {
            
