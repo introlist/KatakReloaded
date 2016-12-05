@@ -3,16 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package Vista.Bases.Obsoleto;
 
-import Vista.vistaAgregarProducto;
-import Vista.vistaEliminarProducto;
+import Vista.Bases.Obsoleto.vistaAgregarProducto;
+import Vista.Bases.Obsoleto.vistaEliminarProducto;
+import Vista.MenuPrincipal;
 import java.awt.Color;
 
-/**
- *
- * @author Mario
- */
+/********************************************************************** 
+ 
+    CLASE: {@link vistaProductos}
+    
+    AUTOR: Mario Lopez Duran
+
+ **********************************************************************/
 public class vistaProductos extends javax.swing.JFrame {
 
     /**

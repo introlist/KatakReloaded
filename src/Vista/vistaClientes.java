@@ -30,41 +30,88 @@ public class vistaClientes extends javax.swing.JFrame {
      * Creates new form vistaCliente
      */
     public vistaClientes() {
-        //initComponents();
         administrador=new AdminClientes();
-        panelBase=new JPanel();  
-        cardLayout=new CardLayout();
-        panelBase.setLayout(cardLayout);
-                      
-        panelPrincipal=new PanelPrincipalCliente();
-        panelAgregarEditar=new PanelAgregarEditarCliente();
-        
-        panelBase.add(panelPrincipal,"1");
-        panelBase.add(panelAgregarEditar,"2");
-        
-        cardLayout.show(panelBase, "1");
-        
-        add(panelBase);
-        panelPrincipal.ActualizarTabla(administrador.getListaClientes());
+        inicializarPaneles();
         pack();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        añadirActionListeners();
+        InicializarEventos();
         modoEdicion=false;
     }
     
-    private void añadirActionListeners(){
-        panelPrincipal.agregarBotonAgregarListener(new ActionListener(){
+    private void InicializarEventos(){
+        InicializarEventoBotonAgregar();
+        
+        InicializarEventoBotonEditar();
+        
+        InicializarEventoBotonBorrar();
+        
+        InicializarEventoBotonRegresarMenu();
+        
+        InicializarEventoBotonGuardar();
+        
+        InicializarEventoBotonRegresar();
+    }
+
+    private void InicializarEventoBotonRegresar() {
+        panelAgregarEditar.agregarBotonRegresarListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelAgregarEditar.llenarCampoNombre("");
-                panelAgregarEditar.llenarCampoDireccion("");
-                panelAgregarEditar.llenarCampoTelefono("");
-                panelAgregarEditar.llenarCampoEMail("");
-                cardLayout.show(panelBase, "2");
+                cardLayout.show(panelBase,"1");
+                panelPrincipal.ActualizarTabla(administrador.getListaClientes());
+                modoEdicion=false;
             }
         });
-        
-        panelPrincipal.agregarBotonEditarListener(new ActionListener(){
+    }
+
+    private void InicializarEventoBotonGuardar() {
+        panelAgregarEditar.agregarBotonGuardarListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Cliente nuevoCliente=new Cliente(panelAgregarEditar.obtenerCampoNombre(),
+                        panelAgregarEditar.obtenerCampoDireccion(),
+                        panelAgregarEditar.obtenerCampoTelefono(),
+                        panelAgregarEditar.obtenerCampoEMail());
+                if(modoEdicion){
+                    administrador.editarCliente(nuevoCliente);
+                }else{
+                    administrador.agregarCliente(nuevoCliente);
+                }
+            }
+        });
+    }
+
+    private void InicializarEventoBotonRegresarMenu() {
+        panelPrincipal.agregarListenerBotonRegresarMenu(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                MenuPrincipal menuPrincipal=new MenuPrincipal();
+                menuPrincipal.setVisible(true);
+            }
+        });
+    }
+
+    private void InicializarEventoBotonBorrar() {
+        panelPrincipal.agregarListenerBotonBorrar(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(panelPrincipal.seSeleccionoFila()){
+                    Cliente nuevoCliente=new Cliente(panelPrincipal.obtenerValorEnFilaSeleccionada(0),
+                            panelPrincipal.obtenerValorEnFilaSeleccionada(1),
+                            panelPrincipal.obtenerValorEnFilaSeleccionada(2),
+                            panelPrincipal.obtenerValorEnFilaSeleccionada(3));
+                    
+                    administrador.eliminarCliente(nuevoCliente);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Selecciona un elemento");
+                }
+            }
+        });
+    }
+
+    private void InicializarEventoBotonEditar() {
+        panelPrincipal.agregarListenerBotonEditar(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(panelPrincipal.seSeleccionoFila()){
@@ -80,56 +127,36 @@ public class vistaClientes extends javax.swing.JFrame {
                 }
             }
         });
-        
-        panelPrincipal.agregatBotonBorrarListener(new ActionListener(){
+    }
+
+    private void InicializarEventoBotonAgregar() {
+        panelPrincipal.agregarListenerBotonAgregar(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(panelPrincipal.seSeleccionoFila()){
-                    Cliente nuevoCliente=new Cliente(panelPrincipal.obtenerValorEnFilaSeleccionada(0),
-                                                     panelPrincipal.obtenerValorEnFilaSeleccionada(1),
-                                                     panelPrincipal.obtenerValorEnFilaSeleccionada(2),
-                                                     panelPrincipal.obtenerValorEnFilaSeleccionada(3));
-                    
-                    administrador.eliminarCliente(nuevoCliente);
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Selecciona un elemento");
-                }
+                panelAgregarEditar.llenarCampoNombre("");
+                panelAgregarEditar.llenarCampoDireccion("");
+                panelAgregarEditar.llenarCampoTelefono("");
+                panelAgregarEditar.llenarCampoEMail("");
+                cardLayout.show(panelBase, "2");
             }
         });
+    }
+    
+    private void inicializarPaneles(){
+        panelBase=new JPanel();  
+        cardLayout=new CardLayout();
+        panelBase.setLayout(cardLayout);
+                      
+        panelPrincipal=new PanelPrincipalCliente();
+        panelAgregarEditar=new PanelAgregarEditarCliente();
         
-        panelPrincipal.agregarBotonRegresarMenuListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                MenuPrincipal menuPrincipal=new MenuPrincipal();
-                menuPrincipal.setVisible(true);
-            }
-        });
+        panelBase.add(panelPrincipal,"1");
+        panelBase.add(panelAgregarEditar,"2");
         
-        panelAgregarEditar.agregarBotonGuardarListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Cliente nuevoCliente=new Cliente(panelAgregarEditar.obtenerCampoNombre(),
-                                                 panelAgregarEditar.obtenerCampoDireccion(),
-                                                 panelAgregarEditar.obtenerCampoTelefono(),
-                                                 panelAgregarEditar.obtenerCampoEMail());
-                if(modoEdicion){
-                    administrador.editarCliente(nuevoCliente);
-                }else{
-                    administrador.agregarCliente(nuevoCliente);
-                }
-            }
-        });
+        cardLayout.show(panelBase, "1");
         
-        panelAgregarEditar.agregarBotonRegresarListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(panelBase,"1");
-                panelPrincipal.ActualizarTabla(administrador.getListaClientes());
-                modoEdicion=false;
-            }
-        });
+        add(panelBase);
+        panelPrincipal.ActualizarTabla(administrador.getListaClientes());
     }
  
 

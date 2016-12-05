@@ -8,16 +8,20 @@ package Negocio.Operaciones;
 import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Venta;
 import Negocio.Entidades.Cliente;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author Mario
- */
+/********************************************************************** 
+ 
+    CLASE: {@link VendedorMayoreo}
+    
+    AUTOR: Mario Lopez Duran
+     
+    Encargada de registrar las {@link Venta} de los {@link Cliente}
+    que compran con regularidad.
+
+ **********************************************************************/
 public class VendedorMayoreo {
     private final AdminVentas adminVentas;
     private final AdminProductosVendidos adminProductosVendidos;
@@ -67,13 +71,6 @@ public class VendedorMayoreo {
         adminVentas.agregarVentaRegistro(nuevaVenta);
     }
         
-    private Date getFechaActual() {
-        Date fechaActual = new Date();
-        DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        formatoFecha.format(fechaActual);
-        return fechaActual;
-    }
-
     public double calcularCostoTotal(List<ProductosVendidos> prodsSeleccionados) {
         double costoTotal = 0;
         for(ProductosVendidos actual : prodsSeleccionados){

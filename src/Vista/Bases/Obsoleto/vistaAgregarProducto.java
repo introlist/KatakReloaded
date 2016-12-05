@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package Vista.Bases.Obsoleto;
 
 
 import Negocio.Entidades.ProductosVendidos;
@@ -141,6 +141,7 @@ public class vistaAgregarProducto extends javax.swing.JFrame {
         como el nombre del producto
         */
         nombreProducto = txtNombre.getText();
+        nombreProducto= nombreProducto.trim();
         
         
         /*
@@ -148,7 +149,7 @@ public class vistaAgregarProducto extends javax.swing.JFrame {
         en un numero que puede aceptar decimales y este se asigna al precio del producto
         */
         precioProducto = Double.parseDouble(txtPrecio.getText());
-        
+      
                 try {
         Producto nuevoProducto = new Producto(nombreProducto, precioProducto);
         AdminProductos adminProd = new AdminProductos();

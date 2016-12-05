@@ -26,143 +26,146 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btMenuSalir" min="-2" pref="87" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btMenuClientes" max="32767" attributes="0"/>
-                          <Component id="btMenuVentas" max="32767" attributes="0"/>
-                          <Component id="btMenuProductos" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btMenuPedidos" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btMenuInventario" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace pref="285" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btMenuVentas" min="-2" pref="78" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btMenuProductos" min="-2" pref="80" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btMenuClientes" min="-2" pref="80" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btMenuPedidos" min="-2" pref="80" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btMenuInventario" min="-2" pref="80" max="-2" attributes="0"/>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
-              <Component id="btMenuSalir" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btMenuVentas">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="cc" red="0" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="1"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/imagenes/Ventas.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Ventas"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenuVentasActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btMenuClientes">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="33" red="33" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="1"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/imagenes/cliente.jpg"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Clientes"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenuClientesActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btMenuSalir">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Salir"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenuSalirActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btMenuProductos">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="1"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/imagenes/producto.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Productos"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenuProductosActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btMenuPedidos">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="33" red="ff" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="1"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/imagenes/pedidos.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Pedidos"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenuPedidosActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btMenuInventario">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="0" red="cc" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="1"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/imagenes/icon_inventario.gif"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Inventario"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenuInventarioActionPerformed"/>
-      </Events>
-    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btMenuSalir" min="-2" pref="87" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btMenuClientes" max="32767" attributes="0"/>
+                              <Component id="btMenuVentas" max="32767" attributes="0"/>
+                              <Component id="btMenuPedidos" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btMenuInventario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="236" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="btMenuVentas" min="-2" pref="78" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btMenuClientes" min="-2" pref="80" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btMenuPedidos" min="-2" pref="80" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btMenuInventario" min="-2" pref="80" max="-2" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
+                  <Component id="btMenuSalir" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="btMenuVentas">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="0" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Vista/imagenes/Ventas.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ventas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenuVentasActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btMenuClientes">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Vista/imagenes/cliente.jpg"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Clientes"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenuClientesActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btMenuPedidos">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Vista/imagenes/pedidos.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Pedidos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenuPedidosActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btMenuInventario">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="0" red="cc" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Vista/imagenes/icon_inventario.gif"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Inventario"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenuInventarioActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btMenuSalir">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Salir"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenuSalirActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

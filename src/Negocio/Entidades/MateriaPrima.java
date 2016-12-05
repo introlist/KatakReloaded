@@ -36,16 +36,29 @@ public class MateriaPrima implements Serializable {
     @Column(name="medida", nullable=false)
     private UnidadMedida unidadMedida;
     
-    public MateriaPrima(){
-        
-    }
+    @Column(name="cantidad",nullable=false)
+    private int cantidad;
     
-    public MateriaPrima(
-            String nombre, 
-            UnidadMedida unidMed
-    )  {
+    public MateriaPrima(){
+    }
+
+    public MateriaPrima(String nombre, UnidadMedida unidadMedida, int cantidad) {
         this.nombre = nombre;
-        this.unidadMedida = unidMed;
+        this.unidadMedida = unidadMedida;
+        this.cantidad = cantidad;
+    }
+
+    public MateriaPrima(String nombre, UnidadMedida unidadMedida) {
+        this.nombre = nombre;
+        this.unidadMedida = unidadMedida;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
     
     public long getId() {
