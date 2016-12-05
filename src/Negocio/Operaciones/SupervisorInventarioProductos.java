@@ -24,23 +24,23 @@ public class SupervisorInventarioProductos {
         adminProd = new AdminProductos();
     }
     
-    public void AgregarProductosExistentes(ProductosExistentes productosExistentes){
+    private void AgregarProductosExistentes(ProductosExistentes productosExistentes){
         datosProductosExistentes.insertar(productosExistentes);
     }
     
-    public void EditarProductosExistentes(ProductosExistentes productosExistentes){
+    private void EditarProductosExistentes(ProductosExistentes productosExistentes){
         datosProductosExistentes.sobrescribir(productosExistentes);
     }
     
-    public void BorrarProductosExistentes(ProductosExistentes productosExistentes){
+    private void BorrarProductosExistentes(ProductosExistentes productosExistentes){
         datosProductosExistentes.borrar(productosExistentes);
     }
     
-    public ProductosExistentes getProductosExistentesPorID(int id) {
+    private ProductosExistentes getProductosExistentesPorID(int id) {
         return datosProductosExistentes.getPorID(id);
     }
     
-    public List<ProductosExistentes> getListaProductosExistentes() {
+    private List<ProductosExistentes> getListaProductosExistentes() {
         return datosProductosExistentes.getListaTodos();
     }
     
