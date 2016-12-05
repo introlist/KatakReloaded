@@ -40,16 +40,6 @@ public class Cliente implements Serializable{
     public Cliente(){
         
     }
-    
-    public Cliente(
-             String nombre,
-             String telefono,
-             String direccion
-    )  {
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.direccion = direccion;
-    }
 
     public Cliente(
             String nombre, 

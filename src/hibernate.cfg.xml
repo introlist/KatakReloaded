@@ -5,8 +5,8 @@
     <!-- Database connection settings -->
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost/katakdb</property>
-    <property name="hibernate.connection.username">adminkatak</property>
-    <property name="hibernate.connection.password">password</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
    
     <!-- Internal pool configuration -->
     <property name="hibernate.connection.pool_size">1</property>
@@ -19,9 +19,11 @@
     <property name="hibernate.hbm2ddl.auto">update</property>   
     <!-- Mapping -->
     <mapping class="Negocio.Entidades.Cliente"/>
+    <mapping class="Negocio.Entidades.MateriaPrima"/>
     <mapping class="Negocio.Entidades.Venta"/>
     <mapping class="Negocio.Entidades.Producto"/>
-    <mapping class="Negocio.Entidades.ProdsVendidos"/>
+    <mapping class="Negocio.Entidades.ProductosVendidos"/>
     <mapping class="Negocio.Entidades.Pedido"/>
+    <mapping class="Negocio.Entidades.ProductosExistentes"/>
   </session-factory>
 </hibernate-configuration>

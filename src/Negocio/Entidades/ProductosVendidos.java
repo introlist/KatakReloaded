@@ -12,8 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /********************************************************************** 
  
@@ -22,30 +21,31 @@ import javax.persistence.SequenceGenerator;
     AUTOR: Roberto Gil Flores
 
  **********************************************************************/
-@Entity 
+@Entity
+@Table(name = "productos_vendidos")
 public class ProductosVendidos implements Serializable{
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     @ManyToOne(optional = false)
-    private Producto prod;
+    private Producto producto;
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
     @Column(name = "costo", nullable = false)
-    private double costoGrupo;
+    private double costoTotal;
     
     public ProductosVendidos(){
         
     }
     
     public ProductosVendidos(
-            Producto prod,
+            Producto producto,
             int cantidad
     )  {
-        this.prod = prod;
+        this.producto = producto;
         this.cantidad = cantidad;
-        this.costoGrupo = getCalculoCostoGrupo();
+        this.costoTotal = getCostoTotal();
     }
 
     public int getId() {
@@ -56,12 +56,12 @@ public class ProductosVendidos implements Serializable{
         this.id = id;
     }
 
-    public Producto getProd() {
-        return prod;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setProd(Producto prod) {
-        this.prod = prod;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public int getCantidad() {
@@ -72,24 +72,18 @@ public class ProductosVendidos implements Serializable{
         this.cantidad = cantidad;
     }
     
-    public String getNombreProd(){
-        return prod.getNombre();
+    public String getNombreProducto(){
+        return producto.getNombre();
     }
 
-    public double getCostoGrupoProd() {
-        return costoGrupo;
+    public double getCostoTotal() {
+        calcularCostoTotal();
+        return costoTotal;
     }
+    
+    public void calcularCostoTotal(){
+        this.costoTotal = cantidad * producto.getPrecio();
+    }
+    
 
-    public void setCostoGrupoProd(double costoGrupoProd) {
-        this.costoGrupo = costoGrupoProd;
-    }
-    
-    public void calcularCostoGrupo(){
-        this.costoGrupo = getCalculoCostoGrupo();
-    }
-    
-    public double getCalculoCostoGrupo(){
-        return (cantidad * prod.getPrecio());
-    }
-    
 }

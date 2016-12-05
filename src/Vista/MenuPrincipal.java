@@ -5,11 +5,16 @@
  */
 package Vista;
 
+import Vista.Bases.Obsoleto.vistaProductos;
 
-/**
- *
- * @author Mario
- */
+
+/********************************************************************** 
+ 
+    CLASE: {@link MenuPrincipal}
+    
+    AUTOR: Mario Lopez Duran
+
+ **********************************************************************/
 public class MenuPrincipal extends javax.swing.JFrame {
 
     /**
@@ -17,7 +22,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     }
 
     /**
@@ -29,12 +34,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         btMenuVentas = new javax.swing.JButton();
         btMenuClientes = new javax.swing.JButton();
-        btMenuSalir = new javax.swing.JButton();
-        btMenuProductos = new javax.swing.JButton();
         btMenuPedidos = new javax.swing.JButton();
         btMenuInventario = new javax.swing.JButton();
+        btMenuSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 255));
@@ -59,24 +64,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btMenuSalir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btMenuSalir.setText("Salir");
-        btMenuSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btMenuSalirActionPerformed(evt);
-            }
-        });
-
-        btMenuProductos.setBackground(new java.awt.Color(255, 255, 0));
-        btMenuProductos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btMenuProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/imagenes/producto.png"))); // NOI18N
-        btMenuProductos.setText("Productos");
-        btMenuProductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btMenuProductosActionPerformed(evt);
-            }
-        });
-
         btMenuPedidos.setBackground(new java.awt.Color(255, 51, 51));
         btMenuPedidos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btMenuPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/imagenes/pedidos.png"))); // NOI18N
@@ -97,41 +84,61 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+        btMenuSalir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btMenuSalir.setText("Salir");
+        btMenuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMenuSalirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btMenuSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btMenuClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btMenuVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btMenuProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btMenuPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btMenuInventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(285, Short.MAX_VALUE))
+                            .addComponent(btMenuInventario))))
+                .addContainerGap(236, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addComponent(btMenuVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btMenuProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btMenuClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btMenuPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btMenuInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btMenuSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -143,11 +150,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         registradorVentas.setVisible(true);
     }//GEN-LAST:event_btMenuVentasActionPerformed
 
-    private void btMenuProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuProductosActionPerformed
-        this.dispose();
-        new vistaProductos().setVisible(true);
-    }//GEN-LAST:event_btMenuProductosActionPerformed
-
     private void btMenuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuClientesActionPerformed
         this.dispose();
         new vistaClientes().setVisible(true);
@@ -157,6 +159,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         this.dispose();
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        System.exit(0);
     }//GEN-LAST:event_btMenuSalirActionPerformed
 
     private void btMenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuPedidosActionPerformed
@@ -227,8 +231,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btMenuClientes;
     private javax.swing.JButton btMenuInventario;
     private javax.swing.JButton btMenuPedidos;
-    private javax.swing.JButton btMenuProductos;
     private javax.swing.JButton btMenuSalir;
     private javax.swing.JButton btMenuVentas;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

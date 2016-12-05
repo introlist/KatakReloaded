@@ -10,10 +10,13 @@ import Negocio.Entidades.Pedido;
 import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author DEMON
- */
+/********************************************************************** 
+ 
+    CLASE: {@link AdminPedidos}
+    
+    AUTOR: Roberto Gil Flores
+
+ **********************************************************************/
 public class AdminPedidos {
     public final AccesoDatosPedido datosPedido ;
 
@@ -43,5 +46,13 @@ public class AdminPedidos {
     
     public List<Pedido> getPedidosFechaEntrega(Date fechaEntrega){
         return datosPedido.getPorFechaCreacion(fechaEntrega);
+    }
+    
+    public List<Pedido> getPedidosPendientes(){
+        return datosPedido.getPorPendiente(true);
+    }
+    
+    public List<Pedido> getPedidosCompletados(){
+        return datosPedido.getPorPendiente(false);
     }
 }

@@ -1,8 +1,8 @@
 
 import DatosPersistentes.AccesoDatosClientes;
-import DatosPersistentes.AccesoDatosGrupoProds;
-import DatosPersistentes.AccesoDatosProd;
-import DatosPersistentes.AccesoDatosVenta;
+import DatosPersistentes.AccesoDatosProductosVendidos;
+import DatosPersistentes.AccesoDatosProductos;
+import DatosPersistentes.AccesoDatosVentas;
 import Negocio.Entidades.Cliente;
 import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Pedido;
@@ -39,8 +39,8 @@ public class ClasePruebas {
         Date fechaActual = new Date();
         DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         formatoFecha.format(fechaActual);
-        Cliente hGil = new Cliente("Hector Gil", "9999273285", "Calle 76 Las Americas");
-        Cliente dGil = new Cliente("Daniel Gil", "test", "Test2");
+        //Cliente hGil = new Cliente("Hector Gil", "9999273285", "Calle 76 Las Americas");
+        //Cliente dGil = new Cliente("Daniel Gil", "test", "Test2");
        
         Producto Ej1 = new Producto("Ej 1",11);
         Producto Ej2 = new Producto("Ej2", 6);
@@ -53,8 +53,8 @@ public class ClasePruebas {
 
         
         AdminProductos ap = new AdminProductos();
-        ap.AgregarProd(Ej1);
-        ap.AgregarProd(Ej2);
+        ap.AgregarProductos(Ej1);
+        ap.AgregarProductos(Ej2);
         
 
 
@@ -77,7 +77,7 @@ public class ClasePruebas {
 //        }
 //        
         
-//        List<Producto> test = ap.getListaProd();
+//        List<Producto> test = ap.getListaProductos();
 
     System.exit(0);
     }

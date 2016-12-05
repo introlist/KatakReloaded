@@ -5,38 +5,39 @@
  */
 package Negocio.Operaciones;
 
-import DatosPersistentes.AccesoDatosClientes;
-import DatosPersistentes.AccesoDatosVenta;
-import Negocio.Entidades.Cliente;
-import Negocio.Entidades.ProductosVendidos;
-import Negocio.Entidades.Producto;
+import DatosPersistentes.AccesoDatosVentas;
 import Negocio.Entidades.Venta;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /********************************************************************** 
  
     CLASE: {@link AdminVentas}
     
-    AUTOR: Roberto Gil Flores
+    AUTOR: Mario Lopez Duran
 
  **********************************************************************/
 public class AdminVentas {
-    private AccesoDatosVenta datosVenta;
     
+    public final AccesoDatosVentas datosVenta;
 
     public AdminVentas() {
-        datosVenta = new AccesoDatosVenta();
+        this.datosVenta = new AccesoDatosVentas();
     }
     
-   /*La siguiente rutina (getListaProd()) utiliza para actualizar la 
-    lista de productos en caso de que haya ocurrido un cambio en la 
-    cantidad de productos mientras se realiza este registro.
-    */
-    public void AgregarVenta(Venta venta){
+    public void agregarVentaRegistro(Venta venta){
         datosVenta.insertar(venta);
     }
-   
+    
+    public void modificarVentaRegistro(Venta venta){
+        datosVenta.sobrescribir(venta);
+    }
+    
+    public void eliminarVentaRegistro(Venta venta){
+        datosVenta.borrar(venta);
+    }
+    
+    public List<Venta> getTodasVentas(){
+        return datosVenta.getListaTodos();
+    }
+    
 }

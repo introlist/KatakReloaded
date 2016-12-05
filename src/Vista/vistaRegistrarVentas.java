@@ -5,41 +5,52 @@
  */
 package Vista;
 
-import DatosPersistentes.ConectaBD;
+import Negocio.Entidades.Cliente;
 import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Producto;
+import Negocio.Operaciones.AdminClientes;
+import Negocio.Operaciones.AdminProductos;
 
 import Negocio.Operaciones.VendedorMayoreo;
+import Vista.Tablas.ModeloTablaClientes;
 import Vista.Tablas.ModeloTablaProductosVendidos;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Mario Lopez
- * @author Vista: Bernardo Espinoza
- */
+/********************************************************************** 
+ 
+    CLASE: {@link vistaRegistrarVentas}
+    
+    AUTOR: Mario Lopez Duran
+    COLABORO: Bernardo Espinoza
+
+ **********************************************************************/
 public class vistaRegistrarVentas extends javax.swing.JFrame {
     
+    AdminProductos adminProductos = new AdminProductos();
+    List<String> nombresProductosDisponibles = adminProductos.getNombresProductosDisponibles();
+    List<ProductosVendidos> productosActuales = new ArrayList<>();
+    AdminClientes adminClientes = new AdminClientes();
+    List<Cliente> clientesActuales  = adminClientes.getListaClientes();;
     VendedorMayoreo vendedorMayoreo = new VendedorMayoreo();
-    List<String> nombresProdsDisp = vendedorMayoreo.getNombresTodosProd();
-    List<ProductosVendidos> gruposProdActuales = new ArrayList<>();
+    Cliente clienteComprador = new Cliente();
     double costoTotal;
+    
+    
 
     /**
      * Creates new form vistaVentas
      */
     public vistaRegistrarVentas() {
         initComponents(); 
-        rellenarListaGrupoProd(gruposProdActuales);
+        rellenarListaProductosVendidos(productosActuales);
+        rellenarListaClientes(clientesActuales);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        desplegarNombresClientes();
+       // desplegarNombresClientes();
     }
 
     /**
@@ -63,10 +74,13 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         LabelFecha = new javax.swing.JLabel();
         comboFecha = new datechooser.beans.DateChooserCombo();
         lbTituloVentas = new javax.swing.JLabel();
-        ScrollGruposProd = new javax.swing.JScrollPane();
+        ScrollProductosVendidos = new javax.swing.JScrollPane();
         TablaProductosVendidos = new javax.swing.JTable();
         comboProductos = new javax.swing.JComboBox<String>();
-        comboClientes = new javax.swing.JComboBox();
+        ScrollClientes = new javax.swing.JScrollPane();
+        TablaClientes = new javax.swing.JTable();
+        lbTituloProductos = new javax.swing.JLabel();
+        lbTituloClientes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,16 +127,21 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         lbTituloVentas.setText("Ventas");
 
         TablaProductosVendidos.setModel(new ModeloTablaProductosVendidos());
-        ScrollGruposProd.setViewportView(TablaProductosVendidos);
+        ScrollProductosVendidos.setViewportView(TablaProductosVendidos);
 
-        comboProductos.setModel(new DefaultComboBoxModel(nombresProdsDisp.toArray()));
+        comboProductos.setModel(new DefaultComboBoxModel(nombresProductosDisponibles.toArray()));
         comboProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboProductosActionPerformed(evt);
             }
         });
 
-        comboClientes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        TablaClientes.setModel(new ModeloTablaClientes());
+        ScrollClientes.setViewportView(TablaClientes);
+
+        lbTituloProductos.setText("Productos");
+
+        lbTituloClientes.setText("Clientes");
 
         javax.swing.GroupLayout PanelRegistrarVentasLayout = new javax.swing.GroupLayout(PanelRegistrarVentas);
         PanelRegistrarVentas.setLayout(PanelRegistrarVentasLayout);
@@ -144,7 +163,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(TextoTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+                                .addComponent(TextoTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelRegistrarVentasLayout.createSequentialGroup()
                                 .addComponent(btCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -153,10 +172,10 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
                                 .addComponent(btQuitar)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
-                                .addComponent(comboClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbTituloProductos)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(LabelFecha)
-                                .addGap(24, 24, 24)
+                                .addGap(18, 18, 18)
                                 .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
                         .addGap(210, 210, 210)
@@ -164,22 +183,33 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(ScrollGruposProd)))
+                        .addComponent(ScrollProductosVendidos))
+                    .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ScrollClientes)))
                 .addContainerGap())
+            .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbTituloClientes)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelRegistrarVentasLayout.setVerticalGroup(
             PanelRegistrarVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelRegistrarVentasLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addComponent(lbTituloVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(PanelRegistrarVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(lbTituloClientes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ScrollClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelRegistrarVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelRegistrarVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(LabelFecha)
-                        .addComponent(comboClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ScrollGruposProd, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                        .addComponent(lbTituloProductos)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ScrollProductosVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelRegistrarVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAgregar)
@@ -228,21 +258,23 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
         // TODO add your handling code here:
-        EnviarInputs();
-        FinalizarRegistroPedido();
+        registrarVenta();
+        this.setVisible(false);
+        this.dispose();
+        new MenuPrincipal().setVisible(true);
     }//GEN-LAST:event_btRegistrarActionPerformed
 
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
         // TODO add your handling code here:
-        agregarNuevoGrupoProd(comboProductos.getSelectedItem().toString(),TextoCantidad.getText());
-        actualizarListaGrupoProd();
+        agregarNuevosProductosVendidos(comboProductos.getSelectedItem().toString(),TextoCantidad.getText());
+        actualizarListaProductosVendidos();
         actualizarCostoTotal();
     }//GEN-LAST:event_btAgregarActionPerformed
 
     private void btQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btQuitarActionPerformed
         // TODO add your handling code here:
-        gruposProdActuales.remove(getGrupoProdSeleccionado());
-        actualizarListaGrupoProd();
+        productosActuales.remove(getProductosVendidosSeleccionados());
+        actualizarListaProductosVendidos();
         actualizarCostoTotal();
     }//GEN-LAST:event_btQuitarActionPerformed
 
@@ -250,122 +282,134 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboProductosActionPerformed
 
-    private void agregarNuevoGrupoProd(String NombreProd, String InputCantidad) {
-        gruposProdActuales.add(crearNuevoGrupoProd(NombreProd, InputCantidad));
+    //Metodos para Productos
+    
+    private void agregarNuevosProductosVendidos(String NombreProd, String InputCantidad) {
+        productosActuales.add(crearNuevosProductosVendidos(NombreProd, InputCantidad));
     }
     
-    private ProductosVendidos crearNuevoGrupoProd(String NombreProd, String InputCantidad){
-        Producto prod = vendedorMayoreo.getProdPorNombre(NombreProd);
+    private ProductosVendidos crearNuevosProductosVendidos(String NombreProductos, String InputCantidad){
+        Producto productos = adminProductos.getProductosPorNombre(NombreProductos);
         int cantidad = Integer.parseInt(InputCantidad);
-        ProductosVendidos nuevoGrupoProd = new ProductosVendidos(prod, cantidad);
-        return nuevoGrupoProd;
+        ProductosVendidos nuevosProductosVendidos = new ProductosVendidos(productos, cantidad);
+        return nuevosProductosVendidos;
+    }
+    
+
+    private void actualizarListaProductosVendidos() {
+        vaciarListaProductosVendidos();
+        rellenarListaProductosVendidos(productosActuales);
     }
 
-    private void actualizarListaGrupoProd() {
-        vaciarListaGrupoProd();
-        rellenarListaGrupoProd(gruposProdActuales);
-    }
-
-    private void vaciarListaGrupoProd() {
-        ModeloTablaProductosVendidos mtgp = getModeloTablaProductosVendidos();
-        int rowCount = mtgp.getRowCount();
+    private void vaciarListaProductosVendidos() {
+        ModeloTablaProductosVendidos modeloTablaProducosVendidos = getModeloTablaProductosVendidos();
+        int rowCount = modeloTablaProducosVendidos.getRowCount();
         for (int i = rowCount - 1; 0 <= i; i--) {
-            mtgp.removerFila(i);
+            modeloTablaProducosVendidos.removerFila(i);
         }    
     }
 
-    private void rellenarListaGrupoProd(List<ProductosVendidos> gruposProdActuales) {
-        getModeloTablaProductosVendidos().agregarVariasFilas(gruposProdActuales);
-    }
-
-    private ModeloTablaProductosVendidos getModeloTablaProductosVendidos() {
-        return (ModeloTablaProductosVendidos) TablaProductosVendidos.getModel();
+    private void rellenarListaProductosVendidos(List<ProductosVendidos> productosActuales) {
+        getModeloTablaProductosVendidos().agregarVariasFilas(productosActuales);
     }
     
-    private void EnviarInputs() {
-        vendedorMayoreo.setGruposProdsSeleccionados(getGruposProdActuales());
-        
-        vendedorMayoreo.setCosto(getCostoTotal());
-        
-        vendedorMayoreo.guardarVenta();
-        
-    }
-
-    public List<ProductosVendidos> getGruposProdActuales() {
-        return gruposProdActuales;
-    }
-
-    public void setGruposProdActuales(List<ProductosVendidos> gruposProdActuales) {
-        this.gruposProdActuales = gruposProdActuales;
+    private ModeloTablaProductosVendidos getModeloTablaProductosVendidos() {
+        return (ModeloTablaProductosVendidos) TablaProductosVendidos.getModel();
     }
 
     private boolean seSeleccionoFilaVacia() {
         int INDICE_NINGUNA_FILA = -1;
         
-        return (getFilaSeleccionada() == INDICE_NINGUNA_FILA);    }
+        return (getFilaSeleccionada() == INDICE_NINGUNA_FILA);    
+    }
 
     private int getFilaSeleccionada() {
         return TablaProductosVendidos.getSelectedRow();
     }
 
-    private void actualizarCostoTotal() {
-        costoTotal = 0;
-        for(ProductosVendidos actual : gruposProdActuales){
-            costoTotal += actual.getCostoGrupoProd();
-        }
-        TextoTotal.setText(String.valueOf(costoTotal));
-    }
-
-    public double getCostoTotal() {
-        return costoTotal;
-    }
-
-    private ProductosVendidos getGrupoProdSeleccionado() {
+    private ProductosVendidos getProductosVendidosSeleccionados() {
         if(!seSeleccionoFilaVacia()){
             int filaSeleccionada = getFilaSeleccionada();
-            ProductosVendidos grupoSeleccionado = getModeloTablaProductosVendidos().getFila(filaSeleccionada);
-            return grupoSeleccionado;
+            ProductosVendidos productoSeleccionado = 
+                    getModeloTablaProductosVendidos().getFila(filaSeleccionada);
+            return productoSeleccionado;
         }else{
-            System.err.println("No se selecciono una fila");
+            System.err.println("No se selecciono un Producto");
             return null;
         }    
     }
     
-        public void desplegarNombresClientes(){
-        ConectaBD cnc = new ConectaBD();
-        Connection cnx = cnc.conectar();
-        
-        String capturaClientes = "";
-        String sql = "select * from clientes";
-        this.comboClientes.removeAllItems();
-        
-        
-        //Agrega los nombres de los productos al ComboBox        
-        try {
-            Statement instruccion = cnx.createStatement();
-            ResultSet conjuntoResultados = instruccion.executeQuery(sql);
-            
-            while(conjuntoResultados.next()){
-                capturaClientes = conjuntoResultados.getString("nombreCliente");
-                this.comboClientes.addItem(capturaClientes);
-            }
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+    private void actualizarCostoTotal() {
+        costoTotal = 0;
+        for(ProductosVendidos actual : productosActuales){
+            costoTotal += actual.getCostoTotal();
         }
+        TextoTotal.setText(String.valueOf(costoTotal));
+    }
+    
+    public double getCostoTotal() {
+        return costoTotal;
+    } 
+    
+    private Date getFechaActual() {
+        Calendar selectedDateChooserCalendar = comboFecha.getSelectedDate();
+        
+        return selectedDateChooserCalendar.getTime();
+    }
+    
+    //Metodos Cliente
+    
+    private void rellenarListaClientes(List<Cliente> ClientesActuales) {
+        getModeloTablaClientes().agregarVariasFilas(ClientesActuales);
+    }
+    
+   
+    private ModeloTablaClientes getModeloTablaClientes() {
+        return (ModeloTablaClientes) TablaClientes.getModel();
+    }
+    
+    private int getFilaSeleccionadaCliente() {
+        return TablaClientes.getSelectedRow();
+    }
+    
+    private boolean seSeleccionoFilaVaciaCliente() {
+        int INDICE_NINGUNA_FILA = -1;
+        
+        return (getFilaSeleccionadaCliente() == INDICE_NINGUNA_FILA);    
+    }
+    
+    private Cliente getClienteSeleccionado() {
+        if(!seSeleccionoFilaVaciaCliente()){
+            int filaClienteSeleccionada = getFilaSeleccionadaCliente();
+            Cliente clienteSeleccionado = 
+                    getModeloTablaClientes().getFila(filaClienteSeleccionada);
+            return clienteSeleccionado;
+        }else{
+            System.err.println("No se selecciono un Cliente");
+            JOptionPane.showMessageDialog(null, "No se selecciono un Cliente");
+            return null;
+        }    
+    }
+    
+      
+    //Metodo para terminar el registro de la venta
+    private void registrarVenta() {
+        vendedorMayoreo.registrarVenta(getClienteSeleccionado(),
+                                       getFechaActual(),
+                                       productosActuales
+        );
+        JOptionPane.showMessageDialog(null, "Venta Registrada");
         
     }
 
-    private void FinalizarRegistroPedido() {
-        this.setVisible(false);
-        this.dispose();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelFecha;
     private javax.swing.JLabel LabelUnidades;
     private javax.swing.JPanel PanelRegistrarVentas;
-    private javax.swing.JScrollPane ScrollGruposProd;
+    private javax.swing.JScrollPane ScrollClientes;
+    private javax.swing.JScrollPane ScrollProductosVendidos;
+    private javax.swing.JTable TablaClientes;
     private javax.swing.JTable TablaProductosVendidos;
     private javax.swing.JTextField TextoCantidad;
     private javax.swing.JTextField TextoTotal;
@@ -373,10 +417,11 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btQuitar;
     private javax.swing.JButton btRegistrar;
-    private javax.swing.JComboBox comboClientes;
     private datechooser.beans.DateChooserCombo comboFecha;
     private javax.swing.JComboBox<String> comboProductos;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lbTituloClientes;
+    private javax.swing.JLabel lbTituloProductos;
     private javax.swing.JLabel lbTituloVentas;
     // End of variables declaration//GEN-END:variables
 }

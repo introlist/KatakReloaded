@@ -6,6 +6,8 @@
 package Negocio.Entidades;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -18,6 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Type;
 /********************************************************************** 
  
     CLASE: {@link Pedido}
@@ -44,53 +47,39 @@ public class Pedido implements Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(name = "fecha_entrega", nullable = false)
     private Date fechaEntrega;
-    @Column(name = "hora", nullable = false)
-    private String hora;
+    @Column(name = "tiempo_entrega", nullable = false)
+    private String tiempoEntrega;
     @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ProductosVendidos> productosVendidos;
     @Column (name = "costo", nullable = false)
     private double costoTotal;
+    @Column (name = "pedido_pendiente", nullable = false)
+    @Type(type = "true_false")
+    private boolean esPendiente;
     
     public Pedido(){
         
     }
 
-    public Pedido(
-            Date fechaCreacion, 
-            String nombreComprador, 
-            String direccion, 
-            Date fechaEntrega, 
-            List<ProductosVendidos> productosVendidos,
-            String hora,
-            double costoTotal
-    ) {
-        this.fechaCreacion = fechaCreacion;
-        this.nombreComprador = nombreComprador;
-        this.direccion = direccion;
-        this.fechaEntrega = fechaEntrega;
-        this.productosVendidos = productosVendidos;
-        this.hora = hora;
-        this.costoTotal = costoTotal;
-    }
 
     public Pedido(
-            Date fechaCreacion, 
             String nombreComprador, 
             String direccion, 
             String telefono, 
             Date fechaEntrega, 
             List<ProductosVendidos> productosVendidos,
-            String hora,
+            String tiempoEntrega,
             double costoTotal
     ) {
-        this.fechaCreacion = fechaCreacion;
+        this.fechaCreacion = getFechaActual();
         this.nombreComprador = nombreComprador;
         this.direccion = direccion;
         this.telefono = telefono;
         this.fechaEntrega = fechaEntrega;
         this.productosVendidos = productosVendidos;
-        this.hora = hora;
+        this.tiempoEntrega = tiempoEntrega;
         this.costoTotal = costoTotal;
+        this.esPendiente = true;
     }
 
     public long getId() {
@@ -149,12 +138,12 @@ public class Pedido implements Serializable{
         this.fechaEntrega = fechaEntrega;
     }
 
-    public String getHora() {
-        return hora;
+    public String getTiempoEntrega() {
+        return tiempoEntrega;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setTiempoEntrega(String tiempoEntrega) {
+        this.tiempoEntrega = tiempoEntrega;
     }
 
     public double getCostoTotal() {
@@ -164,5 +153,20 @@ public class Pedido implements Serializable{
     public void setCostoTotal(double costoTotal) {
         this.costoTotal = costoTotal;
     }
-   
+
+    public boolean esPendiente() {
+        return esPendiente;
+    }
+
+    public void setEsPendiente(boolean esPendiente) {
+        this.esPendiente = esPendiente;
+    }
+    
+    private Date getFechaActual() {
+        Date fechaActual = new Date();
+        DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        formatoFecha.format(fechaActual);
+        return fechaActual;
+    }
+    
 }
