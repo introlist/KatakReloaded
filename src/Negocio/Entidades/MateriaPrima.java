@@ -18,7 +18,8 @@ import javax.persistence.Table;
  
     CLASE: {@link Producto}
     
-    AUTOR: Roberto Gil Flores
+    AUTOR: Bernardo Espinoza
+    Colaboro: Roberto Gil
 
  **********************************************************************/
 @Entity

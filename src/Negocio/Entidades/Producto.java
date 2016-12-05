@@ -31,7 +31,7 @@ public class Producto implements Serializable {
     private String nombre;
     @Column(name = "precio", nullable = false)
     private double precio;
-    @Column(name = "producto_disponible",nullable = false)
+    @Column(name = "producto_disponible", nullable = false)
     @Type(type = "true_false")
     private boolean esDisponible;
 

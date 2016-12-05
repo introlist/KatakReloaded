@@ -17,6 +17,8 @@ import javax.swing.table.AbstractTableModel;
     
     @param <Entidad> 
     
+    Clase abstracta contiene las operaciones necesarias para utilizar
+    tablas de las entidades en las vistas con JSwing.
 
  **********************************************************************/
 public abstract class ModeloTabla<Entidad>  extends AbstractTableModel{

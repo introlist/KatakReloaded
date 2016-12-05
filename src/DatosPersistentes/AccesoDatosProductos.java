@@ -12,10 +12,14 @@ import org.hibernate.Query;
 
 
 
-/**
- *
- * @author DEMON
- */
+/********************************************************************** 
+ 
+    CLASE: {@link AccesoDatosProductos}
+    
+    AUTOR: Roberto Gil Flores
+
+ **********************************************************************/
+
 public class AccesoDatosProductos extends AccesoDatos<Producto>{
      
     public List<Producto> getPorNombre(String inputNombre) {
