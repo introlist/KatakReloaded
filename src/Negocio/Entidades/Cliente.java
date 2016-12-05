@@ -38,18 +38,17 @@ public class Cliente implements Serializable{
     private String email;
 
     public Cliente(){
-        
     }
 
     public Cliente(
             String nombre, 
-            String telefono, 
             String direccion, 
+            String telefono, 
             String email
     ) {
         this.nombre = nombre;
-        this.telefono = telefono;
         this.direccion = direccion;
+        this.telefono = telefono;
         this.email = email;
     }
     
