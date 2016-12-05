@@ -7,8 +7,6 @@ package Negocio.Operaciones;
 
 import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Pedido;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -80,7 +78,8 @@ public class VendedorMenudeo {
         );
     }
 
-    /* Toma los productos seleccionados finales y se registran en base de datos */
+    /* Toma los productos seleccionados finales y se registran 
+    como productos vendidos en la base de datos */
     private List<ProductosVendidos> registrarProdictosVendidos(
             List<ProductosVendidos> inputProductosVendidos
     ){

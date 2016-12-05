@@ -9,10 +9,13 @@ import DatosPersistentes.AccesoDatosProductos;
 import Negocio.Entidades.Producto;
 import java.util.ArrayList;
 import java.util.List;
-/**
- *
- * @author DEMON
- */
+/********************************************************************** 
+ 
+    CLASE: {@link AdminProductos}
+    
+    AUTOR: Roberto Gil Flores
+
+ **********************************************************************/
 public class AdminProductos {
     private final AccesoDatosProductos accesoDatosProductos;
     
