@@ -64,10 +64,6 @@ public abstract class ModeloTabla<Entidad>  extends AbstractTableModel{
         fireTableRowsInserted(fila, fila + listaFilas.size() - 1);
     }
     
-    public void removerRangoFilas(int primero, int ultimo) {
-        DatosEntidad.subList(primero, ultimo + 1).clear();
-        fireTableRowsDeleted(primero, ultimo);
-    }
     
     public void RemoverVariasFilas(int... filas) {
         for (int i = filas.length - 1; i >= 0; i--) {
@@ -83,11 +79,6 @@ public abstract class ModeloTabla<Entidad>  extends AbstractTableModel{
     
     public Entidad getFila(int fila) {
         return DatosEntidad.get(fila);
-    }
-    
-    public void setClaseColumna(int columna, Class claseColumna) {
-        clasesColumna[columna] = claseColumna;
-        fireTableRowsUpdated(0, getRowCount() - 1);
     }
     
     public void setColumnaEditable(int columna, boolean esEditable) {

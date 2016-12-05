@@ -29,7 +29,7 @@ public class ProductosVendidos implements Serializable{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     @ManyToOne(optional = false)
-    private Producto prod;
+    private Producto producto;
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
     @Column(name = "costo", nullable = false)
@@ -40,10 +40,10 @@ public class ProductosVendidos implements Serializable{
     }
     
     public ProductosVendidos(
-            Producto prod,
+            Producto producto,
             int cantidad
     )  {
-        this.prod = prod;
+        this.producto = producto;
         this.cantidad = cantidad;
         this.costoTotal = getCostoTotal();
     }
@@ -56,12 +56,12 @@ public class ProductosVendidos implements Serializable{
         this.id = id;
     }
 
-    public Producto getProd() {
-        return prod;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setProd(Producto prod) {
-        this.prod = prod;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public int getCantidad() {
@@ -72,8 +72,8 @@ public class ProductosVendidos implements Serializable{
         this.cantidad = cantidad;
     }
     
-    public String getNombreProd(){
-        return prod.getNombre();
+    public String getNombreProducto(){
+        return producto.getNombre();
     }
 
     public double getCostoTotal() {
@@ -82,7 +82,7 @@ public class ProductosVendidos implements Serializable{
     }
     
     public void calcularCostoTotal(){
-        this.costoTotal = cantidad * prod.getPrecio();
+        this.costoTotal = cantidad * producto.getPrecio();
     }
     
 
