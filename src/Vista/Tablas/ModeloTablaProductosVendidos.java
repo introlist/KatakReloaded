@@ -16,6 +16,7 @@ public class ModeloTablaProductosVendidos extends ModeloTabla<ProductosVendidos>
     private static final int INDICE_NOMBRE_PROD = 0;
     private static final int INDICE_CANTIDAD_GRUPO = 1;
     private static final int INDICE_COSTO_GRUPO = 2;
+    
     private static final String[] TITULOS_COLUMNAS =
     {
         "Nombre Producto",

@@ -163,8 +163,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btMenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuPedidosActionPerformed
         // TODO add your handling code here:
        this.dispose();
-        RegistradorPedidos registradorPedidos = new RegistradorPedidos();
-        registradorPedidos.setVisible(true);
+        VistaPedidosGil vistaPedidosGil = new VistaPedidosGil();
+        vistaPedidosGil.setVisible(true);
     }//GEN-LAST:event_btMenuPedidosActionPerformed
 
     private void btMenuInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuInventarioActionPerformed

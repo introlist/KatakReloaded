@@ -37,7 +37,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         initComponents();
         rellenarTablaProductosVendidos(productosVendidosActuales);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        labelStatus.setFont(new Font("Serif", Font.PLAIN, 14));
+        labelEstatus.setFont(new Font("Serif", Font.PLAIN, 14));
     }
 
     /**
@@ -74,7 +74,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         labelTotal = new javax.swing.JLabel();
         botonRegistrar = new javax.swing.JToggleButton();
         botonCancelar = new javax.swing.JToggleButton();
-        labelStatus = new javax.swing.JLabel();
+        labelEstatus = new javax.swing.JLabel();
         jLabelSeparador = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -222,7 +222,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 500, 88, -1));
-        getContentPane().add(labelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 484, -1, -1));
+        getContentPane().add(labelEstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 484, -1, -1));
         getContentPane().add(jLabelSeparador, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 30, 20));
 
         pack();
@@ -246,15 +246,6 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonAgregarActionPerformed
 
-    private Object getNombreProductoDelCombo() {
-        return comboProductos.getSelectedItem();
-    }
-
-    private void vaciarLabelStatus() {
-        labelStatus.setFont(new Font("Serif", Font.PLAIN, 14));
-        labelStatus.setText("");
-    }
-
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         if(camposEntradaPedidoCorrectos()){
             vaciarLabelStatus();
@@ -266,11 +257,6 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
-    private void mostrarErrorLabelStatus(String input) {
-        labelStatus.setFont(new Font("Serif", Font.BOLD, 14));
-        labelStatus.setText(input);
-    }
-
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         productosVendidosActuales.remove(getProductoVendidoSeleccionado());
         actualizarTablaProductosVendidos();
@@ -281,6 +267,16 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         finalizarRegistroPedido();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
+        private void mostrarErrorLabelStatus(String input) {
+        labelEstatus.setFont(new Font("Serif", Font.BOLD, 14));
+        labelEstatus.setText(input);
+    }
+    
+        private void vaciarLabelStatus() {
+        labelEstatus.setFont(new Font("Serif", Font.PLAIN, 14));
+        labelEstatus.setText("");
+    }
+    
     private void agregarNuevoProductoSeleccionado(String nombreProd, String inputCantidad) {
         productosVendidosActuales.add(crearNuevoGrupoProd(nombreProd, inputCantidad));
     }
@@ -311,7 +307,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }
 
     private void rellenarTablaProductosVendidos(
-            List<ProductosVendidos> productosSeleccionados
+        List<ProductosVendidos> productosSeleccionados
     ) {
         getModeloTablaProductosVendidos().agregarVariasFilas(productosSeleccionados);
     }
@@ -376,7 +372,9 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         campoCostoTotal.setText(String.valueOf(costoTotalActual));
     }
 
-
+    private Object getNombreProductoDelCombo() {
+        return comboProductos.getSelectedItem();
+    }
 
     private ProductosVendidos getProductoVendidoSeleccionado() {
         if(!seSeleccionoFilaVacia()){
@@ -396,8 +394,8 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private void finalizarRegistroPedido() {
         this.setVisible(false);
         dispose();
-        MenuPrincipal menuPrincipal=new MenuPrincipal();
-        menuPrincipal.setVisible(true);
+        VistaPedidosGil vistaPedidos = new VistaPedidosGil();
+        vistaPedidos.setVisible(true);
     }
     
     private boolean camposEntradaPedidoCorrectos() {
@@ -439,10 +437,10 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private javax.swing.JLabel labelCantidad;
     private javax.swing.JLabel labelComprador;
     private javax.swing.JLabel labelDireccion;
+    private javax.swing.JLabel labelEstatus;
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelHora;
     private javax.swing.JLabel labelProducto;
-    private javax.swing.JLabel labelStatus;
     private javax.swing.JLabel labelTelefono;
     private javax.swing.JLabel labelTotal;
     private javax.swing.JPanel panelComprador;
