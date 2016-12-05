@@ -26,7 +26,7 @@ public class SupervisorInventarioMateriaPrima {
         List<MateriaPrima> lista=adminMateriaPrima.getListMateriaPrimaPorNombre(nombre);
         int suma=0;
         for(MateriaPrima nuevaMateriaPrima:lista){
-            if(nuevaMateriaPrima.getNombre()==nombre){
+            if(nuevaMateriaPrima.getNombre().equals(nombre)){
                 suma=nuevaMateriaPrima.getCantidad()+cantidadAgregada;
                 nuevaMateriaPrima.setCantidad(suma);
                 adminMateriaPrima.editarMateriaPrima(nuevaMateriaPrima);
@@ -35,11 +35,11 @@ public class SupervisorInventarioMateriaPrima {
     }
     
     public void QuitarDelInventario(String nombre,int cantidadAgregada){
-        List<MateriaPrima> lista=adminMateriaPrima.getListMateriaPrimaPorNombre(nombre);
+        List<MateriaPrima> lista=adminMateriaPrima.getListaMateriaPrima();
         int resta=0;
         for(MateriaPrima nuevaMateriaPrima:lista){
-            if(nuevaMateriaPrima.getNombre()==nombre){
-                resta=nuevaMateriaPrima.getCantidad()+cantidadAgregada;
+            if(nuevaMateriaPrima.getNombre().equals(nombre)){
+                resta=nuevaMateriaPrima.getCantidad()-cantidadAgregada;
                 nuevaMateriaPrima.setCantidad(resta);
                 adminMateriaPrima.editarMateriaPrima(nuevaMateriaPrima);
             }
@@ -53,5 +53,14 @@ public class SupervisorInventarioMateriaPrima {
     
     public List<MateriaPrima> ObtenerListadoMateriaPrima(){
         return adminMateriaPrima.getListaMateriaPrima();
+    }
+    
+    public void DejarDeUtilizarMateriaPrima(String nombre){
+        List<MateriaPrima> lista=adminMateriaPrima.getListaMateriaPrima();
+        for(MateriaPrima materiaPrima:lista){
+            if(materiaPrima.getNombre().equals(nombre)){
+                adminMateriaPrima.borrarMateriaPrima(materiaPrima);
+            }
+        }
     }
 }

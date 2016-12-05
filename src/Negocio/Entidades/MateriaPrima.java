@@ -41,7 +41,11 @@ public class MateriaPrima implements Serializable {
     public MateriaPrima(){
     }
 
-    public MateriaPrima(String nombre, UnidadMedida unidadMedida, int cantidad) {
+    public MateriaPrima(
+            String nombre,
+            UnidadMedida unidadMedida,
+            int cantidad
+    ) {
         this.nombre = nombre;
         this.unidadMedida = unidadMedida;
         this.cantidad = cantidad;
@@ -50,6 +54,11 @@ public class MateriaPrima implements Serializable {
     public MateriaPrima(String nombre, UnidadMedida unidadMedida) {
         this.nombre = nombre;
         this.unidadMedida = unidadMedida;
+    }
+    
+    public MateriaPrima(String nombre, String unidadMedida) {
+        this.nombre=nombre;
+        this.unidadMedida=convertirDeStringaUnidad(unidadMedida);
     }
 
     public int getCantidad() {
@@ -82,6 +91,19 @@ public class MateriaPrima implements Serializable {
 
     public void setUnidadMedida(UnidadMedida unidMed) {
         this.unidadMedida = unidMed;
+    }
+    
+    private UnidadMedida convertirDeStringaUnidad(String unidad){
+        switch(unidad){
+            case "Unidades":
+                return UnidadMedida.UNIDADES;
+            case "Gramos":
+                return UnidadMedida.G;
+            case "Kilogramos":
+                return UnidadMedida.KG;
+            default:
+                return UnidadMedida.UNIDADES;
+        }
     }
 
 }

@@ -61,7 +61,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="BotonAgregar" min="-2" max="-2" attributes="0"/>
+                          <Component id="BotonGuardar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="BotonCancelar" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -108,7 +108,7 @@
                   <Component id="RbKilogramos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="BotonAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BotonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BotonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -153,9 +153,9 @@
             <Property name="text" type="java.lang.String" value="Kilogramos"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="BotonAgregar">
+        <Component class="javax.swing.JButton" name="BotonGuardar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Agregar"/>
+            <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="BotonCancelar">

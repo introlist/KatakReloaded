@@ -6,7 +6,9 @@
 package Negocio.Operaciones;
 
 import DatosPersistentes.AccesoDatosProductosExistentes;
+import Negocio.Entidades.Producto;
 import Negocio.Entidades.ProductosExistentes;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,10 +16,12 @@ import java.util.List;
  * @author Mario
  */
 public class SupervisorInventarioProductos {
+    private AdminProductos adminProd;
     private final AccesoDatosProductosExistentes datosProductosExistentes;
 
     public SupervisorInventarioProductos() {
         datosProductosExistentes = new AccesoDatosProductosExistentes();
+        adminProd = new AdminProductos();
     }
     
     public void AgregarProductosExistentes(ProductosExistentes productosExistentes){
@@ -40,11 +44,11 @@ public class SupervisorInventarioProductos {
         return datosProductosExistentes.getListaTodos();
     }
     
-    public void AgregarCantidadInventario(ProductosExistentes productoExistente,int cantidadAgregada){
+    public void AgregarAInventario(String nombre,int cantidadAgregada){
         List<ProductosExistentes> lista=getListaProductosExistentes();
         int cantidadExistente=0;
         for(ProductosExistentes nuevoProductoExistente:lista){
-            if(nuevoProductoExistente==productoExistente){
+            if(nuevoProductoExistente.getProductoExistente().getNombre().equals(nombre)){
                 cantidadExistente=nuevoProductoExistente.getCantidadExistente()+cantidadAgregada;
                 nuevoProductoExistente.setCantidadExistente(cantidadExistente);
                 EditarProductosExistentes(nuevoProductoExistente);
@@ -52,13 +56,40 @@ public class SupervisorInventarioProductos {
         }
     }
     
-    public void QuitarCantidadInventario(ProductosExistentes productoExistente,int cantidadQuitada){
+    public void QuitarDelInventario(String nombre,int cantidadQuitada){
         List<ProductosExistentes> lista=getListaProductosExistentes();
         int cantidadExistente=0;
         for(ProductosExistentes nuevoProductoExistente:lista){
-            if(nuevoProductoExistente==productoExistente){
+            if(nuevoProductoExistente.getProductoExistente().getNombre().equals(nombre)){
                 cantidadExistente=nuevoProductoExistente.getCantidadExistente()-cantidadQuitada;
                 nuevoProductoExistente.setCantidadExistente(cantidadExistente);
+                EditarProductosExistentes(nuevoProductoExistente);
+            }
+        }
+    }
+    
+    public void GestionarNuevoProducto(Producto nuevoProducto){
+        adminProd.AgregarProductos(nuevoProducto);
+        ProductosExistentes nuevoProductosExistentes=new ProductosExistentes(nuevoProducto, 0);
+        AgregarProductosExistentes(nuevoProductosExistentes);
+    }
+    
+    public List<ProductosExistentes> getListaProductosDisponibles(){
+        List<ProductosExistentes> prodsDisponibles=new ArrayList<>();
+        List<ProductosExistentes> lista=getListaProductosExistentes();
+        for(ProductosExistentes nuevoProductosExistentes:lista){
+            if(nuevoProductosExistentes.getProductoExistente().esDisponible()){
+                prodsDisponibles.add(nuevoProductosExistentes);
+            }
+        }
+        return prodsDisponibles;
+    }
+    
+    public void DejarDeUtilizarProducto(String nombre){
+        List<ProductosExistentes> lista=getListaProductosExistentes();
+        for(ProductosExistentes nuevoProductoExistente:lista){
+            if(nuevoProductoExistente.getProductoExistente().getNombre().equals(nombre)){
+                nuevoProductoExistente.getProductoExistente().setEsDisponible(false);
                 EditarProductosExistentes(nuevoProductoExistente);
             }
         }

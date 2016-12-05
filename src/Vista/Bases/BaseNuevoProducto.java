@@ -9,12 +9,12 @@ package Vista.Bases;
  *
  * @author Bernardo Espinoza
  */
-public class BaseAgregarMateriaPrima extends javax.swing.JFrame {
+public class BaseNuevoProducto extends javax.swing.JFrame {
 
     /**
-     * Creates new form BaseAgregarMateriaPrima
+     * Creates new form BaseNuevoProducto
      */
-    public BaseAgregarMateriaPrima() {
+    public BaseNuevoProducto() {
         initComponents();
     }
 
@@ -27,35 +27,23 @@ public class BaseAgregarMateriaPrima extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         LabelNombre = new javax.swing.JLabel();
+        LabelPrecio = new javax.swing.JLabel();
         CampoNombre = new javax.swing.JTextField();
-        LabelMedida = new javax.swing.JLabel();
-        RbUnidades = new javax.swing.JRadioButton();
-        RbGramos = new javax.swing.JRadioButton();
-        RbKilogramos = new javax.swing.JRadioButton();
-        BotonAgregar = new javax.swing.JButton();
+        CampoPrecio = new javax.swing.JTextField();
+        BotonGuardar = new javax.swing.JButton();
         BotonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agregar nueva materia prima", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Añadir nuevo producto", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP));
 
         LabelNombre.setText("Nombre");
 
-        LabelMedida.setText("Unidad de medida");
+        LabelPrecio.setText("Precio unitario");
 
-        buttonGroup1.add(RbUnidades);
-        RbUnidades.setText("Unidades");
-
-        buttonGroup1.add(RbGramos);
-        RbGramos.setText("Gramos");
-
-        buttonGroup1.add(RbKilogramos);
-        RbKilogramos.setText("Kilogramos");
-
-        BotonAgregar.setText("Agregar");
+        BotonGuardar.setText("Guardar");
 
         BotonCancelar.setText("Cancelar");
 
@@ -67,24 +55,18 @@ public class BaseAgregarMateriaPrima extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(BotonAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotonCancelar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LabelNombre)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CampoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LabelMedida)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(RbKilogramos)
-                                    .addComponent(RbUnidades)
-                                    .addComponent(RbGramos))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(LabelNombre)
+                            .addComponent(LabelPrecio))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CampoNombre)
+                            .addComponent(CampoPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(BotonGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                        .addComponent(BotonCancelar)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,16 +76,12 @@ public class BaseAgregarMateriaPrima extends javax.swing.JFrame {
                     .addComponent(LabelNombre)
                     .addComponent(CampoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelMedida)
-                    .addComponent(RbUnidades))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RbGramos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RbKilogramos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonAgregar)
+                    .addComponent(LabelPrecio)
+                    .addComponent(CampoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonGuardar)
                     .addComponent(BotonCancelar))
                 .addContainerGap())
         );
@@ -145,35 +123,31 @@ public class BaseAgregarMateriaPrima extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BaseAgregarMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BaseNuevoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BaseAgregarMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BaseNuevoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BaseAgregarMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BaseNuevoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BaseAgregarMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BaseNuevoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BaseAgregarMateriaPrima().setVisible(true);
+                new BaseNuevoProducto().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonAgregar;
     private javax.swing.JButton BotonCancelar;
+    private javax.swing.JButton BotonGuardar;
     private javax.swing.JTextField CampoNombre;
-    private javax.swing.JLabel LabelMedida;
+    private javax.swing.JTextField CampoPrecio;
     private javax.swing.JLabel LabelNombre;
-    private javax.swing.JRadioButton RbGramos;
-    private javax.swing.JRadioButton RbKilogramos;
-    private javax.swing.JRadioButton RbUnidades;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel LabelPrecio;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
