@@ -12,6 +12,7 @@ import Vista.Tablas.ModeloTablaProductosVendidos;
 import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Producto;
 import Negocio.Operaciones.AdminProductos;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -58,8 +59,8 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         CampoHora = new javax.swing.JTextField();
         PanelGruposProds = new javax.swing.JPanel();
         ScrollGruposProd = new javax.swing.JScrollPane();
-        TablaGruposProd = new javax.swing.JTable();
-        ComboProds = new javax.swing.JComboBox<>();
+        TablaProductosVendidos = new javax.swing.JTable();
+        comboProds = new javax.swing.JComboBox<>();
         LabelProducto = new javax.swing.JLabel();
         LabelCantidad = new javax.swing.JLabel();
         CampoCantidad = new javax.swing.JTextField();
@@ -69,88 +70,46 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         LabelTotal = new javax.swing.JLabel();
         BotonRegistrar = new javax.swing.JToggleButton();
         BotonCancelar = new javax.swing.JToggleButton();
+        labelStatus = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar un Pedido");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PanelComprador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         LabelComprador.setText("Comprador *");
+        PanelComprador.add(LabelComprador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, -1, -1));
+        PanelComprador.add(CampoComprador, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 11, 620, -1));
 
         LabelDireccion.setText("Dirección *");
+        PanelComprador.add(LabelDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 45, -1, -1));
+        PanelComprador.add(CampoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 42, 620, -1));
 
         LabelTelefono.setText("Telefono");
+        PanelComprador.add(LabelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 76, -1, -1));
+        PanelComprador.add(CampoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 73, 620, -1));
 
         LabelCampos.setText("* Campos obligatorios");
+        PanelComprador.add(LabelCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
 
         LabelFecha.setText("Fecha *");
+        PanelComprador.add(LabelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 102, -1, -1));
+        PanelComprador.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
 
-        LabelHora.setText("Hora *");
+        LabelHora.setText("Hora de entrega *");
+        PanelComprador.add(LabelHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+        PanelComprador.add(CampoHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 106, -1));
 
-        javax.swing.GroupLayout PanelCompradorLayout = new javax.swing.GroupLayout(PanelComprador);
-        PanelComprador.setLayout(PanelCompradorLayout);
-        PanelCompradorLayout.setHorizontalGroup(
-            PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelCompradorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelCompradorLayout.createSequentialGroup()
-                        .addComponent(LabelComprador)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CampoComprador))
-                    .addGroup(PanelCompradorLayout.createSequentialGroup()
-                        .addComponent(LabelDireccion)
-                        .addGap(14, 14, 14)
-                        .addComponent(CampoDireccion))
-                    .addGroup(PanelCompradorLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(LabelCampos)
-                        .addContainerGap())
-                    .addGroup(PanelCompradorLayout.createSequentialGroup()
-                        .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelFecha)
-                            .addComponent(LabelTelefono))
-                        .addGap(24, 24, 24)
-                        .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelCompradorLayout.createSequentialGroup()
-                                .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(LabelHora)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CampoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(CampoTelefono)))))
-        );
-        PanelCompradorLayout.setVerticalGroup(
-            PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelCompradorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelComprador)
-                    .addComponent(CampoComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelDireccion)
-                    .addComponent(CampoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelTelefono)
-                    .addComponent(CampoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(PanelCompradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelFecha)
-                    .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CampoHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelHora))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(LabelCampos)
-                .addContainerGap())
-        );
+        getContentPane().add(PanelComprador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 720, 150));
 
         PanelGruposProds.setBorder(javax.swing.BorderFactory.createTitledBorder("Productos Seleccionados"));
 
-        TablaGruposProd.setModel(new Vista.Tablas.ModeloTablaProductosVendidos());
-        ScrollGruposProd.setViewportView(TablaGruposProd);
+        TablaProductosVendidos.setModel(new Vista.Tablas.ModeloTablaProductosVendidos());
+        ScrollGruposProd.setViewportView(TablaProductosVendidos);
 
-        ComboProds.setModel(new DefaultComboBoxModel(nombresProductosDisponibles.toArray()));
+        comboProds.setModel(new DefaultComboBoxModel(nombresProductosDisponibles.toArray()));
 
         LabelProducto.setText("Producto:");
 
@@ -187,45 +146,62 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         PanelGruposProdsLayout.setHorizontalGroup(
             PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelGruposProdsLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ScrollGruposProd)
+                    .addComponent(ScrollGruposProd, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelGruposProdsLayout.createSequentialGroup()
-                        .addComponent(LabelProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelGruposProdsLayout.createSequentialGroup()
+                                .addComponent(LabelProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(comboProds, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(LabelCantidad)
+                                .addGap(10, 10, 10)
+                                .addComponent(CampoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BotonAgregar))
+                            .addComponent(BotonEliminar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ComboProds, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LabelCantidad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CampoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BotonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BotonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addComponent(LabelTotal)
                         .addGap(18, 18, 18)
-                        .addComponent(CampoCostoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(CampoCostoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(2, 2, 2))
         );
         PanelGruposProdsLayout.setVerticalGroup(
             PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelGruposProdsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ScrollGruposProd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ComboProds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelProducto)
-                    .addComponent(LabelCantidad)
-                    .addComponent(CampoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonAgregar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonEliminar)
-                    .addComponent(CampoCostoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelTotal)))
+                .addGap(27, 27, 27)
+                .addComponent(ScrollGruposProd, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelGruposProdsLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelGruposProdsLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(LabelProducto))
+                            .addGroup(PanelGruposProdsLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(comboProds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelGruposProdsLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(LabelCantidad))
+                            .addGroup(PanelGruposProdsLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(CampoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(BotonAgregar))
+                        .addGap(7, 7, 7)
+                        .addComponent(BotonEliminar)
+                        .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelGruposProdsLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PanelGruposProdsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CampoCostoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
+
+        getContentPane().add(PanelGruposProds, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 176, 710, 310));
 
         BotonRegistrar.setText("Registrar");
         BotonRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -233,6 +209,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
                 BotonRegistrarActionPerformed(evt);
             }
         });
+        getContentPane().add(BotonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, 88, -1));
 
         BotonCancelar.setText("Cancelar");
         BotonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -240,37 +217,9 @@ public class RegistradorPedidos extends javax.swing.JFrame {
                 BotonCancelarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PanelComprador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelGruposProds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PanelComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelGruposProds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonRegistrar)
-                    .addComponent(BotonCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(BotonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 500, 88, -1));
+        getContentPane().add(labelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 484, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 30, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -279,14 +228,20 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_CampoCostoTotalActionPerformed
 
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
-        agregarNuevoGrupoProd(ComboProds.getSelectedItem().toString(),CampoCantidad.getText());
+        agregarNuevoGrupoProd(comboProds.getSelectedItem().toString(),CampoCantidad.getText());
         actualizarTablaProductosVendidos();
         actualizarCostoTotal();
     }//GEN-LAST:event_BotonAgregarActionPerformed
 
     private void BotonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarActionPerformed
+        if(camposEntradaCorrectos()){
         EnviarInputs();
         FinalizarRegistroPedido();
+        }else{
+            labelStatus.setFont(new Font("Bold", Font.PLAIN, 14));
+            labelStatus.setText("ERROR: "+
+                    "Rellene correctamente la información del pedido");
+        }
     }//GEN-LAST:event_BotonRegistrarActionPerformed
 
     private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
@@ -335,7 +290,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }
 
     private ModeloTablaProductosVendidos getModeloTablaProductosVendidos() {
-        return (ModeloTablaProductosVendidos) TablaGruposProd.getModel();
+        return (ModeloTablaProductosVendidos) TablaProductosVendidos.getModel();
     }
     
     private String getHora() {
@@ -385,7 +340,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         return (getFilaSeleccionada() == INDICE_NINGUNA_FILA);    }
 
     private int getFilaSeleccionada() {
-        return TablaGruposProd.getSelectedRow();
+        return TablaProductosVendidos.getSelectedRow();
     }
     
     private void actualizarCostoTotal(){
@@ -399,13 +354,14 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private ProductosVendidos getProductoVendidoSeleccionado() {
         if(!seSeleccionoFilaVacia()){
             int filaSeleccionada = getFilaSeleccionada();
-            ProductosVendidos grupoSeleccionado = 
+            ProductosVendidos productosSeleccionados = 
                     getModeloTablaProductosVendidos().getFila(
                             filaSeleccionada
                     );
-            return grupoSeleccionado;
+            labelStatus.setText("");
+            return productosSeleccionados;
         }else{
-            System.err.println("No se selecciono una fila");
+            labelStatus.setText("No se selecciono una fila");
             return null;
         }    
     }
@@ -416,6 +372,23 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         MenuPrincipal menuPrincipal=new MenuPrincipal();
         menuPrincipal.setVisible(true);
     }
+    
+     private boolean camposEntradaCorrectos() {
+         CampoComprador.setText(getComprador().trim());
+         CampoHora.setText(getHora().trim());
+         CampoDireccion.setText(getDireccion().trim());
+         if(
+            getComprador().isEmpty() ||
+            getDireccion().isEmpty() ||
+            getHora().isEmpty() ||
+            productosVendidosActuales.isEmpty()
+         ) {
+            return false; 
+         }else{
+             return true;
+         }
+     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregar;
     private javax.swing.JToggleButton BotonCancelar;
@@ -427,7 +400,6 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private javax.swing.JTextField CampoDireccion;
     private javax.swing.JTextField CampoHora;
     private javax.swing.JTextField CampoTelefono;
-    private javax.swing.JComboBox<String> ComboProds;
     private javax.swing.JLabel LabelCampos;
     private javax.swing.JLabel LabelCantidad;
     private javax.swing.JLabel LabelComprador;
@@ -440,8 +412,13 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private javax.swing.JPanel PanelComprador;
     private javax.swing.JPanel PanelGruposProds;
     private javax.swing.JScrollPane ScrollGruposProd;
-    private javax.swing.JTable TablaGruposProd;
+    private javax.swing.JTable TablaProductosVendidos;
     private datechooser.beans.DateChooserCombo comboFecha;
+    private javax.swing.JComboBox<String> comboProds;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labelStatus;
     // End of variables declaration//GEN-END:variables
+
+   
 
 }
