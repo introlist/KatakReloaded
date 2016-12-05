@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /********************************************************************** 
  
@@ -20,7 +21,8 @@ import javax.persistence.ManyToOne;
     AUTOR: Roberto Gil Flores
 
  **********************************************************************/
-@Entity 
+@Entity
+@Table(name = "productos_vendidos")
 public class ProductosVendidos implements Serializable{
     
     @Id
@@ -31,7 +33,7 @@ public class ProductosVendidos implements Serializable{
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
     @Column(name = "costo", nullable = false)
-    private double costoGrupo;
+    private double costoTotal;
     
     public ProductosVendidos(){
         
@@ -43,7 +45,7 @@ public class ProductosVendidos implements Serializable{
     )  {
         this.prod = prod;
         this.cantidad = cantidad;
-        this.costoGrupo = getCalculoCostoGrupo();
+        this.costoTotal = getCostoTotal();
     }
 
     public int getId() {
@@ -74,20 +76,14 @@ public class ProductosVendidos implements Serializable{
         return prod.getNombre();
     }
 
-    public double getCostoGrupoProd() {
-        return costoGrupo;
+    public double getCostoTotal() {
+        calcularCostoTotal();
+        return costoTotal;
     }
+    
+    public void calcularCostoTotal(){
+        this.costoTotal = cantidad * prod.getPrecio();
+    }
+    
 
-    public void setCostoGrupoProd(double costoGrupoProd) {
-        this.costoGrupo = costoGrupoProd;
-    }
-    
-    public void calcularCostoGrupo(){
-        this.costoGrupo = getCalculoCostoGrupo();
-    }
-    
-    public double getCalculoCostoGrupo(){
-        return (cantidad * prod.getPrecio());
-    }
-    
 }

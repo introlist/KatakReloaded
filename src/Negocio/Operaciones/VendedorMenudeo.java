@@ -81,13 +81,13 @@ public class VendedorMenudeo {
         return fechaActual;
     }
 
-    private List<ProductosVendidos> registrarProdsVendidos(List<ProductosVendidos> gruposProdsInput){
+    private List<ProductosVendidos> registrarProdsVendidos(List<ProductosVendidos> inputProductosVendidos){
         List<ProductosVendidos> prodsVendidosRegistrados;
         prodsVendidosRegistrados = new ArrayList<>();
         
-        for(ProductosVendidos inputGrupoProd : gruposProdsInput){
-            adminProdVendidos.AgregarProductosVendidos(inputGrupoProd);
-            prodsVendidosRegistrados.add(inputGrupoProd);
+        for(ProductosVendidos nuevoProductosVendidos : inputProductosVendidos){
+            adminProdVendidos.AgregarProductosVendidos(nuevoProductosVendidos);
+            prodsVendidosRegistrados.add(nuevoProductosVendidos);
         }
         return prodsVendidosRegistrados;
     }
@@ -95,7 +95,7 @@ public class VendedorMenudeo {
     public double calcularCostoTotal(List<ProductosVendidos> prodsSeleccionados) {
         double costoTotal = 0;
         for(ProductosVendidos actual : prodsSeleccionados){
-            costoTotal += actual.getCostoGrupoProd();
+            costoTotal += actual.getCostoTotal();
         }
         return costoTotal;
     }

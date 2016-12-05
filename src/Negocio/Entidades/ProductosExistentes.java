@@ -12,12 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Mario
  */
-@Entity 
+@Entity
+@Table(name = "productos_existentes") 
 public class ProductosExistentes implements Serializable{
     
     @Id

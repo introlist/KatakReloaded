@@ -77,7 +77,7 @@ public class VendedorMayoreo {
     public double calcularCostoTotal(List<ProductosVendidos> prodsSeleccionados) {
         double costoTotal = 0;
         for(ProductosVendidos actual : prodsSeleccionados){
-            costoTotal += actual.getCostoGrupoProd();
+            costoTotal += actual.getCostoTotal();
         }
         return costoTotal;
     }

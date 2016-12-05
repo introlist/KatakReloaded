@@ -39,7 +39,7 @@ public class ModeloTablaProductosVendidos extends ModeloTabla<ProductosVendidos>
             case INDICE_CANTIDAD_GRUPO:
                 return grupoProd.getCantidad();
             case INDICE_COSTO_GRUPO:
-                return grupoProd.getCostoGrupoProd();
+                return grupoProd.getCostoTotal();
             default:
                 return null;
         }

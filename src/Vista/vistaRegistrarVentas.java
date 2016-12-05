@@ -333,7 +333,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     private void actualizarCostoTotal() {
         costoTotal = 0;
         for(ProductosVendidos actual : productosActuales){
-            costoTotal += actual.getCostoGrupoProd();
+            costoTotal += actual.getCostoTotal();
         }
         TextoTotal.setText(String.valueOf(costoTotal));
     }

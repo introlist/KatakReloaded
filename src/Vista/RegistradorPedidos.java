@@ -22,16 +22,17 @@ import java.util.Date;
  */
 public class RegistradorPedidos extends javax.swing.JFrame {
     VendedorMenudeo vendedorMenudeo = new VendedorMenudeo();
-    AdminProductos adminProd = new AdminProductos();
-    List<String> nombresProdsDisp = adminProd.getNombresProductosDisponibles();
-    List<ProductosVendidos> prodsVendidosActuales = new ArrayList<>();
+    AdminProductos adminProductos = new AdminProductos();
+    List<String> nombresProductosDisponibles = 
+            adminProductos.getNombresProductosDisponibles();
+    List<ProductosVendidos> productosVendidosActuales = new ArrayList<>();
     /**
      * Creates new form registradorPedidos
      */
     public RegistradorPedidos() {
         initComponents();
-        rellenarListaGrupoProd(prodsVendidosActuales);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        rellenarTablaProductosVendidos(productosVendidosActuales);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -58,7 +59,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         PanelGruposProds = new javax.swing.JPanel();
         ScrollGruposProd = new javax.swing.JScrollPane();
         TablaGruposProd = new javax.swing.JTable();
-        ComboProds = new javax.swing.JComboBox<String>();
+        ComboProds = new javax.swing.JComboBox<>();
         LabelProducto = new javax.swing.JLabel();
         LabelCantidad = new javax.swing.JLabel();
         CampoCantidad = new javax.swing.JTextField();
@@ -149,7 +150,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         TablaGruposProd.setModel(new Vista.Tablas.ModeloTablaProductosVendidos());
         ScrollGruposProd.setViewportView(TablaGruposProd);
 
-        ComboProds.setModel(new DefaultComboBoxModel(nombresProdsDisp.toArray()));
+        ComboProds.setModel(new DefaultComboBoxModel(nombresProductosDisponibles.toArray()));
 
         LabelProducto.setText("Producto:");
 
@@ -279,7 +280,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
 
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
         agregarNuevoGrupoProd(ComboProds.getSelectedItem().toString(),CampoCantidad.getText());
-        actualizarListaGrupoProd();
+        actualizarTablaProductosVendidos();
         actualizarCostoTotal();
     }//GEN-LAST:event_BotonAgregarActionPerformed
 
@@ -289,8 +290,8 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonRegistrarActionPerformed
 
     private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
-        prodsVendidosActuales.remove(getGrupoProdSeleccionado());
-        actualizarListaGrupoProd();
+        productosVendidosActuales.remove(getProductoVendidoSeleccionado());
+        actualizarTablaProductosVendidos();
         actualizarCostoTotal();
     }//GEN-LAST:event_BotonEliminarActionPerformed
 
@@ -299,13 +300,13 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
     private void agregarNuevoGrupoProd(String nombreProd, String inputCantidad) {
-        prodsVendidosActuales.add(crearNuevoGrupoProd(nombreProd, inputCantidad));
+        productosVendidosActuales.add(crearNuevoGrupoProd(nombreProd, inputCantidad));
     }
     
     private ProductosVendidos crearNuevoGrupoProd(
             String NombreProd, String inputCantidad
     ){
-        Producto productoSeleccionado = adminProd.getProductosPorNombre(NombreProd);
+        Producto productoSeleccionado = adminProductos.getProductosPorNombre(NombreProd);
                 ProductosVendidos nuevoGrupoProductos = new ProductosVendidos(
                 productoSeleccionado, 
                 Integer.parseInt(inputCantidad)
@@ -313,24 +314,27 @@ public class RegistradorPedidos extends javax.swing.JFrame {
         return nuevoGrupoProductos;
     }
 
-    private void actualizarListaGrupoProd() {
-        vaciarListaGrupoProd();
-        rellenarListaGrupoProd(prodsVendidosActuales);
+    private void actualizarTablaProductosVendidos() {
+        vaciarTablaProductosVendidos();
+        rellenarTablaProductosVendidos(productosVendidosActuales);
     }
 
-    private void vaciarListaGrupoProd() {
-        ModeloTablaProductosVendidos mtgp = getModeloTablaGrupoProd();
-        int rowCount = mtgp.getRowCount();
+    private void vaciarTablaProductosVendidos() {
+        ModeloTablaProductosVendidos tablaProductosVendidos 
+                = getModeloTablaProductosVendidos();
+        int rowCount = tablaProductosVendidos.getRowCount();
         for (int i = rowCount - 1; 0 <= i; i--) {
-            mtgp.removerFila(i);
+            tablaProductosVendidos.removerFila(i);
         }    
     }
 
-    private void rellenarListaGrupoProd(List<ProductosVendidos> gruposProdActuales) {
-        getModeloTablaGrupoProd().agregarVariasFilas(gruposProdActuales);
+    private void rellenarTablaProductosVendidos(
+            List<ProductosVendidos> productosSeleccionados
+    ) {
+        getModeloTablaProductosVendidos().agregarVariasFilas(productosSeleccionados);
     }
 
-    private ModeloTablaProductosVendidos getModeloTablaGrupoProd() {
+    private ModeloTablaProductosVendidos getModeloTablaProductosVendidos() {
         return (ModeloTablaProductosVendidos) TablaGruposProd.getModel();
     }
     
@@ -361,18 +365,18 @@ public class RegistradorPedidos extends javax.swing.JFrame {
                 getDireccion(), 
                 getTelefono(), 
                 getFechaEntrega(), 
-                prodsVendidosActuales, 
+                productosVendidosActuales, 
                 getHora()
         );
         
     }
 
-    public List<ProductosVendidos> getGruposProdActuales() {
-        return prodsVendidosActuales;
+    public List<ProductosVendidos> getGruposProductosActuales() {
+        return productosVendidosActuales;
     }
 
-    public void setGruposProdActuales(List<ProductosVendidos> prodsVendidosActuales) {
-        this.prodsVendidosActuales = prodsVendidosActuales;
+    public void setGruposProdActuales(List<ProductosVendidos> productosVendidosActuales) {
+        this.productosVendidosActuales = productosVendidosActuales;
     }
 
     private boolean seSeleccionoFilaVacia() {
@@ -386,16 +390,19 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     
     private void actualizarCostoTotal(){
         double costoTotalActual 
-                = vendedorMenudeo.calcularCostoTotal(this.prodsVendidosActuales); 
+                = vendedorMenudeo.calcularCostoTotal(this.productosVendidosActuales); 
         CampoCostoTotal.setText(String.valueOf(costoTotalActual));
     }
 
 
 
-    private ProductosVendidos getGrupoProdSeleccionado() {
+    private ProductosVendidos getProductoVendidoSeleccionado() {
         if(!seSeleccionoFilaVacia()){
             int filaSeleccionada = getFilaSeleccionada();
-            ProductosVendidos grupoSeleccionado = getModeloTablaGrupoProd().getFila(filaSeleccionada);
+            ProductosVendidos grupoSeleccionado = 
+                    getModeloTablaProductosVendidos().getFila(
+                            filaSeleccionada
+                    );
             return grupoSeleccionado;
         }else{
             System.err.println("No se selecciono una fila");
