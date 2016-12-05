@@ -394,7 +394,7 @@ public class RegistradorPedidos extends javax.swing.JFrame {
     private void finalizarRegistroPedido() {
         this.setVisible(false);
         dispose();
-        VistaPedidosGil vistaPedidos = new VistaPedidosGil();
+        VistaPedidos vistaPedidos = new VistaPedidos();
         vistaPedidos.setVisible(true);
     }
     
