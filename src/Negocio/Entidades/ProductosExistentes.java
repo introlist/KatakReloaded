@@ -13,10 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/**
- *
- * @author Mario
- */
+/********************************************************************** 
+ 
+    CLASE: {@link ProductosExistentes}
+    
+    AUTOR: Mario Lopez Duran
+
+ **********************************************************************/
 @Entity 
 public class ProductosExistentes implements Serializable{
     

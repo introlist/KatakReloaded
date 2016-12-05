@@ -10,10 +10,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-/**
- *
- * @author DEMON
- */
+/********************************************************************** 
+ 
+    CLASE: {@link GeneradorSesiones}
+    
+    AUTOR: Roberto Gil Flores
+
+    Esta clase se encarga de generar sesiones para las operaciones de
+    Hibernate.
+
+ **********************************************************************/
 public class GeneradorSesiones {
     private static final SessionFactory fabricadorSesion;
     

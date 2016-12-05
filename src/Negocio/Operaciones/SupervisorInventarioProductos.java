@@ -9,10 +9,13 @@ import DatosPersistentes.AccesoDatosProductosExistentes;
 import Negocio.Entidades.ProductosExistentes;
 import java.util.List;
 
-/**
- *
- * @author Mario
- */
+/********************************************************************** 
+ 
+    CLASE: {@link SupervisorInventarioProductos}
+    
+    AUTOR: Mario Lopez Duran
+
+ **********************************************************************/
 public class SupervisorInventarioProductos {
     private final AccesoDatosProductosExistentes datosProductosExistentes;
 

@@ -21,11 +21,14 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Mario Lopez
- * @author Vista: Bernardo Espinoza
- */
+/********************************************************************** 
+ 
+    CLASE: {@link vistaRegistrarVentas}
+    
+    AUTOR: Mario Lopez Duran
+    COLABORO: Bernardo Espinoza
+
+ **********************************************************************/
 public class vistaRegistrarVentas extends javax.swing.JFrame {
     
     AdminProductos adminProductos = new AdminProductos();
@@ -339,7 +342,7 @@ public class vistaRegistrarVentas extends javax.swing.JFrame {
     private void actualizarCostoTotal() {
         costoTotal = 0;
         for(ProductosVendidos actual : productosActuales){
-            costoTotal += actual.getCostoProductoVendido();
+            costoTotal += actual.getCostoTotal();
         }
         TextoTotal.setText(String.valueOf(costoTotal));
     }

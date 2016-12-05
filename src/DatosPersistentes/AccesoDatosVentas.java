@@ -14,10 +14,13 @@ import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
 
-/**
- *
- * @author DEMON
- */
+/********************************************************************** 
+ 
+    CLASE: {@link AccesoDatosVentas}
+    
+    AUTOR: Roberto Gil Flores
+
+ **********************************************************************/
 public class AccesoDatosVentas extends AccesoDatos<Venta>{
 
     

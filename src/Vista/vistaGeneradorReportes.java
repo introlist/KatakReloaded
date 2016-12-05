@@ -23,10 +23,13 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.swing.JRViewer;
 
-/**
- *
- * @author Mario
- */
+/********************************************************************** 
+ 
+    CLASE: {@link vistaGeneradorReportes}
+    
+    AUTOR: Mario Lopez Duran
+
+ **********************************************************************/
 public class vistaGeneradorReportes extends javax.swing.JFrame {
     JDialog viewer = new JDialog(new JFrame(),"Reporte", true);
     

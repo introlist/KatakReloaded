@@ -31,15 +31,15 @@ public class ModeloTablaProductosVendidos extends ModeloTabla<ProductosVendidos>
     
     @Override
     public Object getValueAt(int indiceFila, int indiceColumna) {
-        ProductosVendidos grupoProd = getFila(indiceFila);
+        ProductosVendidos productosVendidos = getFila(indiceFila);
         
         switch(indiceColumna) {
             case INDICE_NOMBRE_PROD:
-                return grupoProd.getNombreProd();
+                return productosVendidos.getNombreProducto();
             case INDICE_CANTIDAD_GRUPO:
-                return grupoProd.getCantidad();
+                return productosVendidos.getCantidad();
             case INDICE_COSTO_GRUPO:
-                return grupoProd.getCostoProductoVendido();
+                return productosVendidos.getCostoTotal();
             default:
                 return null;
         }

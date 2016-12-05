@@ -10,10 +10,13 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 
-/**
- *
- * @author Mario
- */
+/********************************************************************** 
+ 
+    CLASE: {@link AccesoDatosProductosExistentes}
+    
+    AUTOR: Mario Lopez Duran
+
+ **********************************************************************/
 public class AccesoDatosProductosExistentes extends AccesoDatos<ProductosExistentes>{
     
     

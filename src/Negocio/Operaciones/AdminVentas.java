@@ -9,10 +9,13 @@ import DatosPersistentes.AccesoDatosVentas;
 import Negocio.Entidades.Venta;
 import java.util.List;
 
-/**
- *
- * @author Mario
- */
+/********************************************************************** 
+ 
+    CLASE: {@link AdminVentas}
+    
+    AUTOR: Mario Lopez Duran
+
+ **********************************************************************/
 public class AdminVentas {
     
     public final AccesoDatosVentas datosVenta;

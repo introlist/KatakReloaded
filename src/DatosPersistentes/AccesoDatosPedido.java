@@ -15,10 +15,13 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
 import org.hibernate.Query;
 
-/**
- *
- * @author DEMON
- */
+/********************************************************************** 
+ 
+    CLASE: {@link AccesoDatosPedido}
+    
+    AUTOR: Roberto Gil Flores
+
+ **********************************************************************/
 public class AccesoDatosPedido extends AccesoDatos<Pedido>{
 
     public List<Pedido> getPorFechaCreacion(Date fecha) {

@@ -5,15 +5,16 @@
  */
 package DatosPersistentes;
 import Negocio.Entidades.ProductosVendidos;
-import java.util.List;
-/**
- *
- * @author DEMON
- */
+
+/********************************************************************** 
+ 
+    CLASE: {@link AccesoDatosProductosVendidos}
+    
+    AUTOR: Roberto Gil Flores
+
+ **********************************************************************/
 public class AccesoDatosProductosVendidos extends AccesoDatos<ProductosVendidos> {
-    
-    
-    
+
     @Override
     protected Class getTipoClase() {
         return ProductosVendidos.class;

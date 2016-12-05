@@ -18,8 +18,7 @@ import org.hibernate.Transaction;
     AUTOR: Roberto Gil Flores
     
     @param <Entidad> 
-    
-
+   
  **********************************************************************/
 
 public abstract class AccesoDatos<Entidad> {

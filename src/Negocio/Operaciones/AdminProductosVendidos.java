@@ -9,10 +9,13 @@ import DatosPersistentes.AccesoDatosProductosVendidos;
 import Negocio.Entidades.ProductosVendidos;
 import java.util.List;
 
-/**
- *
- * @author DEMON
- */
+/********************************************************************** 
+ 
+    CLASE: {@link AdminProductosVendidos}
+    
+    AUTOR: Roberto Gil Flores
+
+ **********************************************************************/
 public class AdminProductosVendidos {
     private final AccesoDatosProductosVendidos datosProductosVendidos;
     

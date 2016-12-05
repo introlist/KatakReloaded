@@ -7,17 +7,21 @@ package Negocio.Operaciones;
 
 import Negocio.Entidades.ProductosVendidos;
 import Negocio.Entidades.Pedido;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 
-/**
- *
- * @author DEMON
- */
+/********************************************************************** 
+ 
+    CLASE: {@link VendedorMenudeo}
+    
+    AUTOR: Roberto Gil Flores
+     
+    Encargada de los realizar los {@link Pedido} a los compradores 
+    casuales de productos.
+
+ **********************************************************************/
 public class VendedorMenudeo {        
     AdminProductosVendidos adminProdVendidos;
     AdminPedidos adminPedidos;
@@ -36,9 +40,7 @@ public class VendedorMenudeo {
         String hora
         ) {
             Pedido nuevoPedido;
-
             nuevoPedido = new Pedido(
-            getFechaActual(),
             nombreComprador,
             direccion,
             telefono,
@@ -61,33 +63,32 @@ public class VendedorMenudeo {
             ) {
 
         List<ProductosVendidos> prodsVendidosRegistrados =
-                registrarProdsVendidos(inputProdsVendidos);
+                registrarProdictosVendidos(inputProdsVendidos);
         
-        Pedido nuevoPedido = construirPedido(
+        
+        adminPedidos.agregarPedidoRegistro(
+                construirPedido(
                         nombreComprador, 
                         direccion, 
                         telefono, 
                         fechaEntrega, 
                         prodsVendidosRegistrados, 
                         hora
-                );
-        adminPedidos.agregarPedidoRegistro(nuevoPedido);
-    }
-    
-    private Date getFechaActual() {
-        Date fechaActual = new Date();
-        DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        formatoFecha.format(fechaActual);
-        return fechaActual;
+                )
+        );
     }
 
-    private List<ProductosVendidos> registrarProdsVendidos(List<ProductosVendidos> gruposProdsInput){
+    /* Toma los productos seleccionados finales y se registran 
+    como productos vendidos en la base de datos */
+    private List<ProductosVendidos> registrarProdictosVendidos(
+            List<ProductosVendidos> inputProductosVendidos
+    ){
         List<ProductosVendidos> prodsVendidosRegistrados;
         prodsVendidosRegistrados = new ArrayList<>();
         
-        for(ProductosVendidos inputGrupoProd : gruposProdsInput){
-            adminProdVendidos.AgregarProductosVendidos(inputGrupoProd);
-            prodsVendidosRegistrados.add(inputGrupoProd);
+        for(ProductosVendidos nuevoProductosVendidos : inputProductosVendidos){
+            adminProdVendidos.AgregarProductosVendidos(nuevoProductosVendidos);
+            prodsVendidosRegistrados.add(nuevoProductosVendidos);
         }
         return prodsVendidosRegistrados;
     }
@@ -95,7 +96,7 @@ public class VendedorMenudeo {
     public double calcularCostoTotal(List<ProductosVendidos> prodsSeleccionados) {
         double costoTotal = 0;
         for(ProductosVendidos actual : prodsSeleccionados){
-            costoTotal += actual.getCostoProductoVendido();
+            costoTotal += actual.getCostoTotal();
         }
         return costoTotal;
     }
