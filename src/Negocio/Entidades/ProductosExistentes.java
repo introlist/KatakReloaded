@@ -22,11 +22,11 @@ public class ProductosExistentes implements Serializable{
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private int idProductoExistente;
     @ManyToOne(optional = false)
-    private Producto producto;
-    @Column(name = "existencia", nullable = false)
-    private int existencia;
+    private Producto productoExistente;
+    @Column(name = "cantidadExistencia", nullable = false)
+    private int cantidadExistente;
     
     public ProductosExistentes(){
         
@@ -34,40 +34,38 @@ public class ProductosExistentes implements Serializable{
     
     //Constructor
 
-    public ProductosExistentes(Producto producto, int existencia) {
-        this.producto = producto;
-        this.existencia = existencia;
+    public ProductosExistentes(Producto productoExistente, int cantidadExistente) {
+        this.productoExistente = productoExistente;
+        this.cantidadExistente = cantidadExistente;
     }
 
-    
+        
     //Getters
 
-    public int getId() {
-        return id;
+    public int getIdProductoExistente() {
+        return idProductoExistente;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Producto getProductoExistente() {
+        return productoExistente;
     }
 
-    public int getExistencia() {
-        return existencia;
+    public int getCantidadExistente() {
+        return cantidadExistente;
     }
-    
+
     //Setters
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdProductoExistente(int idProductoExistente) {
+        this.idProductoExistente = idProductoExistente;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setProductoExistente(Producto productoExistente) {
+        this.productoExistente = productoExistente;
     }
 
-    public void setExistencia(int existencia) {
-        this.existencia = existencia;
+    public void setCantidadExistente(int cantidadExistente) {
+        this.cantidadExistente = cantidadExistente;
     }
-    
-    
-    
+
 }

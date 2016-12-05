@@ -95,7 +95,7 @@ public class PanelPrincipalCliente extends JPanel{
         );
     }
     
-    private TableModel obtenerModeloTabla(){
+    private TableModel obtenerTableModel(){
         return TablaListaClientes.getModel();
     }
     
@@ -104,7 +104,7 @@ public class PanelPrincipalCliente extends JPanel{
     }
     
     public String obtenerValorEnFilaSeleccionada(int columna){
-        return obtenerModeloTabla().getValueAt(obtenerFilaSeleccionada(), columna).toString();
+        return obtenerTableModel().getValueAt(obtenerFilaSeleccionada(), columna).toString();
     }
     
     public boolean seSeleccionoFila(){
@@ -114,7 +114,7 @@ public class PanelPrincipalCliente extends JPanel{
     }
     
     public void ActualizarTabla(List<Cliente> clientes){
-        DefaultTableModel modelo=(DefaultTableModel)obtenerModeloTabla();
+        DefaultTableModel modelo=(DefaultTableModel)obtenerTableModel();
         modelo.setRowCount(0);
         for(Cliente cliente:clientes){
             modelo.addRow(new Object[]{cliente.getNombre(),
@@ -127,19 +127,19 @@ public class PanelPrincipalCliente extends JPanel{
 
 //----------Metodos de ActionListener    
     
-    public void agregarBotonAgregarListener(ActionListener listener){
+    public void agregarListenerBotonAgregar(ActionListener listener){
         BotonAgregar.addActionListener(listener);
     }
     
-    public void agregatBotonBorrarListener(ActionListener listener){
+    public void agregarListenerBotonBorrar(ActionListener listener){
         BotonBorrar.addActionListener(listener);
     }
     
-    public void agregarBotonEditarListener(ActionListener listener){
+    public void agregarListenerBotonEditar(ActionListener listener){
         BotonEditar.addActionListener(listener);
     }
     
-    public void agregarBotonRegresarMenuListener(ActionListener listener){
+    public void agregarListenerBotonRegresarMenu(ActionListener listener){
         BotonRegresarMenu.addActionListener(listener);
     }
     
