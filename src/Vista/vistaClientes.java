@@ -31,7 +31,7 @@ public class vistaClientes extends javax.swing.JFrame {
      */
     public vistaClientes() {
         administrador=new AdminClientes();
-        inicializarPaneles();
+        InicializarPaneles();
         pack();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         InicializarEventos();
@@ -53,7 +53,7 @@ public class vistaClientes extends javax.swing.JFrame {
     }
 
     private void InicializarEventoBotonRegresar() {
-        panelAgregarEditar.agregarBotonRegresarListener(new ActionListener() {
+        panelAgregarEditar.setBotonRegresarListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(panelBase,"1");
@@ -64,13 +64,13 @@ public class vistaClientes extends javax.swing.JFrame {
     }
 
     private void InicializarEventoBotonGuardar() {
-        panelAgregarEditar.agregarBotonGuardarListener(new ActionListener() {
+        panelAgregarEditar.setBotonGuardarListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Cliente nuevoCliente=new Cliente(panelAgregarEditar.obtenerCampoNombre(),
-                        panelAgregarEditar.obtenerCampoDireccion(),
-                        panelAgregarEditar.obtenerCampoTelefono(),
-                        panelAgregarEditar.obtenerCampoEMail());
+                Cliente nuevoCliente=new Cliente(panelAgregarEditar.getCampoNombre(),
+                        panelAgregarEditar.getCampoDireccion(),
+                        panelAgregarEditar.getCampoTelefono(),
+                        panelAgregarEditar.getCampoEMail());
                 if(modoEdicion){
                     administrador.editarCliente(nuevoCliente);
                 }else{
@@ -81,7 +81,7 @@ public class vistaClientes extends javax.swing.JFrame {
     }
 
     private void InicializarEventoBotonRegresarMenu() {
-        panelPrincipal.agregarListenerBotonRegresarMenu(new ActionListener() {
+        panelPrincipal.setListenerBotonRegresarMenu(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
@@ -92,14 +92,14 @@ public class vistaClientes extends javax.swing.JFrame {
     }
 
     private void InicializarEventoBotonBorrar() {
-        panelPrincipal.agregarListenerBotonBorrar(new ActionListener(){
+        panelPrincipal.setListenerBotonBorrar(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(panelPrincipal.seSeleccionoFila()){
-                    Cliente nuevoCliente=new Cliente(panelPrincipal.obtenerValorEnFilaSeleccionada(0),
-                            panelPrincipal.obtenerValorEnFilaSeleccionada(1),
-                            panelPrincipal.obtenerValorEnFilaSeleccionada(2),
-                            panelPrincipal.obtenerValorEnFilaSeleccionada(3));
+                    Cliente nuevoCliente=new Cliente(panelPrincipal.getValorEnFilaSeleccionada(0),
+                            panelPrincipal.getValorEnFilaSeleccionada(1),
+                            panelPrincipal.getValorEnFilaSeleccionada(2),
+                            panelPrincipal.getValorEnFilaSeleccionada(3));
                     
                     administrador.eliminarCliente(nuevoCliente);
                 }
@@ -111,15 +111,15 @@ public class vistaClientes extends javax.swing.JFrame {
     }
 
     private void InicializarEventoBotonEditar() {
-        panelPrincipal.agregarListenerBotonEditar(new ActionListener(){
+        panelPrincipal.setListenerBotonEditar(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(panelPrincipal.seSeleccionoFila()){
                     modoEdicion=true;
-                    panelAgregarEditar.llenarCampoNombre(panelPrincipal.obtenerValorEnFilaSeleccionada(0));
-                    panelAgregarEditar.llenarCampoDireccion(panelPrincipal.obtenerValorEnFilaSeleccionada(1));
-                    panelAgregarEditar.llenarCampoTelefono(panelPrincipal.obtenerValorEnFilaSeleccionada(2));
-                    panelAgregarEditar.llenarCampoEMail(panelPrincipal.obtenerValorEnFilaSeleccionada(3));
+                    panelAgregarEditar.setCampoNombre(panelPrincipal.getValorEnFilaSeleccionada(0));
+                    panelAgregarEditar.setCampoDireccion(panelPrincipal.getValorEnFilaSeleccionada(1));
+                    panelAgregarEditar.setCampoTelefono(panelPrincipal.getValorEnFilaSeleccionada(2));
+                    panelAgregarEditar.setCampoEMail(panelPrincipal.getValorEnFilaSeleccionada(3));
                     cardLayout.show(panelBase, "2");
                 }
                 else{
@@ -130,19 +130,19 @@ public class vistaClientes extends javax.swing.JFrame {
     }
 
     private void InicializarEventoBotonAgregar() {
-        panelPrincipal.agregarListenerBotonAgregar(new ActionListener(){
+        panelPrincipal.setListenerBotonAgregar(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelAgregarEditar.llenarCampoNombre("");
-                panelAgregarEditar.llenarCampoDireccion("");
-                panelAgregarEditar.llenarCampoTelefono("");
-                panelAgregarEditar.llenarCampoEMail("");
+                panelAgregarEditar.setCampoNombre("");
+                panelAgregarEditar.setCampoDireccion("");
+                panelAgregarEditar.setCampoTelefono("");
+                panelAgregarEditar.setCampoEMail("");
                 cardLayout.show(panelBase, "2");
             }
         });
     }
     
-    private void inicializarPaneles(){
+    private void InicializarPaneles(){
         panelBase=new JPanel();  
         cardLayout=new CardLayout();
         panelBase.setLayout(cardLayout);

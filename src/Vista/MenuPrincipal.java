@@ -5,7 +5,6 @@
  */
 package Vista;
 
-import Vista.Bases.Obsoleto.vistaProductos;
 
 
 /********************************************************************** 
@@ -173,7 +172,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btMenuInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuInventarioActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        VistaInventario inventario = new VistaInventario();
+        vistaInventario inventario = new vistaInventario();
         inventario.setVisible(true);
     }//GEN-LAST:event_btMenuInventarioActionPerformed
 

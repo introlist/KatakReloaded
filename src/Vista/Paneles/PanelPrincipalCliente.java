@@ -27,6 +27,10 @@ public class PanelPrincipalCliente extends JPanel{
     private javax.swing.JScrollPane AdminClientesScrollPanel;
     
     public PanelPrincipalCliente(){
+        InicializarComponentes();
+    }
+
+    private void InicializarComponentes() {
         AdminClientesScrollPanel = new javax.swing.JScrollPane();
         TablaListaClientes = new javax.swing.JTable();
         BotonAgregar = new javax.swing.JButton();
@@ -37,12 +41,12 @@ public class PanelPrincipalCliente extends JPanel{
         setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Administrar Clientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP));
 
         TablaListaClientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nombre", "Direccion", "Telefono", "E-mail"
-            }
+                new Object [][] {
+                    
+                },
+                new String [] {
+                    "Nombre", "Direccion", "Telefono", "E-mail"
+                }
         ) {
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -65,56 +69,56 @@ public class PanelPrincipalCliente extends JPanel{
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(this);
         setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AdminClientesScrollPanel)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(BotonAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotonEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotonBorrar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BotonRegresarMenu)))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(AdminClientesScrollPanel)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(BotonAgregar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BotonEditar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BotonBorrar)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(BotonRegresarMenu)))
+                        .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AdminClientesScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonAgregar)
-                    .addComponent(BotonEditar)
-                    .addComponent(BotonBorrar))
-                .addGap(54, 54, 54)
-                .addComponent(BotonRegresarMenu))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AdminClientesScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(BotonAgregar)
+                                .addComponent(BotonEditar)
+                                .addComponent(BotonBorrar))
+                        .addGap(54, 54, 54)
+                        .addComponent(BotonRegresarMenu))
         );
     }
     
-    private TableModel obtenerTableModel(){
+    private TableModel getTableModel(){
         return TablaListaClientes.getModel();
     }
     
-    private int obtenerFilaSeleccionada(){
+    private int getFilaSeleccionada(){
         return TablaListaClientes.getSelectedRow();
     }
     
-    public String obtenerValorEnFilaSeleccionada(int columna){
-        return obtenerTableModel().getValueAt(obtenerFilaSeleccionada(), columna).toString();
+    public String getValorEnFilaSeleccionada(int columna){
+        return getTableModel().getValueAt(getFilaSeleccionada(), columna).toString();
     }
     
     public boolean seSeleccionoFila(){
         int NINGUNA_FILA_SELECCIONADA=-1;
         
-        return (obtenerFilaSeleccionada() !=NINGUNA_FILA_SELECCIONADA);
+        return (getFilaSeleccionada() !=NINGUNA_FILA_SELECCIONADA);
     }
     
     public void ActualizarTabla(List<Cliente> clientes){
-        DefaultTableModel modelo=(DefaultTableModel)obtenerTableModel();
+        DefaultTableModel modelo=(DefaultTableModel)getTableModel();
         modelo.setRowCount(0);
         for(Cliente cliente:clientes){
             modelo.addRow(new Object[]{cliente.getNombre(),
@@ -127,19 +131,19 @@ public class PanelPrincipalCliente extends JPanel{
 
 //----------Metodos de ActionListener    
     
-    public void agregarListenerBotonAgregar(ActionListener listener){
+    public void setListenerBotonAgregar(ActionListener listener){
         BotonAgregar.addActionListener(listener);
     }
     
-    public void agregarListenerBotonBorrar(ActionListener listener){
+    public void setListenerBotonBorrar(ActionListener listener){
         BotonBorrar.addActionListener(listener);
     }
     
-    public void agregarListenerBotonEditar(ActionListener listener){
+    public void setListenerBotonEditar(ActionListener listener){
         BotonEditar.addActionListener(listener);
     }
     
-    public void agregarListenerBotonRegresarMenu(ActionListener listener){
+    public void setListenerBotonRegresarMenu(ActionListener listener){
         BotonRegresarMenu.addActionListener(listener);
     }
     

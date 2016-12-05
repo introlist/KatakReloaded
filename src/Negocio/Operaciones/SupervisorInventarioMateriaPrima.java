@@ -5,6 +5,7 @@
  */
 package Negocio.Operaciones;
 
+import DatosPersistentes.AccesoDatosMateriaPrima;
 import Negocio.Entidades.MateriaPrima;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,42 +17,71 @@ import java.util.List;
  * @author Bernardo Espinoza
  */
 public class SupervisorInventarioMateriaPrima {
-    private AdminMateriaPrima adminMateriaPrima;
+    private final AccesoDatosMateriaPrima accesoDatos;
 
     public SupervisorInventarioMateriaPrima() {
-        adminMateriaPrima = new AdminMateriaPrima();
+        accesoDatos = new AccesoDatosMateriaPrima();
     }
     
     public void AgregarAInventario(String nombre,int cantidadAgregada){
-        List<MateriaPrima> lista=adminMateriaPrima.getListMateriaPrimaPorNombre(nombre);
+        List<MateriaPrima> lista=getListMateriaPrimaPorNombre(nombre);
         int suma=0;
         for(MateriaPrima nuevaMateriaPrima:lista){
-            if(nuevaMateriaPrima.getNombre()==nombre){
+            if(nuevaMateriaPrima.getNombre().equals(nombre)){
                 suma=nuevaMateriaPrima.getCantidad()+cantidadAgregada;
                 nuevaMateriaPrima.setCantidad(suma);
-                adminMateriaPrima.editarMateriaPrima(nuevaMateriaPrima);
+                editarMateriaPrima(nuevaMateriaPrima);
             }
         }
     }
     
     public void QuitarDelInventario(String nombre,int cantidadAgregada){
-        List<MateriaPrima> lista=adminMateriaPrima.getListMateriaPrimaPorNombre(nombre);
+        List<MateriaPrima> lista=getListaMateriaPrima();
         int resta=0;
         for(MateriaPrima nuevaMateriaPrima:lista){
-            if(nuevaMateriaPrima.getNombre()==nombre){
-                resta=nuevaMateriaPrima.getCantidad()+cantidadAgregada;
+            if(nuevaMateriaPrima.getNombre().equals(nombre)){
+                resta=nuevaMateriaPrima.getCantidad()-cantidadAgregada;
                 nuevaMateriaPrima.setCantidad(resta);
-                adminMateriaPrima.editarMateriaPrima(nuevaMateriaPrima);
+                editarMateriaPrima(nuevaMateriaPrima);
             }
         }
     }
     
     public void GestionarNuevoMaterial(MateriaPrima nuevaMateriaPrima){
         nuevaMateriaPrima.setCantidad(0);
-        adminMateriaPrima.agregarMateriaPrima(nuevaMateriaPrima);
+        agregarMateriaPrima(nuevaMateriaPrima);
     }
     
     public List<MateriaPrima> ObtenerListadoMateriaPrima(){
-        return adminMateriaPrima.getListaMateriaPrima();
+        return getListaMateriaPrima();
+    }
+    
+    public void DejarDeUtilizarMateriaPrima(String nombre){
+        List<MateriaPrima> lista=getListaMateriaPrima();
+        for(MateriaPrima materiaPrima:lista){
+            if(materiaPrima.getNombre().equals(nombre)){
+                borrarMateriaPrima(materiaPrima);
+            }
+        }
+    }
+    
+    private void agregarMateriaPrima(MateriaPrima materiaPrima){
+        accesoDatos.insertar(materiaPrima);
+    }
+    
+    private void editarMateriaPrima(MateriaPrima materiaPrima){
+        accesoDatos.sobrescribir(materiaPrima);
+    }
+    
+    private void borrarMateriaPrima(MateriaPrima materiaPrima){
+        accesoDatos.borrar(materiaPrima);
+    }
+    
+    private List<MateriaPrima> getListaMateriaPrima(){
+        return accesoDatos.getListaTodos();
+    }
+    
+    private List<MateriaPrima> getListMateriaPrimaPorNombre(String nombre){
+        return accesoDatos.getPorNombre(nombre);
     }
 }

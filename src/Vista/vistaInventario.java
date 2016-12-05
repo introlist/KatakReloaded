@@ -5,17 +5,256 @@
  */
 package Vista;
 
+import Negocio.Entidades.Enums.UnidadMedida;
+import Negocio.Entidades.MateriaPrima;
+import Negocio.Entidades.Producto;
+import Negocio.Operaciones.SupervisorInventarioMateriaPrima;
+import Negocio.Operaciones.SupervisorInventarioProductos;
+import Vista.Paneles.PanelInventario;
+import Vista.Paneles.PanelNuevaMateriaPrima;
+import Vista.Paneles.PanelNuevoProducto;
+import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Mario
  */
-public class VistaInventario extends javax.swing.JFrame {
+public class vistaInventario extends javax.swing.JFrame {
+    private JPanel panelBase;
+    private PanelInventario panelInv;
+    private PanelNuevaMateriaPrima panelNuevaMat;
+    private PanelNuevoProducto panelNuevoProd;
+    private CardLayout cardLayout;
+    private SupervisorInventarioMateriaPrima supervisorMatPrima;
+    private SupervisorInventarioProductos supervisorProds;
 
     /**
      * Creates new form vistaInventario
      */
-    public VistaInventario() {
-        initComponents();
+    public vistaInventario() {
+        supervisorMatPrima=new SupervisorInventarioMateriaPrima();
+        supervisorProds=new SupervisorInventarioProductos();
+        
+        InicializarPaneles();
+        
+        pack();
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
+        InicializarEventos();
+    }
+    
+    private void InicializarPaneles(){
+        panelBase=new JPanel();
+        cardLayout=new CardLayout();
+        panelBase.setLayout(cardLayout);
+        
+        panelInv=new PanelInventario();
+        panelNuevaMat=new PanelNuevaMateriaPrima();
+        panelNuevoProd=new PanelNuevoProducto();
+        
+        panelBase.add(panelInv,"1");
+        panelBase.add(panelNuevaMat,"2");
+        panelBase.add(panelNuevoProd,"3");
+        
+        cardLayout.show(panelBase,"1");
+        
+        add(panelBase);
+        ActualizarTablas();
+    }
+
+    private void ActualizarTablas() {
+        panelInv.ActualizarTablaMateriasP(supervisorMatPrima.ObtenerListadoMateriaPrima());
+        panelInv.ActualizarTablaProductos(supervisorProds.getListaProductosDisponibles());
+    }
+    
+    private void InicializarEventos(){
+        InicializarEventoBotonAñadirMateriaPrima();
+        InicializarEventoBotonAñadirProducto();
+        InicializarEventoBotonEliminarMateriaPrima();
+        InicializarEventoBotonEliminarProducto();
+        InicializarEventoBotonGuardarMateriaPrima();
+        InicializarEventoBotonGuardarProducto();
+        InicializarEventoBotonNuevaMateriaPrima();
+        InicializarEventoBotonNuevoProducto();
+        InicializarEventoBotonRegresarDeMateriaPrimaNueva();
+        InicializarEventoBotonRegresarDeProductoNuevo();
+        InicializarEventoBotonSustraerMateriaPrima();
+        InicializarEventoBotonSustraerProducto();
+    }
+    
+    private void InicializarEventoBotonAñadirMateriaPrima(){
+        panelInv.setListenerBotonAñadirMateria(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(panelInv.seSeleccFilaTablaMateriasP()){
+                    supervisorMatPrima.AgregarAInventario(
+                            panelInv.getValorEnFilaSeleccTablaMateriasP(0),
+                            Integer.parseInt(panelInv.getCampoAñadirMateria())
+                    );
+                    ActualizarTablas();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
+                }
+            }
+            
+        });
+    }
+    
+    private void InicializarEventoBotonAñadirProducto(){
+        panelInv.setListenerBotonAñadirProducto(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(panelInv.seSeleccFilaTablaProductos()){
+                    supervisorProds.AgregarAInventario(
+                            panelInv.getValorEnFilaSeleccTablaProductos(0),
+                            Integer.parseInt(panelInv.getCampoAñadirProducto())
+                    );
+                    ActualizarTablas();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
+                }
+            }
+        });
+    }
+    
+    private void InicializarEventoBotonNuevaMateriaPrima(){
+        panelInv.setListenerBotonNuevaMateria(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panelBase, "2");
+            }
+        });
+    }
+    
+    private void InicializarEventoBotonNuevoProducto(){
+        panelInv.setListenerBotonNuevoProducto(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panelBase, "3");
+            }
+        });
+    }
+    
+    private void InicializarEventoBotonSustraerMateriaPrima(){
+        panelInv.setListenerBotonSustraerMateria(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(panelInv.seSeleccFilaTablaMateriasP()){
+                    supervisorMatPrima.QuitarDelInventario(
+                            panelInv.getValorEnFilaSeleccTablaMateriasP(0),
+                            Integer.parseInt(panelInv.getCampoSustraerMateria())
+                    );
+                    ActualizarTablas();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
+                }
+            }
+        });
+    }
+    
+    private void InicializarEventoBotonSustraerProducto(){
+        panelInv.setListenerBotonSustraerProducto(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(panelInv.seSeleccFilaTablaProductos()){
+                    supervisorProds.QuitarDelInventario(
+                            panelInv.getValorEnFilaSeleccTablaProductos(0),
+                            Integer.parseInt(panelInv.getCampoSustraerProducto())
+                    );
+                    ActualizarTablas();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
+                }
+            }
+        });
+    }
+    
+    private void InicializarEventoBotonEliminarMateriaPrima(){
+        panelInv.setListenerBotonEliminarMateria(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(panelInv.seSeleccFilaTablaMateriasP()){
+                    supervisorMatPrima.DejarDeUtilizarMateriaPrima(
+                            panelInv.getValorEnFilaSeleccTablaMateriasP(0)
+                    );
+                    ActualizarTablas();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
+                }
+            }
+        });
+    }
+    
+    private void InicializarEventoBotonEliminarProducto(){
+        panelInv.setListenerBotonEliminarProducto(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(panelInv.seSeleccFilaTablaProductos()){
+                    supervisorProds.DejarDeUtilizarProducto(
+                            panelInv.getValorEnFilaSeleccTablaProductos(0)
+                    );
+                    ActualizarTablas();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
+                }
+            }
+        });
+    }
+    
+    private void InicializarEventoBotonGuardarMateriaPrima(){
+        panelNuevaMat.setListenerBotonGuardar(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MateriaPrima nuevaMateriaPrima=new MateriaPrima(
+                        panelNuevaMat.getCampoNombre(),
+                        panelNuevaMat.getBotonSeleccionado()
+                );
+                supervisorMatPrima.GestionarNuevoMaterial(nuevaMateriaPrima);
+            }
+        });
+    }
+    
+    private void InicializarEventoBotonGuardarProducto(){
+        panelNuevoProd.setListenerBotonGuardar(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Producto nuevoProducto=new Producto(
+                        panelNuevoProd.getCampoNombre(),
+                        Integer.parseInt(panelNuevoProd.getCampoPrecio())
+                );
+                supervisorProds.GestionarNuevoProducto(nuevoProducto);
+            }
+        });
+    }
+    
+    private void InicializarEventoBotonRegresarDeMateriaPrimaNueva(){
+        panelNuevaMat.setListenerBotonRegresar(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panelBase, "1");
+                ActualizarTablas();
+            }
+        });
+    }
+    
+    private void InicializarEventoBotonRegresarDeProductoNuevo(){
+        panelNuevoProd.setListenerBotonRegresar(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panelBase, "1");
+                ActualizarTablas();
+            }
+        });
     }
 
     /**
@@ -27,34 +266,17 @@ public class VistaInventario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 365, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 61, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 63, Short.MAX_VALUE)
         );
 
         pack();
@@ -77,13 +299,13 @@ public class VistaInventario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -93,12 +315,11 @@ public class VistaInventario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaInventario().setVisible(true);
+                new vistaInventario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
