@@ -13,10 +13,13 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 
-/**
- *
- * @author DEMON
- */
+/********************************************************************** 
+ 
+    CLASE: {@link VistaPedidos}
+    
+    AUTOR: Roberto Gil Flores
+
+ **********************************************************************/
 public class VistaPedidos extends javax.swing.JFrame {
     
     AdminPedidos adminPedidos = new AdminPedidos();
@@ -24,9 +27,7 @@ public class VistaPedidos extends javax.swing.JFrame {
     ModeloTablaPedidos modeloTablaPedidosCompletados = new ModeloTablaPedidos();
     
     
-    /**
-     * Creates new form vistaPedidosGil
-     */
+
     public VistaPedidos() {
         initComponents();
         rellenarTablaPendientes();

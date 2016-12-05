@@ -8,6 +8,7 @@ package Negocio.Operaciones;
 import DatosPersistentes.AccesoDatosVentas;
 import Negocio.Entidades.Venta;
 import java.util.List;
+import java.util.Date;
 
 /********************************************************************** 
  
@@ -38,6 +39,10 @@ public class AdminVentas {
     
     public List<Venta> getTodasVentas(){
         return datosVenta.getListaTodos();
+    }
+    
+    public List<Venta> getVentasPorFecha(Date fecha){
+        return datosVenta.getPorFechaCreacion(fecha);
     }
     
 }

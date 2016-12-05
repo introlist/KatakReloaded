@@ -74,7 +74,7 @@
                   <Component id="btMenuVentas" min="-2" pref="78" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btMenuClientes" min="-2" pref="80" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Component id="btMenuPedidos" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btMenuInventario" min="-2" pref="80" max="-2" attributes="0"/>
