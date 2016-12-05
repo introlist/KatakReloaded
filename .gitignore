@@ -49,3 +49,5 @@ Temporary Items
 nbproject/project.properties
 *.properties
 /nbproject/private/
+nbproject/private/private.properties
+nbproject/private/private.xml

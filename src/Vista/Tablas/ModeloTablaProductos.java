@@ -16,6 +16,7 @@ public class ModeloTablaProductos extends ModeloTabla<Producto>{
     private static final int INDICE_ID = 0;
     private static final int INDICE_NOMBRE = 1;
     private static final int INDICE_PRECIO = 2;
+    
     private static final String[] TITULOS_COLUMNAS =
     {
         "ID",
