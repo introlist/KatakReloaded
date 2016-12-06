@@ -27,6 +27,7 @@ public class PanelInventario extends JPanel{
     private javax.swing.JButton BotonEliminarProducto;
     private javax.swing.JButton BotonNuevaMateria;
     private javax.swing.JButton BotonNuevoProducto;
+    private javax.swing.JButton BotonRegresarMenu;
     private javax.swing.JButton BotonSustraerMateria;
     private javax.swing.JButton BotonSustraerProducto;
     private javax.swing.JTextField CampoAñadirMateria;
@@ -63,6 +64,7 @@ public class PanelInventario extends JPanel{
         CampoSustraerMateria = new javax.swing.JTextField();
         BotonNuevaMateria = new javax.swing.JButton();
         BotonEliminarMateria = new javax.swing.JButton();
+        BotonRegresarMenu = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventario", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP));
 
@@ -128,15 +130,14 @@ public class PanelInventario extends JPanel{
 
         BotonEliminarMateria.setText("Eliminar Materia Prima");
 
+        BotonRegresarMenu.setText("Regresar al Menu Principal");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(this);
         setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,7 +169,12 @@ public class PanelInventario extends JPanel{
                                 .addComponent(BotonSustraerMateria)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CampoSustraerMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotonRegresarMenu, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,11 +206,17 @@ public class PanelInventario extends JPanel{
                     .addComponent(BotonSustraerProducto)
                     .addComponent(CampoAñadirProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CampoSustraerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(BotonRegresarMenu)
+                .addContainerGap())
         );
     }
     
 //---------------------Metodos de ActionListener-------------------------------    
+    
+    public void setListenerBotonRegresarMenu(ActionListener listener){
+        BotonRegresarMenu.addActionListener(listener);
+    }
     
     public void setListenerBotonAñadirMateria(ActionListener listener){
         BotonAñadirMateria.addActionListener(listener);

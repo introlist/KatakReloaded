@@ -56,10 +56,6 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane2" min="-2" pref="452" max="-2" attributes="0"/>
@@ -97,6 +93,13 @@
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="BotonRegresarMenu" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -138,7 +141,9 @@
                       <Component id="CampoAñadirProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="CampoSustraerProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="47" max="32767" attributes="0"/>
+                  <Component id="BotonRegresarMenu" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -272,6 +277,11 @@
         <Component class="javax.swing.JButton" name="BotonEliminarMateriaPrima">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Materia Prima"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="BotonRegresarMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Regresar al Menu Principal"/>
           </Properties>
         </Component>
       </SubComponents>

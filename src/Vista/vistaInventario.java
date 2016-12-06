@@ -16,6 +16,7 @@ import Vista.Paneles.PanelNuevoProducto;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.Action;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -84,6 +85,18 @@ public class vistaInventario extends javax.swing.JFrame {
         InicializarEventoBotonRegresarDeProductoNuevo();
         InicializarEventoBotonSustraerMateriaPrima();
         InicializarEventoBotonSustraerProducto();
+    }
+    
+    private void InicializarEventoBotonRegresarMenu(){
+        panelInv.setListenerBotonRegresarMenu(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                MenuPrincipal menuPrincipal=new MenuPrincipal();
+                menuPrincipal.setVisible(true);
+                
+            }
+        });
     }
     
     private void InicializarEventoBotonAñadirMateriaPrima(){
