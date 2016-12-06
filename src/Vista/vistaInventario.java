@@ -85,6 +85,7 @@ public class vistaInventario extends javax.swing.JFrame {
         InicializarEventoBotonRegresarDeProductoNuevo();
         InicializarEventoBotonSustraerMateriaPrima();
         InicializarEventoBotonSustraerProducto();
+        InicializarEventoBotonRegresarMenu();
     }
     
     private void InicializarEventoBotonRegresarMenu(){
