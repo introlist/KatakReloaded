@@ -17,71 +17,51 @@ import java.util.List;
  * @author Bernardo Espinoza
  */
 public class SupervisorInventarioMateriaPrima {
-    private final AccesoDatosMateriaPrima accesoDatos;
+    private AdminMateriasPrimas adminMateriasPrimas;
 
     public SupervisorInventarioMateriaPrima() {
-        accesoDatos = new AccesoDatosMateriaPrima();
+        adminMateriasPrimas=new AdminMateriasPrimas();
     }
     
-    public void AgregarAInventario(String nombre,int cantidadAgregada){
-        List<MateriaPrima> lista=getListMateriaPrimaPorNombre(nombre);
+    public void agregarCantidadAInventario(String nombre,int cantidadAgregada){
+        List<MateriaPrima> lista=adminMateriasPrimas.getListMateriaPrimaPorNombre(nombre);
         int suma=0;
         for(MateriaPrima nuevaMateriaPrima:lista){
             if(nuevaMateriaPrima.getNombre().equals(nombre)){
                 suma=nuevaMateriaPrima.getCantidad()+cantidadAgregada;
                 nuevaMateriaPrima.setCantidad(suma);
-                editarMateriaPrima(nuevaMateriaPrima);
+                adminMateriasPrimas.editarMateriaPrima(nuevaMateriaPrima);
             }
         }
     }
     
-    public void QuitarDelInventario(String nombre,int cantidadAgregada){
-        List<MateriaPrima> lista=getListaMateriaPrima();
+    public void quitarCantidadDelInventario(String nombre,int cantidadAgregada){
+        List<MateriaPrima> lista=adminMateriasPrimas.getListaMateriaPrima();
         int resta=0;
         for(MateriaPrima nuevaMateriaPrima:lista){
             if(nuevaMateriaPrima.getNombre().equals(nombre)){
                 resta=nuevaMateriaPrima.getCantidad()-cantidadAgregada;
                 nuevaMateriaPrima.setCantidad(resta);
-                editarMateriaPrima(nuevaMateriaPrima);
+                adminMateriasPrimas.editarMateriaPrima(nuevaMateriaPrima);
             }
         }
     }
     
-    public void RegistrarNuevoMaterial(MateriaPrima nuevaMateriaPrima){
+    public void registrarNuevoMaterial(MateriaPrima nuevaMateriaPrima){
         nuevaMateriaPrima.setCantidad(0);
-        agregarMateriaPrima(nuevaMateriaPrima);
+        adminMateriasPrimas.agregarMateriaPrima(nuevaMateriaPrima);
     }
     
-    public List<MateriaPrima> ObtenerListadoMateriaPrima(){
-        return getListaMateriaPrima();
+    public List<MateriaPrima> obtenerListadoMateriaPrima(){
+        return adminMateriasPrimas.getListaMateriaPrima();
     }
     
-    public void DejarDeUtilizarMateriaPrima(String nombre){
-        List<MateriaPrima> lista=getListaMateriaPrima();
+    public void borrarMateriaPrima(String nombre){
+        List<MateriaPrima> lista=adminMateriasPrimas.getListaMateriaPrima();
         for(MateriaPrima materiaPrima:lista){
             if(materiaPrima.getNombre().equals(nombre)){
-                borrarMateriaPrima(materiaPrima);
+                adminMateriasPrimas.borrarMateriaPrima(materiaPrima);
             }
         }
-    }
-    
-    private void agregarMateriaPrima(MateriaPrima materiaPrima){
-        accesoDatos.insertar(materiaPrima);
-    }
-    
-    private void editarMateriaPrima(MateriaPrima materiaPrima){
-        accesoDatos.sobrescribir(materiaPrima);
-    }
-    
-    private void borrarMateriaPrima(MateriaPrima materiaPrima){
-        accesoDatos.borrar(materiaPrima);
-    }
-    
-    private List<MateriaPrima> getListaMateriaPrima(){
-        return accesoDatos.getListaTodos();
-    }
-    
-    private List<MateriaPrima> getListMateriaPrimaPorNombre(String nombre){
-        return accesoDatos.getPorNombre(nombre);
-    }
+    }        
 }

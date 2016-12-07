@@ -16,67 +16,49 @@ import java.util.List;
  * @author Mario
  */
 public class SupervisorInventarioProductos {
-    private AdminProductos adminProd;
-    private final AccesoDatosProductosExistentes datosProductosExistentes;
+    private AdminProductos adminProductos;
+    private AdminProductosExistentes adminProductosExistentes;
 
     public SupervisorInventarioProductos() {
-        datosProductosExistentes = new AccesoDatosProductosExistentes();
-        adminProd = new AdminProductos();
+        adminProductos = new AdminProductos();
+        adminProductosExistentes = new AdminProductosExistentes();
     }
     
-    private void AgregarProductosExistentes(ProductosExistentes productosExistentes){
-        datosProductosExistentes.insertar(productosExistentes);
-    }
     
-    private void EditarProductosExistentes(ProductosExistentes productosExistentes){
-        datosProductosExistentes.sobrescribir(productosExistentes);
-    }
     
-    private void BorrarProductosExistentes(ProductosExistentes productosExistentes){
-        datosProductosExistentes.borrar(productosExistentes);
-    }
-    
-    private ProductosExistentes getProductosExistentesPorID(int id) {
-        return datosProductosExistentes.getPorID(id);
-    }
-    
-    private List<ProductosExistentes> getListaProductosExistentes() {
-        return datosProductosExistentes.getListaTodos();
-    }
-    
-    public void AgregarAInventario(String nombre,int cantidadAgregada){
-        List<ProductosExistentes> lista=getListaProductosExistentes();
+    public void agregarCantidadAInventario(String nombre,int cantidadAgregada){
+        List<ProductosExistentes> lista=adminProductosExistentes.getListaProductosExistentes();
         int cantidadExistente=0;
         for(ProductosExistentes nuevoProductoExistente:lista){
             if(nuevoProductoExistente.getProducto().getNombre().equals(nombre)){
                 cantidadExistente=nuevoProductoExistente.getCantidadExistente()+cantidadAgregada;
                 nuevoProductoExistente.setCantidadExistente(cantidadExistente);
-                EditarProductosExistentes(nuevoProductoExistente);
+                adminProductosExistentes.EditarProductosExistentes(nuevoProductoExistente);
             }
         }
     }
     
-    public void QuitarDelInventario(String nombre,int cantidadQuitada){
-        List<ProductosExistentes> lista=getListaProductosExistentes();
+    public void quitarCantidadDelInventario(String nombre,int cantidadQuitada){
+        List<ProductosExistentes> lista=adminProductosExistentes.getListaProductosExistentes();
         int cantidadExistente=0;
         for(ProductosExistentes nuevoProductoExistente:lista){
             if(nuevoProductoExistente.getProducto().getNombre().equals(nombre)){
                 cantidadExistente=nuevoProductoExistente.getCantidadExistente()-cantidadQuitada;
                 nuevoProductoExistente.setCantidadExistente(cantidadExistente);
-                EditarProductosExistentes(nuevoProductoExistente);
+                adminProductosExistentes.EditarProductosExistentes(nuevoProductoExistente);
             }
         }
     }
     
-    public void RegistrarNuevoProducto(Producto nuevoProducto){
-        adminProd.AgregarProductos(nuevoProducto);
+    public void registrarNuevoProducto(Producto nuevoProducto){
+        adminProductos.AgregarProductos(nuevoProducto);
         ProductosExistentes nuevoProductosExistentes=new ProductosExistentes(nuevoProducto, 0);
-        AgregarProductosExistentes(nuevoProductosExistentes);
+        adminProductosExistentes.AgregarProductosExistentes(nuevoProductosExistentes);
     }
     
     public List<ProductosExistentes> getListaProductosDisponibles(){
         List<ProductosExistentes> prodsDisponibles=new ArrayList<>();
-        List<ProductosExistentes> lista=getListaProductosExistentes();
+        List<ProductosExistentes> lista=adminProductosExistentes.getListaProductosExistentes();
         for(ProductosExistentes nuevoProductosExistentes:lista){
             if(nuevoProductosExistentes.getProducto().esDisponible()){
                 prodsDisponibles.add(nuevoProductosExistentes);
@@ -85,13 +67,13 @@ public class SupervisorInventarioProductos {
         return prodsDisponibles;
     }
     
-    public void DejarDeUtilizarProducto(String nombre){
-        List<ProductosExistentes> lista=getListaProductosExistentes();
+    public void quitarDisponibilidadProducto(String nombre){
+        List<ProductosExistentes> lista=adminProductosExistentes.getListaProductosExistentes();
         for(ProductosExistentes productosExistentes:lista){
             if(productosExistentes.getProducto().getNombre().equals(nombre)){
                Producto producto = productosExistentes.getProducto();
                producto.setEsDisponible(false);
-               adminProd.EditarProductos(producto);
+               adminProductos.EditarProductos(producto);
             }
         }
     }
