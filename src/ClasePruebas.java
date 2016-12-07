@@ -13,7 +13,7 @@ import Negocio.Operaciones.AdminProductosVendidos;
 import Negocio.Operaciones.AdminPedidos;
 import Negocio.Operaciones.AdminProductos;
 import Negocio.Operaciones.AdminVentas;
-import Vista.MenuPrincipal;
+import Vista.VistaMenuPrincipal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;

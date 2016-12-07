@@ -17,7 +17,7 @@ import javax.persistence.Table;
  
     CLASE: {@link Cliente}
     
-    AUTOR: Roberto Gil Flores
+    AUTOR: Bernardo Espinoza Lara
 
  **********************************************************************/
 

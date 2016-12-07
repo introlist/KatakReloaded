@@ -29,7 +29,7 @@ public class ProductosExistentes implements Serializable{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int idProductoExistente;
     @ManyToOne(optional = false)
-    private Producto productoExistente;
+    private Producto producto;
     @Column(name = "cantidadExistencia", nullable = false)
     private int cantidadExistente;
     
@@ -40,7 +40,7 @@ public class ProductosExistentes implements Serializable{
     //Constructor
 
     public ProductosExistentes(Producto productoExistente, int cantidadExistente) {
-        this.productoExistente = productoExistente;
+        this.producto = productoExistente;
         this.cantidadExistente = cantidadExistente;
     }
 
@@ -51,8 +51,8 @@ public class ProductosExistentes implements Serializable{
         return idProductoExistente;
     }
 
-    public Producto getProductoExistente() {
-        return productoExistente;
+    public Producto getProducto() {
+        return producto;
     }
 
     public int getCantidadExistente() {
@@ -66,7 +66,7 @@ public class ProductosExistentes implements Serializable{
     }
 
     public void setProductoExistente(Producto productoExistente) {
-        this.productoExistente = productoExistente;
+        this.producto = productoExistente;
     }
 
     public void setCantidadExistente(int cantidadExistente) {

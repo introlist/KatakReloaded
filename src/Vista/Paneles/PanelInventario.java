@@ -305,7 +305,7 @@ public class PanelInventario extends JPanel{
         DefaultTableModel modelo=(DefaultTableModel)getTableModelTablaProductos();
         modelo.setRowCount(0);
         for(ProductosExistentes producto:productosExist){
-            modelo.addRow(new Object[]{producto.getProductoExistente().getNombre(),
+            modelo.addRow(new Object[]{producto.getProducto().getNombre(),
                                        producto.getCantidadExistente()}
                          );
         }

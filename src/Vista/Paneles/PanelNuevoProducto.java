@@ -97,4 +97,22 @@ public class PanelNuevoProducto extends JPanel {
     public String getCampoPrecio(){
         return CampoPrecio.getText();
     }
+    
+    private void setCampoNombre(String nombre){
+        CampoNombre.setText(nombre);
+    }
+    
+    private void setCampoPrecio(String precio){
+        CampoPrecio.setText(precio);
+    }
+    
+    public boolean camposValidados(){
+        ajustarCampos();
+        return (!getCampoNombre().equals("") || !getCampoPrecio().equals(""));
+    }
+
+    private void ajustarCampos() {
+        setCampoNombre(getCampoNombre().trim());
+        setCampoPrecio(getCampoPrecio().trim());
+    }
 }

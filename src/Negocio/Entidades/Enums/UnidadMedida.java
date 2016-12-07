@@ -5,10 +5,7 @@
  */
 package Negocio.Entidades.Enums;
 
-/**
- *
- * @author DEMON
- */
+
 public enum UnidadMedida {
     UNIDADES("unidades"),
     G("gramos"),

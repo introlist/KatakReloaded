@@ -18,7 +18,7 @@ import javax.persistence.Table;
  
     CLASE: {@link Producto}
     
-    AUTOR: Roberto Gil Flores
+    AUTOR: Bernardo Espinoza Lara
 
  **********************************************************************/
 @Entity
@@ -49,11 +49,6 @@ public class MateriaPrima implements Serializable {
         this.nombre = nombre;
         this.unidadMedida = unidadMedida;
         this.cantidad = cantidad;
-    }
-
-    public MateriaPrima(String nombre, UnidadMedida unidadMedida) {
-        this.nombre = nombre;
-        this.unidadMedida = unidadMedida;
     }
     
     public MateriaPrima(String nombre, String unidadMedida) {

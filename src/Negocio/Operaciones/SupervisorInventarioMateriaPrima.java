@@ -47,7 +47,7 @@ public class SupervisorInventarioMateriaPrima {
         }
     }
     
-    public void GestionarNuevoMaterial(MateriaPrima nuevaMateriaPrima){
+    public void RegistrarNuevoMaterial(MateriaPrima nuevaMateriaPrima){
         nuevaMateriaPrima.setCantidad(0);
         agregarMateriaPrima(nuevaMateriaPrima);
     }
