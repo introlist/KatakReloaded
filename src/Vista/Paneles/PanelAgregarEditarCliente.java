@@ -156,20 +156,4 @@ public class PanelAgregarEditarCliente extends javax.swing.JPanel{
     public void setCampoEMail(String mail){
         CampoEMail.setText(mail);
     }
-    
-    public boolean camposValidados(){
-        ajustarCampos();
-        return (
-                !getCampoNombre().equals("") || 
-                !getCampoDireccion().equals("") || 
-                !getCampoTelefono().equals("")
-                );
-    }
-
-    private void ajustarCampos() {
-        setCampoNombre(getCampoNombre().trim());
-        setCampoDireccion(getCampoDireccion().trim());
-        setCampoTelefono(getCampoTelefono().trim());
-        setCampoEMail(getCampoEMail().trim());
-    }
 }

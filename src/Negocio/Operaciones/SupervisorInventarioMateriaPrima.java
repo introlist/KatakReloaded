@@ -52,7 +52,7 @@ public class SupervisorInventarioMateriaPrima {
         adminMateriasPrimas.agregarMateriaPrima(nuevaMateriaPrima);
     }
     
-    public List<MateriaPrima> obtenerListadoMateriaPrima(){
+    public List<MateriaPrima> getListadoMateriaPrima(){
         return adminMateriasPrimas.getListaMateriaPrima();
     }
     

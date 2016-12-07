@@ -19,12 +19,12 @@ import java.util.Date;
 
 /********************************************************************** 
  
-    CLASE: {@link VistaRegistradorPedidos}
+    CLASE: {@link RegistradorPedidos}
     
     AUTOR: Roberto Gil Flores
 
  **********************************************************************/
-public class VistaRegistradorPedidos extends javax.swing.JFrame {
+public class RegistradorPedidos extends javax.swing.JFrame {
     VendedorMenudeo vendedorMenudeo = new VendedorMenudeo();
     AdminProductos adminProductos = new AdminProductos();
     List<String> nombresProductosDisponibles = 
@@ -33,7 +33,7 @@ public class VistaRegistradorPedidos extends javax.swing.JFrame {
     /**
      * Creates new form registradorPedidos
      */
-    public VistaRegistradorPedidos() {
+    public RegistradorPedidos() {
         initComponents();
         rellenarTablaProductosVendidos(productosVendidosActuales);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

@@ -68,7 +68,7 @@ public class vistaInventario extends javax.swing.JFrame {
     }
 
     private void ActualizarTablas() {
-        panelInv.ActualizarTablaMateriasP(supervisorMatPrima.ObtenerListadoMateriaPrima());
+        panelInv.ActualizarTablaMateriasP(supervisorMatPrima.getListadoMateriaPrima());
         panelInv.ActualizarTablaProductos(supervisorProds.getListaProductosDisponibles());
     }
     
@@ -105,7 +105,7 @@ public class vistaInventario extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(panelInv.seSeleccFilaTablaMateriasP()){
-                    supervisorMatPrima.AgregarAInventario(
+                    supervisorMatPrima.agregarCantidadAInventario(
                             panelInv.getValorEnFilaSeleccTablaMateriasP(0),
                             Integer.parseInt(panelInv.getCampoAñadirMateria())
                     );
@@ -124,7 +124,7 @@ public class vistaInventario extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(panelInv.seSeleccFilaTablaProductos()){
-                    supervisorProds.AgregarAInventario(
+                    supervisorProds.agregarCantidadAInventario(
                             panelInv.getValorEnFilaSeleccTablaProductos(0),
                             Integer.parseInt(panelInv.getCampoAñadirProducto())
                     );
@@ -160,7 +160,7 @@ public class vistaInventario extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(panelInv.seSeleccFilaTablaMateriasP()){
-                    supervisorMatPrima.QuitarDelInventario(
+                    supervisorMatPrima.quitarCantidadDelInventario(
                             panelInv.getValorEnFilaSeleccTablaMateriasP(0),
                             Integer.parseInt(panelInv.getCampoSustraerMateria())
                     );
@@ -178,7 +178,7 @@ public class vistaInventario extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(panelInv.seSeleccFilaTablaProductos()){
-                    supervisorProds.QuitarDelInventario(
+                    supervisorProds.quitarCantidadDelInventario(
                             panelInv.getValorEnFilaSeleccTablaProductos(0),
                             Integer.parseInt(panelInv.getCampoSustraerProducto())
                     );
@@ -196,7 +196,7 @@ public class vistaInventario extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(panelInv.seSeleccFilaTablaMateriasP()){
-                    supervisorMatPrima.DejarDeUtilizarMateriaPrima(
+                    supervisorMatPrima.borrarMateriaPrima(
                             panelInv.getValorEnFilaSeleccTablaMateriasP(0)
                     );
                     ActualizarTablas();
@@ -213,7 +213,7 @@ public class vistaInventario extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(panelInv.seSeleccFilaTablaProductos()){
-                    supervisorProds.DejarDeUtilizarProducto(
+                    supervisorProds.quitarDisponibilidadProducto(
                             panelInv.getValorEnFilaSeleccTablaProductos(0)
                     );
                     ActualizarTablas();
@@ -233,7 +233,7 @@ public class vistaInventario extends javax.swing.JFrame {
                         panelNuevaMat.getCampoNombre(),
                         panelNuevaMat.getBotonSeleccionado()
                 );
-                supervisorMatPrima.GestionarNuevoMaterial(nuevaMateriaPrima);
+                supervisorMatPrima.registrarNuevoMaterial(nuevaMateriaPrima);
             }
         });
     }
@@ -246,7 +246,7 @@ public class vistaInventario extends javax.swing.JFrame {
                         panelNuevoProd.getCampoNombre(),
                         Integer.parseInt(panelNuevoProd.getCampoPrecio())
                 );
-                supervisorProds.GestionarNuevoProducto(nuevoProducto);
+                supervisorProds.registrarNuevoProducto(nuevoProducto);
             }
         });
     }
@@ -321,6 +321,10 @@ public class vistaInventario extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(vistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

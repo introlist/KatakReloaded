@@ -1,5 +1,5 @@
 
-import Vista.VistaMenuPrincipal;
+import Vista.MenuPrincipal;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,7 +20,7 @@ public class EjecutarApp {
 //        vistaClientes vc = new vistaClientes();
 //        vc.setVisible(true);
 
-        VistaMenuPrincipal mp = new VistaMenuPrincipal();
+        MenuPrincipal mp = new MenuPrincipal();
         mp.setVisible(true);
     }
     

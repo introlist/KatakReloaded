@@ -129,16 +129,4 @@ public class PanelNuevaMateriaPrima extends JPanel{
     public void setListenerBotonRegresar(ActionListener listener){
         BotonRegresar.addActionListener(listener);
     }
-    
-    private void setCampoNombre(String nombre){
-        CampoNombre.setText(nombre);
-    }
-    
-    public boolean camposValidados(){
-        setCampoNombre(getCampoNombre().trim());
-        return (
-                !getCampoNombre().equals("") || 
-                !getBotonSeleccionado().equals(null)
-                );
-    }
 }

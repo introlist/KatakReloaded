@@ -9,17 +9,17 @@ package Vista;
 
 /********************************************************************** 
  
-    CLASE: {@link VistaMenuPrincipal}
+    CLASE: {@link MenuPrincipal}
     
     AUTOR: Mario Lopez Duran
 
  **********************************************************************/
-public class VistaMenuPrincipal extends javax.swing.JFrame {
+public class MenuPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form Menu
      */
-    public VistaMenuPrincipal() {
+    public MenuPrincipal() {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     }
@@ -145,13 +145,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private void btMenuVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuVentasActionPerformed
         this.dispose();
-        VistaRegistrarVentas registradorVentas = new VistaRegistrarVentas();
+        vistaRegistrarVentas registradorVentas = new vistaRegistrarVentas();
         registradorVentas.setVisible(true);
     }//GEN-LAST:event_btMenuVentasActionPerformed
 
     private void btMenuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuClientesActionPerformed
         this.dispose();
-        new VistaClientes().setVisible(true);
+        new vistaClientes().setVisible(true);
     }//GEN-LAST:event_btMenuClientesActionPerformed
 
     private void btMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuSalirActionPerformed
@@ -172,7 +172,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private void btMenuInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuInventarioActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        VistaInventario inventario = new VistaInventario();
+        vistaInventario inventario = new vistaInventario();
         inventario.setVisible(true);
     }//GEN-LAST:event_btMenuInventarioActionPerformed
 
@@ -182,7 +182,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaMenuPrincipal().setVisible(true);
+                new MenuPrincipal().setVisible(true);
             }
         });
     }
